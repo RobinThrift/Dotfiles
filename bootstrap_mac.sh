@@ -16,6 +16,8 @@ function doIt() {
     --exclude "SETUPVM.md" --exclude "Vagrantfile" --exclude ".gitignore" \
     --exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
     source ~/.bash_profile;
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 
