@@ -157,7 +157,7 @@ Plug 'tpope/vim-fugitive'
 " ----------------------
 
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-E>'
