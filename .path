@@ -1,0 +1,46 @@
+# SETUP THE $PATH
+
+# --------------------------------------------------
+# Use MAMP PHP (as it's usually newer; if available
+# --------------------------------------------------
+mamp_php='/Applications/MAMP/bin/php/php5.5.9/bin'
+if [[ -d "$mamp_php" ]]; then
+    export MAMP_PHP="$mamp_php"
+fi
+
+# --------------------------------------------------
+# CMake (if available)
+# --------------------------------------------------
+cmake='/Applications/CMake.app/Contents/bin'
+if [[ -d "$cmake" ]]; then
+    export CMAKE="$cmake"
+fi
+
+# --------------------------------------------------
+# Tmuxifier 
+# --------------------------------------------------
+tmifer_path="$HOME/.tmuxifier/bin"
+if [[ -d "$tmifer_path" ]]; then
+    export TMIFER_PATH="$tmifer_path"
+fi
+
+# --------------------------------------------------
+# Android Dev Tools 
+# --------------------------------------------------
+android_sdk_path="$HOME/ASDK/tools"
+if [[ -d "$android_sdk_path" ]]; then
+    export ANDROID_SDK_PATH="$android_sdk_path"
+fi
+
+# --------------------------------------------------
+# Maven 
+# --------------------------------------------------
+maven_path="/usr/local/apache-maven/apache-maven-3.2.1"
+if [[ -d "$maven_path" ]]; then
+    export M2_HOME="$maven_path"
+    export MAVEN="$M2_HOME/bin"
+fi
+
+
+
+export PATH="$ANDROID_SDK_PATH:$TMIFER_PATH:$MAMP_PHP:$CMAKE_PATH:$PATH"

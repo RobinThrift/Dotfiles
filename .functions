@@ -1,0 +1,34 @@
+# --------------------------------------------------
+# FUNCTIONS
+# --------------------------------------------------
+
+# Determine size of a file or total size of a directory
+function fs() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh
+    else
+        local arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* *
+    fi
+}
+
+
+alias food='curl "http://www.stwh-portal.de/mensa/index.php?wo=2&wann=2&format=txt" -s | grep "> [ETW]." | sed "s/([vnks0-9]*)//g" | sed "s:/[0-9]*,[0-9]*./[0-9]*,[0-9]*.::g" | head -23 | tail -12'
+
+
+# Syntax-highlight JSON strings or files
+# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
+function json() {
+    if [ -t 0 ]; then # argument
+        python -mjson.tool <<< "$*" | pygmentize -l javascript
+    else # pipe
+        python -mjson.tool | pygmentize -l javascript
+    fi
+}
+
+
+
