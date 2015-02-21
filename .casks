@@ -35,6 +35,16 @@ brew cask install basictex --appdir=/Applications
 brew cask install tex-live-utility --appdir=/Applications
 brew cask install the-unarchiver --appdir=/Applications
 
+# QickLook Plugins
+brew cask install qlcolorcode
+brew cask install qlmarkdown
+brew cask install quicklook-json
+brew cask install qlprettypatch
+brew cask install quicklook-csv
+brew cask install betterzipql
+brew cask install qlimagesize
+brew cask install webpquicklook
+
 # games
 brew cask install steam --appdir=/Applications
 brew cask install minecraft --appdir=/Applications
