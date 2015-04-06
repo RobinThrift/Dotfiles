@@ -12,12 +12,14 @@ xcode-select --install;
 
 function doIt() {
     rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap_mac.sh" --exclude "bootstrap_linux.sh"\
-    --exclude ".osx" --exclude ".brews" --exclude ".casks" --exclude ".vagrant/" \
+    --exclude ".osx" --exclude ".brews" --exclude ".casks" --exclude ".vagrant/" --exclude "vim_colours"\
     --exclude "SETUPVM.md" --exclude "Vagrantfile" --exclude ".gitignore" \
     --exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
     source ~/.bash_profile;
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir ~/.vim/colors;
+    cp ./vim_colours.vim ~/vim/colors/my-default.vim;
 }
 
 

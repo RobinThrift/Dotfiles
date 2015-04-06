@@ -62,12 +62,6 @@ syntax on
 syntax enable
 set number
 
-
-" use this with any base 16 terminal theme
-set background=dark
-Plug 'chriskempson/base16-vim'
-
-
 set splitbelow " more natural splits
 set splitright
 
@@ -203,7 +197,6 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': ['handlebars', 'html'] }
 
 
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
-Plug 'jelera/vim-javascript-syntax', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 
 
@@ -213,12 +206,13 @@ call plug#end()
 
 
 " ----------------------
-"  COLOURSCHEME (here because of plugin loading
+"  COLOURSCHEME (here because of plugin loading)
 " ----------------------
-colorscheme base16-ocean
+set background=dark
+colorscheme my-default
 set laststatus=2
-hi User1 ctermbg=green ctermfg=red
-hi User2 ctermbg=green ctermfg=blue
+hi User1 ctermbg=08 ctermfg=white
+hi User2 ctermbg=08 ctermfg=blue
 set statusline=%1*\ \ %F%m\ %2*%y%=%1*%l:%c\ %2*%P\ \ 
 
 
@@ -232,3 +226,8 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
+" for testing colourschemes/highlighting
+"map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+"\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+""\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
