@@ -42,3 +42,8 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
         
+[user]
+	name = Robin Thrift
+	email = thrift.d.robin@googlemail.com
+[push]
+	default = simple
