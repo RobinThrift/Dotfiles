@@ -11,7 +11,7 @@ find_git_branch() {
         if [[ "$branch" == "HEAD" ]]; then
             branch='detached*'
         fi
-        git_branch="$txtcyn[$branch$txtred$git_dirty$txtcyn]"
+        git_branch="$txtylw|$txtcyn$branch$txtred$git_dirty$txtcyn"
     else
         git_branch=""
     fi
@@ -26,6 +26,6 @@ find_git_dirty() {
     fi
 }
 
-PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
+PROMPT_COMMAND="find_git_dirty; find_git_branch; $PROMPT_COMMAND"
 
-export PS1="\[$txtred\]┌╼ \[$txtylw\][\w]\$git_branch \[$txtred\]\n└─╼\[$txtrst\] "
+export PS1="\r\[$txtblu\]\[$txtlgrn\]\w\$git_branch\n\[$txtblu\]λ\[$txtrst\] "
