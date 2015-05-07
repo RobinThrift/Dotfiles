@@ -7,18 +7,31 @@
 # ------------------------------
 
 function doIt() {
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap_mac.sh" --exclude "bootstrap_linux.sh"\
-    --exclude ".osx" --exclude ".brews" --exclude ".casks" --exclude ".vagrant/" \
-    --exclude "SETUPVM.md" --exclude "Vagrantfile" --exclude ".gitignore"
+    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap_mac.sh" --exclude "bootstrap_arch.sh"\
+    --exclude ".osx" --exclude ".brews" --exclude ".casks" --exclude ".vagrant/" --exclude "vim_colours"\
+    --exclude ".arch" --exclude ".arch_apps"\
+    --exclude "SETUPVM.md" --exclude "Vagrantfile" --exclude ".gitignore" \
     --exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~;
     source ~/.bash_profile;
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir ~/.vim/colors;
+    cp ./vim_colours.vim ~/vim/colors/my-default.vim;
 }
 
 
 # update this repo
 git pull origin master;
+
+# do the install
+if [ "$1" == "--install" -o "$1" == "-i" ]; then
+    source ./.arch;
+    source ./.arch_apps;
+    doIt;
+    unset doIt;
+    exit 0;
+fi;
+
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt;

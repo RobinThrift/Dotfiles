@@ -1,0 +1,66 @@
+# --------------------------------------------------
+# ARCH SETUP
+# --------------------------------------------------
+
+#!/usr/bin/env bash
+
+# Keep-alive: update existing `sudo` time stamp until `.arch` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# --------------------------------------------------
+# YAOURT
+# --------------------------------------------------
+mkdir ~/.tmp_builds; cd ~/.tmp_builds;
+curl -L -O https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz;
+tar -xzf package-query.tar.gz;
+cd package-query;
+makepkg -s;
+pacman -U --noconfirm *.pkg.tar.xz
+cd ~/.tmp_builds;
+
+curl -L -O https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz;
+tar -xzf yaourt.tar.gz;
+cd yaourt;
+makepkg -s;
+pacman -U --noconfirm *.pkg.tar.xz
+cd ~;
+
+
+# --------------------------------------------------
+# ESSENTIALS
+# --------------------------------------------------
+pacman -S --noconfirm rxvt-unicode
+pacman -S --noconfirm tmux
+pacman -S --noconfirm feh
+pacman -S --noconfirm terminus-font
+pacman -S --noconfirm ttf-inconsolata
+
+# --------------------------------------------------
+# EXTRAS
+# --------------------------------------------------
+pacman -S --noconfirm urxvt-perls
+
+
+# --------------------------------------------------
+# GUI (and X)
+# --------------------------------------------------
+pacman -S --noconfirm xorg-server
+pacman -S --noconfirm xorg-server-utils
+pacman -S --noconfirm bspwm
+pacman -S --noconfirm sxhkd
+pacman -S --noconfirm xclip
+pacman -S --noconfirm nautilus
+yaourt -S --noconfirm dmenu2
+yaourt -S --noconfirm bar-aint-recursive
+
+
+# --------------------------------------------------
+# SETTINGS
+# --------------------------------------------------
+
+# -- NAUTILUS --
+# make default file manager
+xdg-mime default org.gnome.Nautilus.desktop inode/directory
+
+# set default view as list
+gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'

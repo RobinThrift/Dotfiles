@@ -1,0 +1,28 @@
+# --------------------------------------------------
+# ARCH APPS
+# --------------------------------------------------
+
+#!/usr/bin/env bash
+
+# Keep-alive: update existing `sudo` time stamp until `.arch` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# --------------------------------------------------
+# GENERAL
+# --------------------------------------------------
+pacman -S --noconfirm geary 
+
+# --------------------------------------------------
+# MEDIA
+# --------------------------------------------------
+pacman -S --noconfirm mpv
+pacman -S --noconfirm youtube-dl
+#pacman -S --noconfirm shotwell
+#pacman -S --noconfirm darktable
+#yaourt -S --noconfirm nathive
+#yaourt -S --noconfirm pinta
+
+# --------------------------------------------------
+# SOCIAL
+# --------------------------------------------------
+yaourt -S --noconfirm turses
