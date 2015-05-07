@@ -16,13 +16,6 @@ if [[ -d "$cmake" ]]; then
     export CMAKE="$cmake"
 fi
 
-# --------------------------------------------------
-# Tmuxifier 
-# --------------------------------------------------
-tmifer_path="$HOME/.tmuxifier/bin"
-if [[ -d "$tmifer_path" ]]; then
-    export TMIFER_PATH="$tmifer_path"
-fi
 
 # --------------------------------------------------
 # Android Dev Tools 
