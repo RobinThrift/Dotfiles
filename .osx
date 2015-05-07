@@ -260,7 +260,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 defaults write com.apple.terminal StringEncodings -array 4
 
 # install the terminal colours
-open './custom.terminal'
+open './custom2.terminal'
 
 
 # --------------------------------------------------
