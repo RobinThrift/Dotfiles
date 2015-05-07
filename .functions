@@ -30,17 +30,3 @@ function json() {
         python -mjson.tool | pygmentize -l javascript
     fi
 }
-
-
-function battery() {
-    case $(uname -s) in
-        "Darwin")
-        if [ "$1" == "charge" ]; then
-            pmset -g batt | grep -o '[0-9]*%';
-        fi;
-        if [ "$1" == "source" ]; then
-            pmset -g batt | grep -o '\(AC\|Battery\) Power' | grep -o 'AC\|Battery';
-        fi;
-    esac;
-    
-}
