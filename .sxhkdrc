@@ -1,0 +1,34 @@
+#
+# GENERAL HOTKEYS
+#
+
+control + shift + t
+    urxvtc -e 'tmux'
+
+alt + space
+    ~/.extras/dmenu2
+
+#
+# bspwm keybindings
+# 
+
+super + control + {h,j,k,l} 
+    bspc window --focus {left,down,up,right}
+
+~button1
+    bspc pointer -g focus
+
+super + control + {1-5}
+    bspc desktop --focus {I,II,III,IV,V}
+
+super + q
+    bspc window focused --close
+
+super + alt +q
+    bspc window focused --kill
+
+super + alt + {o,p}
+    bspc window focused --swap {prev,next}
+
+super + control + s; {1-5}
+    bspc window focused --to-desktop {I,II,III,IV,V}

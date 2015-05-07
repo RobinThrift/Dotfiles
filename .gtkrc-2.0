@@ -1,0 +1,23 @@
+gtk-theme-name = "Elegant_Brit-3.8"
+
+binding "gtk-text-movements" {
+    bind "<Alt>Left" { }
+    bind "<Alt>Left" { "move-cursor" (words, -1, 0) }
+    bind "<Alt>Right" { }
+    bind "<Alt>Right" { "move-cursor" (words, 1, 0) }
+
+    bind "<Super>Left" { }
+    bind "<Super>Left" { "move-cursor" (display-lines, -1, 0) }
+    bind "<Super>Right" { }
+    bind "<Super>Right" { "move-cursor" (display-lines, 1, 0) }
+}
+class "GtkEntry" binding "gtk-text-movements"
+class "GtkTextView" binding "gtk-text-movements"
+
+
+binding "gtk-super-clipbindings" {
+    bind "<Super>x" { "cut-clipboard" () }
+    bind "<Super>c" { "copy-clipboard" () }
+    bind "<Super>v" { "paste-clipboard" () }
+}
+class "*" binding "gtk-super-clipbindings"

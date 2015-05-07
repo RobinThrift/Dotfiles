@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+fg="%{F#d9e6f2}"
+bg="%{B#001b22}"
+hi="%{F#7a7ab8}"
+dbg="%{B#001b22}"
+
+desktops() {
+    dektops=""
+    for desktop in `bspc query -D`
+    do
+        if [ $desktop = "`bspc query -d focused -D`" ]; then
+            desktops="$desktops$dbg$hi$desktop "
+        else
+            desktops="$desktops%{A:bspc desktop --focus $desktop:}$fg$dbg$desktop %{A}"
+        fi
+    done
+    echo "$desktops $bg$fg"
+}
+#font="*-terminus-medium-r-normal-*-14-*-*-*-*-*"
+font="Monaco-10"
+icons="Font Awesome-11"
+
+bar_loop() {
+    while :; do
+        left="   $(desktops)"
+        centre=""
+        right="%{F#7ab87a}%{Tindex 2} %{Tindex 1}$(date +'%H:%M :: %d %b')   "
+        buf="%{l}$left"
+        buf="$buf%{c}$centre"
+        buf="$buf%{r}$right"
+
+        echo $buf
+        sleep 0.2
+    done
+}
+
+bar_loop | lemonbar -g x25+0+0 -B '#001b22' -F '#d9e6f2' -f "$font","$icons" | bash

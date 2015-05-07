@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+feh  --image-bg black --bg-center ~/wallpaper/wallpaper.png
