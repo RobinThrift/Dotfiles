@@ -35,5 +35,12 @@ if [[ -d "$maven_path" ]]; then
 fi
 
 
+# --------------------------------------------------
+# Extras 
+# --------------------------------------------------
+extras_path="$HOME/.extras"
+if [[ -d "$extras_path" ]]; then
+    export EXTRAS_PATH="$extras_path"
+fi
 
-export PATH="/usr/local/bin:$ANDROID_SDK_PATH:$TMIFER_PATH:$MAMP_PHP:$CMAKE_PATH:$PATH"
+export PATH="/usr/local/bin:$ANDROID_SDK_PATH:$MAMP_PHP:$CMAKE_PATH:$EXTRAS_PATH:$PATH"
