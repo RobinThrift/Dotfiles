@@ -30,3 +30,8 @@ function json() {
         python -mjson.tool | pygmentize -l javascript
     fi
 }
+
+# opens vim with the first search result from ag
+function agvim() {
+    vim `ag $1 $2 -c | head -n 1 | sed 's/:.*//'`;
+}
