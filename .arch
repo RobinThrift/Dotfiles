@@ -4,8 +4,6 @@
 
 #!/usr/bin/env bash
 
-# Keep-alive: update existing `sudo` time stamp until `.arch` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # --------------------------------------------------
 # YAOURT
@@ -16,8 +14,8 @@ tar -xzf package-query.tar.gz;
 cd package-query;
 makepkg -s;
 pacman -U --noconfirm *.pkg.tar.xz
-cd ~/.tmp_builds;
 
+cd ~/.tmp_builds;
 curl -L -O https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz;
 tar -xzf yaourt.tar.gz;
 cd yaourt;
@@ -25,15 +23,20 @@ makepkg -s;
 pacman -U --noconfirm *.pkg.tar.xz
 cd ~;
 
+# Keep-alive: update existing `sudo` time stamp until `.arch` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 
 # --------------------------------------------------
 # ESSENTIALS
 # --------------------------------------------------
+pacman -S --noconfirm vim
 pacman -S --noconfirm rxvt-unicode
 pacman -S --noconfirm tmux
 pacman -S --noconfirm feh
 pacman -S --noconfirm terminus-font
 pacman -S --noconfirm ttf-inconsolata
+yaourt -S --noconfirm ttf-meslo
 
 # --------------------------------------------------
 # EXTRAS

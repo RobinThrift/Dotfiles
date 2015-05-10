@@ -6,6 +6,8 @@
 #
 # ------------------------------
 
+sudo pacman -S --noconfirm rsync;
+
 function doIt() {
     rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap_mac.sh" --exclude "bootstrap_arch.sh"\
     --exclude ".osx" --exclude ".brews" --exclude ".casks" --exclude ".vagrant/" --exclude "vim_colours"\
@@ -15,7 +17,7 @@ function doIt() {
     source ~/.bash_profile;
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    mkdir ~/.vim/colors;
+    mkdir -p ~/.vim/colors;
     cp ./vim_colours.vim ~/vim/colors/my-default.vim;
 }
 

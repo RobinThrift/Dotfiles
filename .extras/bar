@@ -18,7 +18,7 @@ desktops() {
     echo "$desktops $bg$fg"
 }
 #font="*-terminus-medium-r-normal-*-14-*-*-*-*-*"
-font="Monaco-10"
+font="Meslo-10"
 icons="Font Awesome-11"
 
 bar_loop() {
