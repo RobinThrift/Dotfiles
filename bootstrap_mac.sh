@@ -20,7 +20,7 @@ function doIt() {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     mkdir ~/.vim/colors;
-    cp ./vim_colours.vim ~/vim/colors/my-default.vim;
+    cp ./vim_colours.vim ~/.vim/colors/my-default.vim;
 }
 
 
