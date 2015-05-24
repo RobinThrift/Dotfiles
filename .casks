@@ -20,7 +20,7 @@ brew cask install clipmenu --appdir=/Applications
 
 # extras
 brew cask install firefox --appdir=/Applications
-brew cask install virutalbox --appdir=/Applications
+brew cask install virtualbox --appdir=/Applications
 brew cask install vagrant --appdir=/Applications
 brew cask install github --appdir=/Applications
 brew cask install mpv --appdir=/Applications
