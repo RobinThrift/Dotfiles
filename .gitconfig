@@ -1,5 +1,8 @@
 # more here: https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
 
+[init]
+        templatedir = ~/.git_templates
+
 [alias]
     
         # View the current working tree status using the short format
@@ -46,4 +49,5 @@
 	name = Robin Thrift
 	email = thrift.d.robin@googlemail.com
 [push]
-	default = simple
+    default = simple
+
