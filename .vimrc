@@ -138,6 +138,20 @@ nnoremap ' `
 nnoremap ` '
 
 
+
+" Enable/disable relative numbers
+nnoremap <leader>r :call ToggleRelativeNumber()<CR>
+
+function! ToggleRelativeNumber()
+  if &relativenumber
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+    set nonumber
+  endif
+endfunction
+
 " ----------------------
 "  TOOLS
 " ----------------------
