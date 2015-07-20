@@ -238,6 +238,7 @@ augroup pandoc_syntax
 augroup END
 
 
+" Colourscheme
 Plug 'chriskempson/base16-vim'
 
 call plug#end()
