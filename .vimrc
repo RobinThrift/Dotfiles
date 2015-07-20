@@ -199,6 +199,7 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': ['handlebars', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -209,7 +210,7 @@ call plug#end()
 "  COLOURSCHEME (here because of plugin loading)
 " ----------------------
 set background=dark
-colorscheme my-default
+colorscheme base16-ocean
 set laststatus=2
 hi User1 ctermbg=08 ctermfg=white
 hi User2 ctermbg=08 ctermfg=blue

@@ -11,7 +11,7 @@ find_git_branch() {
         if [[ "$branch" == "HEAD" ]]; then
             branch='detached*'
         fi
-        git_branch="$txtylw|$txtcyn$branch$txtred$git_dirty$txtcyn"
+        git_branch="$bldblu|$txtpur$branch$txtred$git_dirty"
     else
         git_branch=""
     fi
