@@ -57,6 +57,10 @@ nnoremap <silent> <esc> :noh<cr><esc>
 set noerrorbells
 set novisualbell
 
+" Resize vertical split
+nnoremap <silent> <Leader>> :exe "vertical resize +5"<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize -5"<CR>
+
 " SYNTAX & UI
 syntax on
 syntax enable
