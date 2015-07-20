@@ -194,7 +194,7 @@ au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
 
 Plug 'scrooloose/syntastic'
-let g:syntastic_javascripts_checkers = ['jshint']
+let g:syntastic_javascripts_checkers = ['eslint']
 let g:syntastic_aggregate_errors=1
 let g:syntastic_html_checkers = []
 
