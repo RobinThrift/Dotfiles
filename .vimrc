@@ -133,6 +133,10 @@ imap <C-Tab> <C-P>
 set complete=.,b,u,] " pull autocomplete from all sources (files, buffers, tags)
 
 
+" Invert apostrophe/backtick 'jump to mark' behavior
+nnoremap ' `
+nnoremap ` '
+
 
 " ----------------------
 "  TOOLS
