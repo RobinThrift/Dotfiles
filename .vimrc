@@ -228,6 +228,14 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': ['handlebars', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" g:pandoc#syntax#conceal#use = 0
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+
 Plug 'chriskempson/base16-vim'
 
 call plug#end()
