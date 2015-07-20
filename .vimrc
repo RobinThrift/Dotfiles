@@ -74,6 +74,10 @@ set showmatch
 hi MatchParen cterm=underline ctermbg=none ctermfg=blue
 hi Search cterm=none ctermfg=black ctermbg=yellow
 
+" Highlight EOL
+set list
+set listchars=eol:¬,extends:…,precedes:…
+
 
 " Rainbow Parentheses
 Plug 'kien/rainbow_parentheses.vim'
