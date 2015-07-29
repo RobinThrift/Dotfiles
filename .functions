@@ -39,11 +39,19 @@ function agvim() {
 # start the boot2docker-vm and mount the current PWD as /project
 function b2d() {
     echo "Booting Docker VM:"
-    boot2docker --vbox-share="$(pwd)=project-src" up;
+    name="$(pwd | tr '[:upper:]' '[:lower:]' | sed 's:/:_:g')";
+    path="$(pwd)=project-$name";
+    boot2docker --vbox-share=$path up;
     echo "Setting Shell Variables":
     eval "$(boot2docker shellinit)";
     echo "Setting Up Shared Volume";
     boot2docker ssh "sudo mkdir /project; \
-                    sudo mount -t vboxsf -o uid=1000,gid=50 project-src /project";
+                    sudo mount -t vboxsf -o uid=1000,gid=50 project-$name /project";
     echo "$(pwd) has been mounted to /project";
+    echo "SETTING \$PROJECT_SRC env variable to /project";
+    export PROJECT_SRC=/project;
+}
+
+function tpwd() {
+    echo "$(pwd)";
 }
