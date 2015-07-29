@@ -194,35 +194,40 @@ au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
 
 Plug 'scrooloose/syntastic'
-let g:syntastic_javascripts_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_aggregate_errors=1
 let g:syntastic_html_checkers = []
 
 " find nearest .jshintrc from https://github.com/rlipscombe/vimrc/blob/master/vimrc#L174
-function! s:find_jshintrc(dir)
-    let l:found = globpath(a:dir, '.jshintrc')
+function! s:find_eslintrc(dir)
+    let l:found = globpath(a:dir, '.eslintrc')
     if filereadable(l:found)
         return l:found
     endif
 
     let l:parent = fnamemodify(a:dir, ':h')
     if l:parent != a:dir
-        return s:find_jshintrc(l:parent)
+        return s:find_eslintrc(l:parent)
     endif
 
-    return "~/.jshintrc"
+    return "~/.eslintrc"
 endfunction
 
-function! UpdateJsHintConf()
+function! UpdateEslintConf()
     let l:dir = expand('%:p:h')
-    let l:jshintrc = s:find_jshintrc(l:dir)
+    let l:eslintrc = s:find_eslintrc(l:dir)
 "    let g:syntastic_javascript_jshint_conf = l:jshintrc
-    let g:syntastic_javascript_jshint_args = '-c ' + l:jshintrc
+    let g:syntastic_javascript_eslint_args = '-c ' + l:eslintrc
 endfunction
 
-au BufEnter * call UpdateJsHintConf()
+au BufEnter * call UpdateEslintConf()
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_debug = 0 
+let g:syntastic_debug = 0
+let g:syntastic_mode_map = {
+    \ "mode": "passive"
+\}
 
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['handlebars', 'html'] }
 
