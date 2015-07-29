@@ -36,6 +36,12 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 # explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
+# --------------------------------------------------
+# docker
+# --------------------------------------------------
+alias killdockerc='docker stop $(docker ps -a -q)'
+alias rmdockerc='docker rm $(docker ps -a -q)'
+
 
 # Merge PDF files
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
@@ -62,5 +68,3 @@ alias cdfp='cd "$(fp)"'
 function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
-
-
