@@ -60,7 +60,10 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-
+# set clock format in menubar
+defaults -currentHost write com.apple.menuextra.clock DateFormat -string "EEE d. MMM  HH:mm"
+defaults -currentHost write com.apple.menuextra.clock FlashDateSeparators -int 0
+defaults -currentHost write com.apple.menuextra.clock IsAnalog -int 0
 
 # --------------------------------------------------
 # ssd specific stuff
