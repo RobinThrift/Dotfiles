@@ -68,3 +68,9 @@ alias cdfp='cd "$(fp)"'
 function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
+
+
+# --------------------------------------------------
+# Other
+# --------------------------------------------------
+alias :w='echo "You are not in vim, dummy"'
