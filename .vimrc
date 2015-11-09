@@ -246,12 +246,47 @@ Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 set suffixesadd+=.js
 
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+autocmd FileType javascript nmap <buffer> td :TernDef<CR>
+autocmd FileType javascript nmap <buffer> tr :TernRename<CR>
+autocmd FileType javascript nmap <buffer> th :TernType<CR>
+autocmd FileType javascript setlocal completeopt+=menu,preview
+
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " g:pandoc#syntax#conceal#use = 0
 
 augroup pandoc_syntax
     au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
 augroup END
+
+
+" Ctags Stuff
+Plug 'majutsushi/tagbar', { 'do': 'npm install -g git+https://github.com/ramitos/jsctags.git' }
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
+
+nnoremap <Leader>t :TagbarToggle<CR>
 
 
 " Colourscheme
@@ -271,7 +306,6 @@ set laststatus=2
 hi User1 ctermbg=08 ctermfg=white
 hi User2 ctermbg=08 ctermfg=blue
 set statusline=%1*\ \ %F%m\ %2*%y%=%1*%l:%c\ %2*%P\ \ 
-
 
 
 " ----------------------
