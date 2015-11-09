@@ -32,6 +32,7 @@ brew install tmux
 brew install git
 brew install ranger
 brew install tree
+brew install ctags
 
 # runtimes and langs
 brew install node
