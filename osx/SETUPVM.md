@@ -6,7 +6,7 @@
     - ports
     - usb
     - second checkbox
-    - ![](./assets/images/disable_usb_2.png)
+    - ![](./disable_usb_2.png)
 
 - setup VNC
     - ssh into the machine

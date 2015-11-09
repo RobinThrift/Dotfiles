@@ -1,13 +1,9 @@
-# Dotfiles and Setup Scripts
+# Robin Thrift's Dotfiles
 
-## Setup
-Run either `bootstrap_mac.sh -i` or `bootstrap_linux.sh -i` to install on a new system.  
-This will also install a bunch of applications. This could also be used to update applications.
+Inspired by: https://github.com/holman/dotfiles
 
-## Dotfiles
-Run either `bootstrap_mac.sh -f` or `bootstrap_linux.sh -f` to force rsync changes to `~/`. 
-(No force without the `-f` flag)
+Adapted to my personal taste.
 
-## Testing
-- `vagrant up` to initialize the vm
-- follow the steps described in `SETUPVM.md`
+Run `./script/bootstrap` and `./scripts/install` and depending on the
+OS, either `./arch/arch; ./arch/packages` or `./osx/defaults.sh`.
+

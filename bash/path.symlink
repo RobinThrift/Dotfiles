@@ -1,23 +1,6 @@
 # SETUP THE $PATH
 
 # --------------------------------------------------
-# Use MAMP PHP (as it's usually newer; if available
-# --------------------------------------------------
-mamp_php='/Applications/MAMP/bin/php/php5.5.9/bin'
-if [[ -d "$mamp_php" ]]; then
-    export MAMP_PHP="$mamp_php"
-fi
-
-# --------------------------------------------------
-# CMake (if available)
-# --------------------------------------------------
-cmake='/Applications/CMake.app/Contents/bin'
-if [[ -d "$cmake" ]]; then
-    export CMAKE="$cmake"
-fi
-
-
-# --------------------------------------------------
 # Android Dev Tools 
 # --------------------------------------------------
 android_sdk_path="$HOME/ASDK/tools"
@@ -33,7 +16,6 @@ if [[ -d "$maven_path" ]]; then
     export M2_HOME="$maven_path"
     export MAVEN="$M2_HOME/bin"
 fi
-
 
 # --------------------------------------------------
 # Extras 

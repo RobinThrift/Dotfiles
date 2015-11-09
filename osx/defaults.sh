@@ -263,7 +263,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 defaults write com.apple.terminal StringEncodings -array 4
 
 # install the terminal colours
-open './base16-ocean.light.terminal'
+open '../terminal/base16-ocean.light.terminal'
 
 
 # --------------------------------------------------
