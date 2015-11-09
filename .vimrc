@@ -24,7 +24,7 @@ set autoread
 set wildmode=list:full
 
 " cmd bar height
-set cmdheight=2
+set cmdheight=1
 
 " ignore case when searching & highlight results
 set ignorecase
@@ -309,10 +309,11 @@ call plug#end()
 " ----------------------
 set background=dark
 colorscheme base16-ocean
+hi User1 ctermbg=00 ctermfg=white
+hi User2 ctermbg=00 ctermfg=blue
+hi User3 ctermbg=00 ctermfg=02
 set laststatus=2
-hi User1 ctermbg=08 ctermfg=white
-hi User2 ctermbg=08 ctermfg=blue
-set statusline=%1*\ \ %F%m\ %2*%y%=%1*%l:%c\ %2*%P\ \ 
+set statusline=%1*%=\ %m%F\ %3*%y\ %2*%l:%c\ \ 
 
 
 " ----------------------
