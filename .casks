@@ -28,6 +28,7 @@ brew cask install skitch --appdir=/Applications
 brew cask install atom --appdir=/Applications
 
 # tools
+brew cask install amethyst --appdir=/Applications
 brew cask install day-o --appdir=/Applications
 brew cask install appcleaner --appdir=/Applications
 brew cask install ccleaner --appdir=/Applications

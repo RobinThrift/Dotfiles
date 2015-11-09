@@ -1,0 +1,11 @@
+{
+    "mod1": [
+        "control",
+        "option"
+    ],
+    "floating": [
+        "com.apple.systempreferences",
+        "com.apple.print.PrinterProxy"
+    ],
+    "float-small-windows": true,
+}
