@@ -9,6 +9,9 @@ set clipboard=unnamed
 " custom leader
 let mapleader = ","
 
+" jk as escape sequence in insert mode
+inoremap jk <esc>
+
 " Enable Filetype plugins
 filetype on
 filetype plugin on
@@ -154,6 +157,10 @@ function! ToggleRelativeNumber()
     set nonumber
   endif
 endfunction
+
+" ,+s to save, reduce key strokes
+nnoremap <Leader>s :w<CR>
+
 
 " ----------------------
 "  TOOLS
