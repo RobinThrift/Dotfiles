@@ -40,4 +40,6 @@ else
     exit 0
 fi
 
+.git/hooks/ctags >/dev/null 2>&1 &
+
 exit 0
