@@ -5,7 +5,8 @@
     ],
     "floating": [
         "com.apple.systempreferences",
-        "com.apple.print.PrinterProxy"
+        "com.apple.print.PrinterProxy",
+        "com.twitter.twitter-mac"
     ],
     "float-small-windows": true,
 }
