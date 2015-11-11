@@ -131,8 +131,8 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 
-" autocomplete on tab
-imap <C-Tab> <C-P>
+" autocomplete on ctrl + c
+imap <c-c> <c-x><c-o>
 set complete=.,b,u,] " pull autocomplete from all sources (files, buffers, tags)
 
 
