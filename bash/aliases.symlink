@@ -74,3 +74,5 @@ function cdf() { # short for `cdfinder`
 # Other
 # --------------------------------------------------
 alias :w='echo "You are not in vim, dummy"'
+alias :q='exit'
+alias fresh='cd ~; clear'
