@@ -132,7 +132,7 @@ nmap <silent> <c-l> :wincmd l<CR>
 
 
 " autocomplete on ctrl + c
-imap <c-c> <c-x><c-o>
+imap <c-y> <c-x><c-o>
 set complete=.,b,u,] " pull autocomplete from all sources (files, buffers, tags)
 
 
