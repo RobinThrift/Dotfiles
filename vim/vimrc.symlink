@@ -209,6 +209,7 @@ autocmd FileType typescript nmap <buffer> tr :TsuquyomiRenameSymbol<CR>
 autocmd FileType typescript nmap <buffer> th : echo tsuquyomi#hint()<CR>
 autocmd FileType typescript setlocal completeopt+=menu,preview
 set suffixesadd+=.ts
+set suffixesadd+=.tsx
 
 Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['eslint']
