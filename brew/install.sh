@@ -2,12 +2,14 @@
 
 if test "$(uname)" = "Darwin"
 then
-    echo "Installing Homebrew for you."
 
     # install  homebrew if not already installed
     if test ! $(which brew)
     then
+        echo "Installing Homebrew for you."
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo "Installing Casks"
+        brew install caskroom/cask/brew-cask
     fi
 
     brew update
