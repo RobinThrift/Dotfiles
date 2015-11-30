@@ -18,7 +18,7 @@ brew install wget --with-iri
 
 
 # tools
-brew install macvim --override-system-vim
+brew install macvim --with-override-system-vim
 brew install tmux
 brew install git
 brew install ranger
