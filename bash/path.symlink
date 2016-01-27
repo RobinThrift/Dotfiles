@@ -25,4 +25,14 @@ if [[ -d "$extras_path" ]]; then
     export EXTRAS_PATH="$extras_path"
 fi
 
-export PATH="/usr/local/bin:$ANDROID_SDK_PATH:$MAMP_PHP:$CMAKE_PATH:$EXTRAS_PATH:$PATH"
+
+# --------------------------------------------------
+# Go
+# --------------------------------------------------
+gobin_path="$GOPATH/bin"
+if [[ -d "$gobin_path" ]]; then
+    export GOBIN_PATH="$gobin_path"
+    export GOROOT_PATH="$GOROOT/bin"
+fi
+
+export PATH="/usr/local/bin:$ANDROID_SDK_PATH:$MAMP_PHP:$CMAKE_PATH:$EXTRAS_PATH:$GOBIN_PATH:$GOROOT_PATH:$PATH"
