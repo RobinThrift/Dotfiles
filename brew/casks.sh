@@ -10,6 +10,9 @@ brew cask install google-drive --appdir=/Applications
 brew cask install alfred --appdir=/Applications
 brew cask install dropbox --appdir=/Applications
 brew cask install skype --appdir=/Applications
+brew cask install 1password --appdir=/Applications
+brew cask install spotify --appdir=/Applications
+brew cask install spotify-notifications --appdir=/Applications
 
 # extras
 brew cask install firefox --appdir=/Applications
