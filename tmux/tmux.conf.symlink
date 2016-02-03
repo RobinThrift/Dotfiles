@@ -44,9 +44,12 @@ bind -n C-_ send-keys C-l
 # use vi keybindings in copy mode
 setw -g mode-keys vi
 
+# reload tmux config
+bind-key r source-file ~/.tmux.conf \; display “Config reloaded!”
+
 # set pane colors - hilight the active pane
-set-option -g pane-border-fg colour235 #base02
-set-option -g pane-active-border-fg colour240 #base01
+set-option -g pane-border-fg cyan #base02
+set-option -g pane-active-border-fg red #base01
 
 # colorize messages in the command line
 set-option -g message-bg black #base02
@@ -65,7 +68,7 @@ set -g status-position bottom
  set -g visual-activity off
 
 # set color for status bar
-set -g status-bg colour15
+set -g status-bg colour0
 
 setw -g window-status-activity-style none
 setw -g window-status-format "#[bg=colour0,fg=colour12] #I  #W #[bg=colour0,fg=colour12]"
@@ -73,7 +76,7 @@ setw -g window-status-current-format "#[bg=colour1,fg=colour15] #I #[bg=colour0]
 
 # show session name, window & pane number, date and time on right side of status bar
 set -g status-right-length 90
-set -g status-right "#[fg=green,bg=colour0] #(~/.battery charge) (#(~/.battery source)) #[bg=colour15] #[fg=blue,bg=colour0] %d %b /#[bg=colour0] %H:%M "
+set -g status-right "#[fg=green,bg=colour0] #(~/.battery charge) (#(~/.battery source)) #[bg=colourk] #[fg=blue,bg=colour0] %d %b /#[bg=colour0] %H:%M "
 set -g status-left-length 60
 set -g status-left ""
 
