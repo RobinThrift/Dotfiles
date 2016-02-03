@@ -15,7 +15,7 @@ then
     brew update
     brew upgrade
 
-    source ./brews.sh
-    source ./casks.sh
+    source ./brew/brews.sh
+    source ./brew/casks.sh
 fi
 
