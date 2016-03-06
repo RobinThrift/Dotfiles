@@ -267,10 +267,7 @@ nnoremap <Leader>t :TagbarToggle<CR>
 
 
 " Colourscheme
-Plug 'chriskempson/base16-vim'
-
 Plug 'AlessandroYorba/Alduin'
-let g:alduin_Shout_Windhelm = 1
 
 call plug#end()
 
