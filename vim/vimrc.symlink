@@ -79,7 +79,7 @@ hi Search cterm=none ctermfg=black ctermbg=yellow
 
 " Highlight EOL
 set list
-set listchars=eol:¬,extends:…,precedes:…
+set listchars=tab:▸\ ,eol:¬,extends:…,precedes:…
 
 
 " Rainbow Parentheses
