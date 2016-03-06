@@ -6,6 +6,8 @@
 alias sudo='sudo '
 alias g="git"
 
+alias mpvq="mpv --really-quiet"
+
 # --------------------------------------------------
 # dir jumping and listing
 # --------------------------------------------------
