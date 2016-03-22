@@ -39,4 +39,5 @@ function agvim() {
 # setup default docker-machine env
 function dme() {
     eval "$(docker-machine env default)";
+    export DOCKER_MACHINE_IP=`docker-machine ip default`
 }
