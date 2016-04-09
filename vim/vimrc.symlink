@@ -161,6 +161,15 @@ endfunction
 " ,+s to save, reduce key strokes
 nnoremap <Leader>s :w<CR>
 
+" use K to join current line with line above, just like J does with line below
+nnoremap K kJ
+
+" superstart
+nnoremap <leader>e :e **/*
+
+" superstart buffer listing
+nnoremap <leader>b :b */*<C-d>
+
 
 " ----------------------
 "  TOOLS
