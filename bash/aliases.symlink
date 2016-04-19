@@ -44,6 +44,9 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias killdockerc='docker stop $(docker ps -a -q)'
 alias rmdockerc='docker rm $(docker ps -a -q)'
 
+alias dco="docker-compose"
+alias dcofresh="docker-compose stop ; docker-compose rm -f ; docker-compose up -d ; docker-compose logs"
+
 
 # Merge PDF files
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
