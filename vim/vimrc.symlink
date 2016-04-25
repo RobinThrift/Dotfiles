@@ -130,6 +130,9 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>                                                                                                                       
 nmap <silent> <c-l> :wincmd l<CR>
 
+" select pasted test usign gp
+nnoremap gp `[v`]`
+
 
 " autocomplete on ctrl + c
 imap <c-y> <c-x><c-o>
@@ -169,6 +172,15 @@ nnoremap <leader>e :e **/*
 
 " superstart buffer listing
 nnoremap <leader>b :b */*<C-d>
+
+" quickfix navigation
+nnoremap <leader>q :cnext<CR>
+nnoremap <leader>a :cprevious<CR>
+
+" open file under cursor in splits
+map gfv :vertical wincmd f<CR>
+map gfs wincmd f<CR>
+noremap gfc gf
 
 
 " ----------------------
@@ -244,6 +256,19 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 augroup pandoc_syntax
     au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
 augroup END
+
+" Go
+Plug 'fatih/vim-go'
+let g:go_fmt_autosave = 0
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+autocmd FileType go nmap <buffer> td <Plug>(go-def)
+autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
+autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
+autocmd FileType go nmap <buffer> tl :GoLint<CR>
+autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
+autocmd FileType go setlocal completeopt+=menu,preview
+
 
 
 " Ctags Stuff
