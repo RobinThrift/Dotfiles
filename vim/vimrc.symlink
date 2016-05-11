@@ -182,6 +182,11 @@ map gfv :vertical wincmd f<CR>
 map gfs wincmd f<CR>
 noremap gfc gf
 
+" do something useful with umlauts
+nmap ä }
+nmap ö {
+nmap ü %
+
 
 " ----------------------
 "  TOOLS
