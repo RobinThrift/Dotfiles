@@ -4,7 +4,6 @@
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-alias g="git"
 
 alias mpvq="mpv --really-quiet"
 
@@ -19,6 +18,12 @@ alias la="ls -Ga" # list all, includes dot files
 alias ll="ls -Gl" # long list, excludes dot files
 alias lla="ls -Gla" # long list all, includes dot files
 
+# --------------------------------------------------
+# Git
+# --------------------------------------------------
+alias g="git"
+alias gcm="git commit -m"
+alias gcan="git commit --amend --no-edit"
 
 # --------------------------------------------------
 # tools
