@@ -159,11 +159,6 @@ nnoremap <Leader>s :w<CR>
 " use K to join current line with line above, just like J does with line below
 nnoremap K kJ
 
-" superstart
-nnoremap <leader>e :e **/*
-
-" superstart buffer listing
-nnoremap <leader>b :b */*<C-d>
 
 " quickfix navigation
 nnoremap <leader>q :cnext<CR>
@@ -195,6 +190,41 @@ Plug 'tpope/vim-commentary'
 
 Plug 'mhinz/vim-startify'
 
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Special'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'Normal'],
+  \ 'prompt':  ['fg', 'String'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Comment'],
+  \ 'header':  ['fg', 'Comment'] }
+
+let g:fzf_layout = { 'right': '50%' }
+let g:fzf_buffers_jump = 1
+inoremap <expr> <c-x><c-k> fzf#complete()
+
+" fuzzy open
+nnoremap <leader>e :Files<CR>
+
+" fuzzy buffer open
+nnoremap <leader>b :Buffers<CR>
+
+" fuzzy line search
+nnoremap <leader>f :BLines<CR>
+nnoremap <leader>g :Lines<CR>
 
 " ----------------------
 "  GIT

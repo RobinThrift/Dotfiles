@@ -24,6 +24,7 @@ brew install git
 brew install ranger
 brew install tree
 brew install ctags
+brew install fzf
 
 # runtimes and langs
 brew install node

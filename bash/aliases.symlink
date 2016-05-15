@@ -13,6 +13,8 @@ alias mpvq="mpv --really-quiet"
 alias ..="cd .."
 alias ...="cd .. ; cd .."
 
+alias cdf='cd $(find . -type d -maxdepth 10 | fzf)'
+
 alias ls="ls -G" # list
 alias la="ls -Ga" # list all, includes dot files
 alias ll="ls -Gl" # long list, excludes dot files
@@ -24,6 +26,12 @@ alias lla="ls -Gla" # long list all, includes dot files
 alias g="git"
 alias gcm="git commit -m"
 alias gcan="git commit --amend --no-edit"
+
+# --------------------------------------------------
+# Text Editing
+# --------------------------------------------------
+alias oiv='vim $(ag -g "" | fzf-tmux)'
+
 
 # --------------------------------------------------
 # tools
@@ -73,12 +81,6 @@ function fp { osascript -e 'tell application "Finder"'\
 ## alias to copy it to the clipboard
 alias cfp='fp | pbcopy'
 alias cdfp='cd "$(fp)"'
-
-# Change working directory to the top-most Finder window location
-function cdf() { # short for `cdfinder`
-    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-}
-
 
 # --------------------------------------------------
 # Other
