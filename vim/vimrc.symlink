@@ -81,14 +81,6 @@ hi Search cterm=none ctermfg=black ctermbg=yellow
 set list
 set listchars=tab:▸\ ,eol:¬,extends:…,precedes:…
 
-
-" Rainbow Parentheses
-Plug 'kien/rainbow_parentheses.vim'
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
 " ----------------------
 "  FILES
 " ----------------------
@@ -193,7 +185,6 @@ nmap ü %
 " ----------------------
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
-Plug 'tmhedberg/matchit'
 
 Plug 'Raimondi/delimitMate' 
 let delimitMate_balance_matchpairs = 1
@@ -203,6 +194,7 @@ let delimitMate_jump_expansion = 1
 Plug 'tpope/vim-commentary'
 
 Plug 'mhinz/vim-startify'
+
 
 " ----------------------
 "  GIT
@@ -245,12 +237,6 @@ set suffixesadd+=.tsx
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 set suffixesadd+=.js
-
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-autocmd FileType javascript nmap <buffer> td :TernDef<CR>
-autocmd FileType javascript nmap <buffer> tr :TernRename<CR>
-autocmd FileType javascript nmap <buffer> th :TernType<CR>
-autocmd FileType javascript setlocal completeopt+=menu,preview
 
 " Rust
 Plug 'rust-lang/rust.vim'
