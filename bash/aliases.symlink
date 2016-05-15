@@ -13,7 +13,7 @@ alias mpvq="mpv --really-quiet"
 alias ..="cd .."
 alias ...="cd .. ; cd .."
 
-alias cdf='cd $(find . -type d -maxdepth 10 | fzf)'
+alias cdf='cd $(find . -type d -maxdepth 10 | fzf-tmux)'
 
 alias ls="ls -G" # list
 alias la="ls -Ga" # list all, includes dot files
