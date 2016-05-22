@@ -338,11 +338,11 @@ call plug#end()
 " ----------------------
 set background=dark
 colorscheme alduin
-hi User1 ctermbg=00 ctermfg=white
-hi User2 ctermbg=00 ctermfg=blue
-hi User3 ctermbg=00 ctermfg=02
+
+hi StatusLine ctermbg=234 ctermfg=15
+hi StatusLineNC ctermbg=234 ctermfg=08
 set laststatus=2
-set statusline=%1*%=\ %m%F\ %3*%y\ %2*%l:%c\ \ 
+set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
 
 " ----------------------
