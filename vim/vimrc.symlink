@@ -230,6 +230,7 @@ nnoremap <leader>g :Lines<CR>
 "  GIT
 " ----------------------
 Plug 'airblade/vim-gitgutter'
+let g:gitgutter_override_sign_column_highlight=0
 Plug 'tpope/vim-fugitive'
 
 
@@ -327,7 +328,7 @@ nnoremap <Leader>t :TagbarToggle<CR>
 
 
 " Colourscheme
-Plug 'AlessandroYorba/Alduin'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -336,11 +337,18 @@ call plug#end()
 " ----------------------
 "  COLOURSCHEME (here because of plugin loading)
 " ----------------------
-set background=dark
-colorscheme alduin
 
-hi StatusLine ctermbg=234 ctermfg=15
-hi StatusLineNC ctermbg=234 ctermfg=08
+set background=light
+colorscheme base16-tomorrow
+highlight LineNr ctermbg=15 ctermfg=08
+highlight SignColumn ctermbg=15 ctermfg=15
+highlight GitGutterAdd ctermbg=15 ctermfg=02
+highlight GitGutterChange ctermbg=15 ctermfg=04
+highlight GitGutterDelete ctermbg=15 ctermfg=02
+highlight GitGutterChangeDelete ctermbg=15 ctermfg=02
+
+hi StatusLine ctermbg=15 ctermfg=08
+hi StatusLineNC ctermbg=15 ctermfg=08
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 

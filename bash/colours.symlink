@@ -9,6 +9,7 @@ txtcyn="$(tput setaf 6)"  # Cyan
 txtwht="$(tput setaf 7)"  # White
 txtlgrn="$(tput setaf 10)"  # Light Green
 txtlblu="$(tput setaf 12)"  # Light Blue
+txtlcyn="$(tput setaf 14)"  # Light Cyan
 
 # Bold
 bldblk="$(tput setaf 0)$(tput bold)"  # Black
