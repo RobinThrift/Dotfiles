@@ -266,8 +266,16 @@ set suffixesadd+=.ts
 set suffixesadd+=.tsx
 
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
+let g:jsx_ext_required = 0
 set suffixesadd+=.js
+autocmd FileType javascript setlocal foldmethod=syntax
+autocmd FileType javascript setlocal foldlevel=99
+autocmd FileType javascript setlocal foldnestmax=2
+autocmd FileType javascript nmap <buffer> <Leader>as :setlocal foldlevel=1<CR>
+autocmd FileType javascript nmap <buffer> <Leader>sa :setlocal foldlevel=99<CR>
 
 " Flow Typings
 Plug 'flowtype/vim-flow', { 'for': ['javascript'], 'do': 'npm i -g flow-bin' }
