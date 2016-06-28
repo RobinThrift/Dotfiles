@@ -251,19 +251,6 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
 
-" TypeScript
-Plug 'leafgarland/typescript-vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
-Plug 'Quramy/tsuquyomi'
-autocmd FileType typescript nmap <buffer> td :TsuquyomiDefinition<CR>
-autocmd FileType typescript nmap <buffer> tr :TsuquyomiRenameSymbol<CR>
-autocmd FileType typescript nmap <buffer> th : echo tsuquyomi#hint()<CR>
-let g:tsuquyomi_definition_split=1
-let g:tsuquyomi_disable_default_mappings = 1
-let g:tsuquyomi_auto_open=0
-autocmd FileType typescript setlocal completeopt+=menu,preview
-set suffixesadd+=.ts
-set suffixesadd+=.tsx
 
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 let g:javascript_plugin_jsdoc = 1
