@@ -367,7 +367,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Colourscheme
-Plug 'chriskempson/base16-vim'
+Plug 'robinthrift/base16-vim'
 
 call plug#end()
 
