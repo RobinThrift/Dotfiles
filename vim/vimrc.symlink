@@ -377,18 +377,18 @@ call plug#end()
 "  COLOURSCHEME (here because of plugin loading)
 " ----------------------
 
-set background=light
+set background=dark
 colorscheme base16-tomorrow
 
-highlight LineNr ctermbg=15 ctermfg=08
-highlight SignColumn ctermbg=15 ctermfg=15
-highlight GitGutterAdd ctermbg=15 ctermfg=02
-highlight GitGutterChange ctermbg=15 ctermfg=04
-highlight GitGutterDelete ctermbg=15 ctermfg=02
-highlight GitGutterChangeDelete ctermbg=15 ctermfg=02
+highlight LineNr ctermbg=00 ctermfg=07
+highlight SignColumn ctermbg=00 ctermfg=07
+highlight GitGutterAdd ctermbg=00 ctermfg=02
+highlight GitGutterChange ctermbg=00 ctermfg=04
+highlight GitGutterDelete ctermbg=00 ctermfg=01
+highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
 
-hi StatusLine ctermbg=15 ctermfg=08
-hi StatusLineNC ctermbg=15 ctermfg=08
+hi StatusLine ctermbg=0 ctermfg=07
+hi StatusLineNC ctermbg=0 ctermfg=07
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
