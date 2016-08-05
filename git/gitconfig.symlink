@@ -40,6 +40,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	tool = vimdiff
 
 [help]
 
