@@ -7,3 +7,6 @@
 # fish
 config.symlink/fish/fish_*
 config.symlink/fish/fishd*
+
+config.symlink/configstore/
+config.symlink/gocode/
