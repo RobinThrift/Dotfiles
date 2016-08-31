@@ -344,6 +344,9 @@ function! s:goyo_enter()
     set noshowmode
     set noshowcmd
     set scrolloff=999
+    set spell
+    set spelllang=en_gb
+
     noremap  <buffer> <silent> k gk
     noremap  <buffer> <silent> j gj
     noremap  <buffer> <silent> 0 g0
@@ -355,6 +358,7 @@ function! s:goyo_leave()
     set showmode
     set showcmd
     set scrolloff=3
+    set nospell
 
     set background=dark
     colorscheme base16-tomorrow
