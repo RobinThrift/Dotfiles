@@ -64,6 +64,10 @@ set novisualbell
 nnoremap <silent> <Leader>> :exe "vertical resize +5"<CR>
 nnoremap <silent> <Leader>< :exe "vertical resize -5"<CR>
 
+" show what I'm doing
+set showmode
+set showcmd
+
 " SYNTAX & UI
 syntax on
 syntax enable
