@@ -1,6 +1,11 @@
-" ----------------------
+"----------------------
 "  GENERAL
 " ----------------------
+
+set term=screen-256color
+set t_Co=256
+" set t_ut=y
+
 call plug#begin('~/.vim/plugged')
 
 " allow clipboard
@@ -47,8 +52,6 @@ nnoremap <Leader>l :b#<CR>
 " ----------------------
 "  UI
 " ----------------------
-
-set t_Co=256
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -237,7 +240,6 @@ Plug 'metakirby5/codi.vim'
 "  GIT
 " ----------------------
 Plug 'airblade/vim-gitgutter'
-let g:gitgutter_override_sign_column_highlight=0
 Plug 'tpope/vim-fugitive'
 
 
@@ -265,7 +267,7 @@ let g:javascript_plugin_flow = 1
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
 let g:jsx_ext_required = 0
 set suffixesadd+=.js
-autocmd FileType javascript setlocal foldmethod=syntax
+autocmd FileType javascript setlocal foldmethod=indent
 autocmd FileType javascript setlocal foldlevel=99
 autocmd FileType javascript setlocal foldnestmax=2
 autocmd FileType javascript nmap <buffer> <Leader>as :setlocal foldlevel=1<CR>
@@ -340,6 +342,30 @@ let g:goyo_width = 100
 let g:limelight_paragraph_span = 1
 
 
+
+" Colourscheme
+Plug 'rakr/vim-two-firewatch'
+
+call plug#end()
+
+set background=dark
+colorscheme two-firewatch
+
+" highlight LineNr ctermbg=00 ctermfg=07
+" highlight SignColumn ctermbg=00 ctermfg=07
+" highlight GitGutterAdd ctermbg=00 ctermfg=02
+" highlight GitGutterChange ctermbg=00 ctermfg=04
+" highlight GitGutterDelete ctermbg=00 ctermfg=01
+" highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
+" highlight NonText ctermbg=00 ctermfg=14
+" highlight VertSplit ctermbg=00 ctermfg=05
+" set fillchars+=vert:⎸ 
+
+" hi StatusLine ctermbg=0 ctermfg=07
+" hi StatusLineNC ctermbg=0 ctermfg=07
+set laststatus=2
+set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
+
 function! s:goyo_enter()
     set noshowmode
     set noshowcmd
@@ -361,7 +387,7 @@ function! s:goyo_leave()
     set nospell
 
     set background=dark
-    colorscheme base16-tomorrow
+    colorscheme two-firewatch
 
     highlight LineNr ctermbg=00 ctermfg=07
     highlight SignColumn ctermbg=00 ctermfg=07
@@ -386,36 +412,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-" Colourscheme
-Plug 'robinthrift/base16-vim'
-
-call plug#end()
-
-
-
-" ----------------------
-"  COLOURSCHEME (here because of plugin loading)
-" ----------------------
-
-set background=dark
-colorscheme base16-tomorrow
-
-highlight LineNr ctermbg=00 ctermfg=07
-highlight SignColumn ctermbg=00 ctermfg=07
-highlight GitGutterAdd ctermbg=00 ctermfg=02
-highlight GitGutterChange ctermbg=00 ctermfg=04
-highlight GitGutterDelete ctermbg=00 ctermfg=01
-highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
-highlight NonText ctermbg=00 ctermfg=14
-highlight VertSplit ctermbg=00 ctermfg=05
-" set fillchars+=vert:⎸ 
-
-hi StatusLine ctermbg=0 ctermfg=07
-hi StatusLineNC ctermbg=0 ctermfg=07
-set laststatus=2
-set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
-
 
 " ----------------------
 "  HELPER FUNCTIONS
