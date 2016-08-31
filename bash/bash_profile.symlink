@@ -28,6 +28,7 @@ done;
 # Add tab completion for many Bash commands
 if command -v brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
 	source "$(brew --prefix)/etc/bash_completion";
+    __git_complete g __git_main
 elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;

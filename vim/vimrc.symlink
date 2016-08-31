@@ -64,6 +64,10 @@ set novisualbell
 nnoremap <silent> <Leader>> :exe "vertical resize +5"<CR>
 nnoremap <silent> <Leader>< :exe "vertical resize -5"<CR>
 
+" show what I'm doing
+set showmode
+set showcmd
+
 " SYNTAX & UI
 syntax on
 syntax enable
@@ -226,6 +230,9 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :BLines<CR>
 nnoremap <leader>g :Lines<CR>
 
+" Sratch Pad
+Plug 'metakirby5/codi.vim'
+
 " ----------------------
 "  GIT
 " ----------------------
@@ -250,7 +257,7 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'latex'] }
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
-
+autocmd FileType markdown setlocal conceallevel=0
 
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'], 'branch': 'develop' }
 let g:javascript_plugin_jsdoc = 1
@@ -337,6 +344,13 @@ function! s:goyo_enter()
     set noshowmode
     set noshowcmd
     set scrolloff=999
+    set spell
+    set spelllang=en_gb
+
+    noremap  <buffer> <silent> k gk
+    noremap  <buffer> <silent> j gj
+    noremap  <buffer> <silent> 0 g0
+    noremap  <buffer> <silent> $ g$
     Limelight
 endfunction
 
@@ -344,21 +358,28 @@ function! s:goyo_leave()
     set showmode
     set showcmd
     set scrolloff=3
+    set nospell
 
-    set background=light
+    set background=dark
     colorscheme base16-tomorrow
 
-    highlight LineNr ctermbg=15 ctermfg=08
-    highlight SignColumn ctermbg=15 ctermfg=15
-    highlight GitGutterAdd ctermbg=15 ctermfg=02
-    highlight GitGutterChange ctermbg=15 ctermfg=04
-    highlight GitGutterDelete ctermbg=15 ctermfg=02
-    highlight GitGutterChangeDelete ctermbg=15 ctermfg=02
+    highlight LineNr ctermbg=00 ctermfg=07
+    highlight SignColumn ctermbg=00 ctermfg=07
+    highlight GitGutterAdd ctermbg=00 ctermfg=02
+    highlight GitGutterChange ctermbg=00 ctermfg=04
+    highlight GitGutterDelete ctermbg=00 ctermfg=01
+    highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
+    highlight NonText ctermbg=00 ctermfg=14
 
-    hi StatusLine ctermbg=15 ctermfg=08
-    hi StatusLineNC ctermbg=15 ctermfg=08
+    hi StatusLine ctermbg=0 ctermfg=07
+    hi StatusLineNC ctermbg=0 ctermfg=07
     set laststatus=2
     set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
+
+    unmap  <buffer> <silent> k
+    unmap  <buffer> <silent> j
+    unmap  <buffer> <silent> 0
+    unmap  <buffer> <silent> $
 
     Limelight!
 endfunction
@@ -377,18 +398,21 @@ call plug#end()
 "  COLOURSCHEME (here because of plugin loading)
 " ----------------------
 
-set background=light
+set background=dark
 colorscheme base16-tomorrow
 
-highlight LineNr ctermbg=15 ctermfg=08
-highlight SignColumn ctermbg=15 ctermfg=15
-highlight GitGutterAdd ctermbg=15 ctermfg=02
-highlight GitGutterChange ctermbg=15 ctermfg=04
-highlight GitGutterDelete ctermbg=15 ctermfg=02
-highlight GitGutterChangeDelete ctermbg=15 ctermfg=02
+highlight LineNr ctermbg=00 ctermfg=07
+highlight SignColumn ctermbg=00 ctermfg=07
+highlight GitGutterAdd ctermbg=00 ctermfg=02
+highlight GitGutterChange ctermbg=00 ctermfg=04
+highlight GitGutterDelete ctermbg=00 ctermfg=01
+highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
+highlight NonText ctermbg=00 ctermfg=14
+highlight VertSplit ctermbg=00 ctermfg=05
+" set fillchars+=vert:⎸ 
 
-hi StatusLine ctermbg=15 ctermfg=08
-hi StatusLineNC ctermbg=15 ctermfg=08
+hi StatusLine ctermbg=0 ctermfg=07
+hi StatusLineNC ctermbg=0 ctermfg=07
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 

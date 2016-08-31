@@ -68,15 +68,15 @@ set -g status-position bottom
  set -g visual-activity off
 
 # set color for status bar
-set -g status-bg colour15
+set -g status-bg colour00
 
 setw -g window-status-activity-style none
-setw -g window-status-format "#[bg=colour15,fg=colour07] #I  #W #[bg=colour15,fg=colour00]"
-setw -g window-status-current-format "#[bg=colour15,fg=colour01] #I #[bg=colour15] #W "
+setw -g window-status-format "#[bg=colour00,fg=colour07] #I #W #[bg=colour00,fg=colour07]"
+setw -g window-status-current-format "#[bg=colour00,fg=colour01] #I #W "
 
 # show session name, window & pane number, date and time on right side of status bar
 set -g status-right-length 90
-set -g status-right "#[fg=colour04,bg=colour15] #(~/.battery charge) (#(~/.battery source)) #[bg=colour15] #[fg=colour08,bg=colour15] %d %b /#[bg=colour15] %H:%M "
+set -g status-right "#[fg=colour04,bg=colour00] #(~/.battery charge) (#(~/.battery source)) #[bg=colour00] #[fg=colour08,bg=colour00] %d %b /#[bg=colour00] %H:%M "
 set -g status-left-length 60
 set -g status-left ""
 
