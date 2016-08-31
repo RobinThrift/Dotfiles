@@ -230,6 +230,9 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :BLines<CR>
 nnoremap <leader>g :Lines<CR>
 
+" Sratch Pad
+Plug 'metakirby5/codi.vim'
+
 " ----------------------
 "  GIT
 " ----------------------
