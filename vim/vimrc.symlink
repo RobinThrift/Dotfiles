@@ -259,6 +259,8 @@ au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
 autocmd FileType markdown setlocal conceallevel=0
 
+
+" Javascript
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'], 'branch': 'develop' }
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -273,6 +275,19 @@ autocmd FileType javascript nmap <buffer> <Leader>sa :setlocal foldlevel=99<CR>
 
 " console.log word under cursor
 nmap <Leader>cl yiwoconsole.log('<c-r>"', <c-r>");<Esc>^
+
+" import default from word
+nmap <Leader>iw yiwIimport <Esc>2wa from '<c-r>"';<Esc>o<Esc>
+
+" convert stateless react compnent to class
+nmap <Leader>mc ?func<Esc>wyiwOclass <c-r>" extends React.Component
+            \<Esc>jV$%x
+            \A{<cr>
+            \constructor(props, context) {<cr>super(props, context);<Esc>jo<Esc>
+            \p^dt{irender() <Esc>
+            \$=%
+            \V$%:s/props/this\.props/g<cr>
+            \:noh<cr><esc>
 
 " Flow Typings
 Plug 'flowtype/vim-flow', { 'for': ['javascript'], 'do': 'npm i -g flow-bin' }
