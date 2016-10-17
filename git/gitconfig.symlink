@@ -61,3 +61,5 @@
 
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = vimdiff
