@@ -385,6 +385,7 @@ function! s:goyo_leave()
     highlight GitGutterDelete ctermbg=00 ctermfg=01
     highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
     highlight NonText ctermbg=00 ctermfg=14
+    highlight SpecialKey ctermbg=00 ctermfg=14
 
     hi StatusLine ctermbg=0 ctermfg=07
     hi StatusLineNC ctermbg=0 ctermfg=07
@@ -423,6 +424,7 @@ highlight GitGutterChange ctermbg=00 ctermfg=04
 highlight GitGutterDelete ctermbg=00 ctermfg=01
 highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
 highlight NonText ctermbg=00 ctermfg=14
+highlight SpecialKey ctermbg=00 ctermfg=14
 highlight VertSplit ctermbg=00 ctermfg=05
 " set fillchars+=vert:⎸ 
 
