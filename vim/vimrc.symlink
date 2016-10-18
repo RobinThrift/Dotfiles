@@ -192,8 +192,6 @@ let delimitMate_jump_expansion = 1
 
 Plug 'tpope/vim-commentary'
 
-Plug 'mhinz/vim-startify'
-
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
