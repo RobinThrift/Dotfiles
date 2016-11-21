@@ -323,14 +323,14 @@ nmap <Leader>cl yiwoconsole.log('<c-r>"', <c-r>");<Esc>^
 nmap <Leader>iw yiwIimport <Esc>2wa from '<c-r>"';<Esc>o<Esc>
 
 " convert stateless react compnent to class
-nmap <Leader>mc ?func<Esc>wyiwOclass <c-r>" extends React.Component
-            \<Esc>jV$%x
-            \A{<cr>
-            \constructor(props, context) {<cr>super(props, context);<Esc>jo<Esc>
-            \p^dt{irender() <Esc>
-            \$=%
-            \V$%:s/props/this\.props/g<cr>
-            \:noh<cr><esc>
+" nmap <Leader>mc ?func<Esc>wyiwOclass <c-r>" extends React.Component
+"             \<Esc>jV$%x
+"             \A{<cr>
+"             \constructor(props, context) {<cr>super(props, context);<Esc>jo<Esc>
+"             \p^dt{irender() <Esc>
+"             \$=%
+"             \V$%:s/props/this\.props/g<cr>
+"             \:noh<cr><esc>
 
 " Flow Typings
 Plug 'flowtype/vim-flow', { 'for': ['javascript'], 'do': 'npm i -g flow-bin' }
@@ -463,6 +463,8 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " Colourscheme
 Plug 'robinthrift/base16-vim'
 
+Plug 'kamwitsta/nordisk'
+
 call plug#end()
 
 
@@ -472,7 +474,16 @@ call plug#end()
 " ----------------------
 
 set background=dark
-colorscheme base16-tomorrow
+colorscheme nordisk
+
+hi Normal ctermfg=05
+hi Special ctermfg=06
+hi Operator ctermfg=07
+hi Identifier ctermfg=08
+hi PreProc ctermfg=09
+hi Constant ctermfg=10
+hi Statement ctermfg=11
+hi Type ctermfg=12
 
 highlight LineNr ctermbg=00 ctermfg=07
 highlight SignColumn ctermbg=00 ctermfg=07
@@ -522,6 +533,6 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 " for testing colourschemes/highlighting
-"map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-"\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-""\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
