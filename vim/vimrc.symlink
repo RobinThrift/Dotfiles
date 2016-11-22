@@ -231,6 +231,48 @@ nnoremap <leader>g :Lines<CR>
 " Sratch Pad
 Plug 'metakirby5/codi.vim'
 
+" Neomake
+" find nearest .eslintrc from https://github.com/rlipscombe/vimrc/blob/master/vimrc#L174
+function! s:find_eslintrc(dir)
+    let l:found = globpath(a:dir, '.eslintrc')
+    if filereadable(l:found)
+        return fnamemodify(l:found, ':h')
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_eslintrc(l:parent)
+    endif
+
+    return "."
+endfunction
+
+function! UpdateEslintConf()
+    let l:dir = expand('%:p:h')
+    let l:eslintrc = s:find_eslintrc(l:dir)
+
+    let g:neomake_javascript_eslint_maker = {
+                \ 'exe': l:eslintrc . '/node_modules/.bin/eslint',
+                \ 'args': ['-f', 'compact'],
+                \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+                \ '%W%f: line %l\, col %c\, Warning - %m'
+                \}
+
+    " Replace "\n" by space.
+    let mapexpr = 'substitute(v:val, "\\\\n", " ", "g")'
+    let g:neomake_javascript_flow_maker = {
+                \ 'exe': l:eslintrc . '/node_modules/.bin/flow',
+                \ 'args': ['--old-output-format'],
+                \ 'errorformat': '%E%f:%l:%c\,%n: %m',
+                \ 'mapexpr': mapexpr,
+                \}
+endfunction
+
+au BufEnter * call UpdateEslintConf()
+
+Plug 'neomake/neomake'
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+
 " ----------------------
 "  GIT
 " ----------------------
@@ -270,6 +312,9 @@ autocmd FileType javascript setlocal foldlevel=99
 autocmd FileType javascript setlocal foldnestmax=2
 autocmd FileType javascript nmap <buffer> <Leader>as :setlocal foldlevel=1<CR>
 autocmd FileType javascript nmap <buffer> <Leader>sa :setlocal foldlevel=99<CR>
+
+" open test file
+nnoremap <Leader>tf :silent vsp %:h/__tests__/%:t:r.spec.js<CR>
 
 " console.log word under cursor
 nmap <Leader>cl yiwoconsole.log('<c-r>"', <c-r>");<Esc>^
