@@ -340,6 +340,20 @@ let g:flow#enable = 0
 " Rust
 Plug 'rust-lang/rust.vim'
 
+" C#
+augroup omnisharp_commands
+    autocmd!
+    autocmd FileType cs setlocal completeopt=longest,menuone,preview
+    autocmd FileType cs setlocal noshowmatch
+    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+augroup END
+
+Plug 'tpope/vim-dispatch'
+Plug 'OrangeT/vim-csharp'
+Plug 'OmniSharp/omnisharp-vim'
+
+
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " g:pandoc#syntax#conceal#use = 0
 
