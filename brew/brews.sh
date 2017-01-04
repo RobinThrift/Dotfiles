@@ -20,6 +20,7 @@ brew install wget --with-iri
 # tools
 brew install macvim --with-override-system-vim
 brew install tmux
+brew install reattach-to-user-namespace
 brew install git
 brew install ranger
 brew install tree
