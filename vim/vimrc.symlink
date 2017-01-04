@@ -405,36 +405,6 @@ autocmd FileType go nmap <buffer> tl :GoLint<CR>
 autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
 autocmd FileType go setlocal completeopt+=menu,preview
 
-
-
-" Ctags Stuff
-Plug 'majutsushi/tagbar', { 'do': 'npm install -g git+https://github.com/ramitos/jsctags.git' }
-
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
-    \ ]
-\ }
-
-let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
-
-nnoremap <Leader>t :TagbarToggle<CR>
-
 " Goyo and limelight, for focusing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
