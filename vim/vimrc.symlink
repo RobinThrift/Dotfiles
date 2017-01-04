@@ -244,7 +244,7 @@ Plug 'metakirby5/codi.vim'
 
 " Neomake
 " find nearest .eslintrc from https://github.com/rlipscombe/vimrc/blob/master/vimrc#L174
-function! s:find_eslintrc(dir)
+function! s:find_js_project_root(dir)
     let l:found = globpath(a:dir, '.eslintrc')
     if filereadable(l:found)
         return fnamemodify(l:found, ':h')
@@ -252,7 +252,7 @@ function! s:find_eslintrc(dir)
 
     let l:parent = fnamemodify(a:dir, ':h')
     if l:parent != a:dir
-        return s:find_eslintrc(l:parent)
+        return s:find_js_project_root(l:parent)
     endif
 
     return "."
@@ -260,10 +260,10 @@ endfunction
 
 function! UpdateEslintConf()
     let l:dir = expand('%:p:h')
-    let l:eslintrc = s:find_eslintrc(l:dir)
+    let l:js_project_root = s:find_js_project_root(l:dir)
 
     let g:neomake_javascript_eslint_maker = {
-                \ 'exe': l:eslintrc . '/node_modules/.bin/eslint',
+                \ 'exe': l:js_project_root . '/node_modules/.bin/eslint',
                 \ 'args': ['-f', 'compact'],
                 \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
                 \ '%W%f: line %l\, col %c\, Warning - %m'
@@ -272,7 +272,7 @@ function! UpdateEslintConf()
     " Replace "\n" by space.
     let mapexpr = 'substitute(v:val, "\\\\n", " ", "g")'
     let g:neomake_javascript_flow_maker = {
-                \ 'exe': l:eslintrc . '/node_modules/.bin/flow',
+                \ 'exe': l:js_project_root . '/node_modules/.bin/flow',
                 \ 'args': ['--old-output-format'],
                 \ 'errorformat': '%E%f:%l:%c\,%n: %m',
                 \ 'mapexpr': mapexpr,
@@ -344,9 +344,20 @@ nmap <Leader>iw yiwIimport <Esc>2wa from '<c-r>"';<Esc>o<Esc>
 "             \:noh<cr><esc>
 
 " Flow Typings
+function! UpdateFlowConfig()
+    let l:dir = expand('%:p:h')
+    let l:js_project_root = s:find_js_project_root(l:dir)
+    let g:flow#flowpath = l:js_project_root . '/node_modules/.bin/flow'
+endfunction
+au BufEnter * call UpdateFlowConfig()
+
 Plug 'flowtype/vim-flow', { 'for': ['javascript'], 'do': 'npm i -g flow-bin' }
-let g:flow#autoclose = 0
+let g:flow#autoclose = 1
 let g:flow#enable = 0
+if has('nvim')
+    let g:flow#enable = 1
+endif
+let g:flow#omnifunc = 1
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -471,10 +482,20 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" autocomplete
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#omni_patterns = {}
+    let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
+    let g:deoplete#omni_patterns['javascript.jsx'] = '[^. *\t]\.\w*'
+    let g:deoplete#omni#functions = {}
+    let g:deoplete#omni#functions.javascript = 'flowcomplete#Complete'
+    let g:deoplete#omni#functions['javascript.jsx'] = 'flowcomplete#Complete'
+endif
+
 " Colourscheme
 Plug 'robinthrift/base16-vim'
-
-Plug 'kamwitsta/nordisk'
 
 call plug#end()
 
