@@ -125,7 +125,17 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" automaticcaly create the directory for the file, if it doesn't exist
+" thanks to https://www.reddit.com/r/vim/comments/5iu1hl/make_vim_create_subfolders_when_the_filename/dbbf8ph/
+fun! <SID>AutoMakeDirectory()
+    let s:directory = expand("<afile>:p:h")
 
+    if !isdirectory(s:directory)
+        call mkdir(s:directory, "p")
+    endif
+endfun
+
+autocmd BufWritePre,FileWritePre * :call <SID>AutoMakeDirectory()
 
 " ----------------------
 "  MAPS
