@@ -240,7 +240,7 @@ let g:fzf_buffers_jump = 1
 inoremap <expr> <c-x><c-k> fzf#complete()
 
 " fuzzy open
-nnoremap <leader>e :Files<CR>
+nnoremap <leader>e :GFiles<CR>
 
 " fuzzy buffer open
 nnoremap <leader>b :Buffers<CR>
