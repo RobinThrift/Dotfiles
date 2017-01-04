@@ -484,31 +484,12 @@ call plug#end()
 "  COLOURSCHEME (here because of plugin loading)
 " ----------------------
 
-set background=dark
-colorscheme nordisk
+source ~/.colors/nordisk.vim
+" set background=dark
+" colorscheme nordisk
 
-hi Normal ctermfg=05
-hi Special ctermfg=06
-hi Operator ctermfg=07
-hi Identifier ctermfg=08
-hi PreProc ctermfg=09
-hi Constant ctermfg=10
-hi Statement ctermfg=11
-hi Type ctermfg=12
-
-highlight LineNr ctermbg=00 ctermfg=07
-highlight SignColumn ctermbg=00 ctermfg=07
-highlight GitGutterAdd ctermbg=00 ctermfg=02
-highlight GitGutterChange ctermbg=00 ctermfg=04
-highlight GitGutterDelete ctermbg=00 ctermfg=01
-highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
-highlight NonText ctermbg=00 ctermfg=14
-highlight SpecialKey ctermbg=00 ctermfg=14
-highlight VertSplit ctermbg=00 ctermfg=05
 " set fillchars+=vert:⎸ 
 
-hi StatusLine ctermbg=0 ctermfg=07
-hi StatusLineNC ctermbg=0 ctermfg=07
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
