@@ -381,7 +381,10 @@ augroup omnisharp_commands
     autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 augroup END
 
-Plug 'tpope/vim-dispatch'
+if !has('nvim')
+    Plug 'tpope/vim-dispatch'
+endif
+
 Plug 'OrangeT/vim-csharp'
 Plug 'OmniSharp/omnisharp-vim'
 
@@ -434,20 +437,8 @@ function! s:goyo_leave()
     set scrolloff=3
     set nospell
 
-    set background=dark
-    colorscheme base16-tomorrow
+    source ~/.colors/nordisk.vim
 
-    highlight LineNr ctermbg=00 ctermfg=07
-    highlight SignColumn ctermbg=00 ctermfg=07
-    highlight GitGutterAdd ctermbg=00 ctermfg=02
-    highlight GitGutterChange ctermbg=00 ctermfg=04
-    highlight GitGutterDelete ctermbg=00 ctermfg=01
-    highlight GitGutterChangeDelete ctermbg=00 ctermfg=02
-    highlight NonText ctermbg=00 ctermfg=14
-    highlight SpecialKey ctermbg=00 ctermfg=14
-
-    hi StatusLine ctermbg=0 ctermfg=07
-    hi StatusLineNC ctermbg=0 ctermfg=07
     set laststatus=2
     set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
@@ -474,9 +465,6 @@ if has('nvim')
     let g:deoplete#omni#functions['javascript.jsx'] = 'flowcomplete#Complete'
 endif
 
-" Colourscheme
-Plug 'robinthrift/base16-vim'
-
 call plug#end()
 
 
@@ -486,10 +474,6 @@ call plug#end()
 " ----------------------
 
 source ~/.colors/nordisk.vim
-" set background=dark
-" colorscheme nordisk
-
-" set fillchars+=vert:⎸ 
 
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
@@ -525,7 +509,8 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
 " for testing colourschemes/highlighting
-map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+"map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
