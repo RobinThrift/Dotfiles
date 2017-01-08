@@ -8,6 +8,7 @@
         # View the current working tree status using the short format
         s = status -s
         ctags = !.git/hooks/ctags
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit"
 
 [color]
 
