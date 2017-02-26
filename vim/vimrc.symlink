@@ -301,8 +301,6 @@ Plug 'airblade/vim-gitgutter'
 let g:gitgutter_override_sign_column_highlight=0
 Plug 'tpope/vim-fugitive'
 
-
-
 " ----------------------
 "  LANGUAGES
 " ----------------------
@@ -372,21 +370,8 @@ let g:flow#omnifunc = 1
 " Rust
 Plug 'rust-lang/rust.vim'
 
-" C#
-augroup omnisharp_commands
-    autocmd!
-    autocmd FileType cs setlocal completeopt=longest,menuone,preview
-    autocmd FileType cs setlocal noshowmatch
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-augroup END
 
-if !has('nvim')
-    Plug 'tpope/vim-dispatch'
-endif
-
-Plug 'OrangeT/vim-csharp'
-Plug 'OmniSharp/omnisharp-vim'
+Plug 'keith/swift.vim'
 
 
 Plug 'vim-pandoc/vim-pandoc-syntax'
