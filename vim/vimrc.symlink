@@ -82,7 +82,6 @@ set showcmd
 " SYNTAX & UI
 syntax on
 syntax enable
-set number
 
 set splitbelow " more natural splits
 set splitright
@@ -94,7 +93,7 @@ hi Search cterm=none ctermfg=black ctermbg=yellow
 
 " Highlight EOL
 set list
-set listchars=tab:▸\ ,eol:¬,extends:…,precedes:…
+set listchars=tab:∙\ ,eol:¬,extends:…,precedes:…
 
 " ----------------------
 "  FILES
@@ -166,6 +165,9 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
 " Enable/disable relative numbers
+nnoremap <leader>n :call ToggleNumber()<CR>
+
+" Enable/disable relative numbers
 nnoremap <leader>r :call ToggleRelativeNumber()<CR>
 
 function! ToggleRelativeNumber()
@@ -175,6 +177,14 @@ function! ToggleRelativeNumber()
   else
     set relativenumber
     set nonumber
+  endif
+endfunction
+
+function! ToggleNumber()
+  if &number
+    set nonumber
+  else
+    set number
   endif
 endfunction
 
@@ -441,6 +451,8 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " autocomplete
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
+
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#omni_patterns = {}
     let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
@@ -455,13 +467,14 @@ call plug#end()
 
 
 " ----------------------
-"  COLOURSCHEME (here because of plugin loading)
+"  COLOURSCHEME and STYLES
 " ----------------------
 
-source ~/.colors/nordisk.vim
-
+set fillchars+=vert:\ 
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
+
+source ~/.colors/nordisk.vim
 
 
 " ----------------------

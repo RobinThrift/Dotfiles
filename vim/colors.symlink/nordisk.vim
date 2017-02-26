@@ -116,9 +116,8 @@ call s:hi ("GitGutterChangeDelete", 02, 00)
 
 " STATUS LINE
 call s:hi ("WarningMsg",    01,    00)
-call s:hi ("StatusLine",    08,    06)
-call s:hi ("StatusLineNC",  08,    00)
-
+call s:hi ("StatusLine",    "00",    11)
+call s:hi ("StatusLineNC",  "00",    15)
 
 
 " LINKS
