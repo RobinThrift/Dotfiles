@@ -122,7 +122,7 @@ set tw=400 " linebreak after 400 chars
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap "Don't wrap lines
 
 " automaticcaly create the directory for the file, if it doesn't exist
 " thanks to https://www.reddit.com/r/vim/comments/5iu1hl/make_vim_create_subfolders_when_the_filename/dbbf8ph/
@@ -379,6 +379,7 @@ let g:flow#omnifunc = 1
 
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 
 Plug 'keith/swift.vim'
@@ -396,6 +397,7 @@ Plug 'fatih/vim-go'
 let g:go_fmt_autosave = 0
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
+let g:go_list_height = 0
 autocmd FileType go nmap <buffer> td <Plug>(go-def)
 autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
 autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
@@ -413,6 +415,7 @@ let g:limelight_paragraph_span = 1
 
 
 function! s:goyo_enter()
+    set wrap
     set noshowmode
     set noshowcmd
     set scrolloff=999
@@ -431,8 +434,11 @@ function! s:goyo_leave()
     set showcmd
     set scrolloff=3
     set nospell
+    set nowrap
 
-    source ~/.colors/nordisk.vim
+    set background=dark
+    colorscheme monrovia
+    source ~/.colors/mods.vim
 
     set laststatus=2
     set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
@@ -452,6 +458,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
+    Plug 'mitsuse/autocomplete-swift'
 
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#omni_patterns = {}
@@ -461,6 +468,8 @@ if has('nvim')
     let g:deoplete#omni#functions.javascript = 'flowcomplete#Complete'
     let g:deoplete#omni#functions['javascript.jsx'] = 'flowcomplete#Complete'
 endif
+
+Plug 'AlessandroYorba/Monrovia'
 
 call plug#end()
 
@@ -474,7 +483,9 @@ set fillchars+=vert:\
 set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
-source ~/.colors/nordisk.vim
+set background=dark
+colorscheme monrovia
+source ~/.colors/mods.vim
 
 
 " ----------------------
