@@ -16,14 +16,12 @@ brew install bash-completion
 
 brew install wget --with-iri
 
-
 # tools
 brew install macvim --with-override-system-vim
 brew install neovim/neovim/neovim
 brew install tmux
 brew install reattach-to-user-namespace
 brew install git
-brew install ranger
 brew install tree
 brew install ctags
 brew install fzf
