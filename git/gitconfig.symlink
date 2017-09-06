@@ -51,6 +51,7 @@
 [user]
 	name = Robin Thrift
 	email = services@robinthrift.com
+	signingkey = services@robinthrift.com
 [push]
     default = simple
 
@@ -64,3 +65,5 @@
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = vimdiff
+[commit]
+	gpgsign = true
