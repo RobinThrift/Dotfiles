@@ -381,6 +381,11 @@ let g:flow#omnifunc = 1
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 
+" C++
+Plug 'zchee/deoplete-clang'
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+Plug 'Shougo/neoinclude.vim'
 
 Plug 'keith/swift.vim'
 
