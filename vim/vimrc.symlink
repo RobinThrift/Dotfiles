@@ -403,7 +403,7 @@ autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
 autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
 autocmd FileType go nmap <buffer> tl :GoLint<CR>
 autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
-autocmd FileType go setlocal completeopt+=menu,preview
+autocmd FileType go setlocal completeopt+=menu
 
 " Goyo and limelight, for focusing
 Plug 'junegunn/goyo.vim'
@@ -467,6 +467,9 @@ if has('nvim')
     let g:deoplete#omni#functions = {}
     let g:deoplete#omni#functions.javascript = 'flowcomplete#Complete'
     let g:deoplete#omni#functions['javascript.jsx'] = 'flowcomplete#Complete'
+
+    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+    set completeopt-=preview
 endif
 
 Plug 'AlessandroYorba/Monrovia'
