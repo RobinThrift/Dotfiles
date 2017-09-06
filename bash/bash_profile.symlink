@@ -32,3 +32,5 @@ if command -v brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ];
 elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;
+
+export PATH="$HOME/.cargo/bin:$PATH"
