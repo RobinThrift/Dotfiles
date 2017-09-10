@@ -330,7 +330,7 @@ autocmd FileType markdown setlocal conceallevel=0
 
 
 " Javascript
-Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'], 'branch': 'develop' }
+Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 Plug 'mxw/vim-jsx', { 'for': ['html', 'javascript'] }
