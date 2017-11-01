@@ -18,4 +18,5 @@ export GOROOT=/usr/local/opt/go/libexec
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+# ignore commands precreded by a space
+export HISTCONTROL=ignorespace

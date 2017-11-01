@@ -259,6 +259,14 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :BLines<CR>
 nnoremap <leader>g :Lines<CR>
 
+" More powerful find
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,ts,md,html,cpp,c,go,conf,swift,rs,java}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
 " Neomake
 " find nearest .eslintrc from https://github.com/rlipscombe/vimrc/blob/master/vimrc#L174
 function! s:find_js_project_root(dir)
