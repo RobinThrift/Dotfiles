@@ -259,9 +259,6 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :BLines<CR>
 nnoremap <leader>g :Lines<CR>
 
-" Sratch Pad
-Plug 'metakirby5/codi.vim'
-
 " Neomake
 " find nearest .eslintrc from https://github.com/rlipscombe/vimrc/blob/master/vimrc#L174
 function! s:find_js_project_root(dir)
