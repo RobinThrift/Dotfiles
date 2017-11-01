@@ -1,0 +1,13 @@
+# include fzf's own config
+# this allows the following (plus more)
+# - Ctrl + r : search through bash history with fzf
+# - mv dir/** - expand a directory with (**) and select from fzf
+# - Ctrl + t - insert file from fzf into command
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Use rg as the search command in fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Ctrl + p - edit a file in vim from fzf
+bind -x '"\C-p": vim $(fzf);'
