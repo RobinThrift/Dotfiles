@@ -301,6 +301,9 @@ au BufEnter * call UpdateEslintConf()
 Plug 'neomake/neomake'
 let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 
+" JSON formatting
+command JsonFormat execute '%!python -m json.tool' | w
+
 " ----------------------
 "  GIT
 " ----------------------
