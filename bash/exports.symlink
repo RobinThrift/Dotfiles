@@ -20,3 +20,5 @@ export MANPAGER='less -X';
 
 # ignore commands precreded by a space
 export HISTCONTROL=ignorespace
+
+export LOGBOOK_PATH=~/nextCloud/Documents/logbook
