@@ -47,3 +47,10 @@ function lb() {
     nvim $LOGBOOK_PATH/$(date '+%Y-%m-%d').md
 }
 
+# search logbook
+function slb() {
+    cd $LOGBOOK_PATH
+    rg $1
+    cd -
+}
+
