@@ -10,4 +10,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Ctrl + p - edit a file in vim from fzf
-bind -x '"\C-p": vim $(fzf);'
+bind -x '"\C-p": nvim $(fzf);'
