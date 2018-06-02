@@ -26,6 +26,7 @@ brew install tree
 brew install ctags
 brew install fzf
 brew install ripgrep
+brew install mas
 
 # runtimes and langs
 brew install node
