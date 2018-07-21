@@ -60,6 +60,8 @@ nnoremap <Leader>l :b#<CR>
 " ----------------------
 
 set t_Co=256
+let g:dracula_colorterm = 0
+set termguicolors
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -450,7 +452,7 @@ function! s:goyo_leave()
     set nowrap
 
     set background=dark
-    colorscheme gruvbox
+    colorscheme dracula
     source ~/.colors/mods.vim
 
     set laststatus=2
@@ -485,7 +487,7 @@ if has('nvim')
     set completeopt-=preview
 endif
 
-Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
@@ -500,7 +502,7 @@ set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
 set background=dark
-colorscheme gruvbox
+colorscheme dracula
 source ~/.colors/mods.vim
 
 
