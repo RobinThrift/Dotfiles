@@ -22,3 +22,5 @@ export MANPAGER='less -X';
 export HISTCONTROL=ignorespace
 
 export LOGBOOK_PATH=~/nextCloud/Documents/logbook
+
+export COCOAPODS_DISABLE_STATS=true

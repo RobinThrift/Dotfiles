@@ -76,3 +76,7 @@ function update_all() {
     echo "Updating vim plugins"
     nvim -c "PlugUpdate"
 }
+
+function bash_bible() {
+    echo "https://github.com/dylanaraps/pure-bash-bible/blob/master/README.md"
+}
