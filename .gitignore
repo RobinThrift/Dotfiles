@@ -4,6 +4,5 @@
 # Vagrant
 .vagrant
 
-# fish
-config.symlink/fish/fish_*
-config.symlink/fish/fishd*
+# configs
+config.symlink
