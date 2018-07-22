@@ -278,12 +278,6 @@ Plug 'tpope/vim-fugitive'
 "  LANGUAGES
 " ----------------------
 
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'mattn/emmet-vim'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key='<C-E>'
-
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'latex'] }
 au BufRead,BufNewFile *.md set filetype=markdown
