@@ -299,13 +299,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'keith/swift.vim'
 
 
-Plug 'vim-pandoc/vim-pandoc-syntax'
-" g:pandoc#syntax#conceal#use = 0
-
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
-augroup END
-
 " Go
 Plug 'fatih/vim-go'
 let g:go_fmt_autosave = 0
