@@ -11,9 +11,9 @@ function! s:hi(group, fg, bg)
 endfunction
 
 " MISC
-call s:hi ("NonText", 08, 00)
-call s:hi ("Ignore", 08, 00)
-call s:hi ("SpecialKey", 08, 00)
+call s:hi ("NonText", 08, "")
+call s:hi ("Ignore", 08, "")
+call s:hi ("SpecialKey", 08, "")
 
 " GitGutter
 call s:hi ("GitGutterAdd",  02, 00)
