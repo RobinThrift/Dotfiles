@@ -388,6 +388,8 @@ let g:flow#omnifunc = 1
 " Rust
 Plug 'rust-lang/rust.vim'
 
+
+" Swift
 Plug 'keith/swift.vim'
 
 
@@ -466,7 +468,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
-    Plug 'mitsuse/autocomplete-swift'
 
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#omni_patterns = {}
