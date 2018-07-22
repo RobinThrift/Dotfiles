@@ -14,6 +14,7 @@ endfunction
 call s:hi ("NonText", 08, "")
 call s:hi ("Ignore", 08, "")
 call s:hi ("SpecialKey", 08, "")
+call s:hi ("LineNr", 08, "")
 
 " GitGutter
 call s:hi ("GitGutterAdd",  02, 00)
@@ -22,9 +23,9 @@ call s:hi ("GitGutterDelete", 01, 00)
 call s:hi ("GitGutterChangeDelete", 02, 00)
 
 " STATUS LINE
-call s:hi ("WarningMsg", 01, "00")
-call s:hi ("StatusLine", 07, "00")
-call s:hi ("StatusLineNC", 07, "00")
+call s:hi ("WarningMsg", 01, "")
+call s:hi ("StatusLine", 07, "")
+call s:hi ("StatusLineNC", 07, "")
 
 " javascript
 call s:hi ("jsFuncCall", 05, 00)
