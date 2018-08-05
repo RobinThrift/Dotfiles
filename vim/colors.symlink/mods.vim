@@ -24,8 +24,8 @@ call s:hi ("GitGutterChangeDelete", 02, 00)
 
 " STATUS LINE
 call s:hi ("WarningMsg", 01, "")
-call s:hi ("StatusLine", 07, "")
-call s:hi ("StatusLineNC", 07, "")
+call s:hi ("StatusLine", 07, "NONE")
+call s:hi ("StatusLineNC", 08, "NONE")
 
 " javascript
 call s:hi ("jsFuncCall", 05, 00)
