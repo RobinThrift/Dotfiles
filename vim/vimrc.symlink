@@ -285,6 +285,16 @@ au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
 let g:vim_markdown_folding_disabled=1
 autocmd FileType markdown setlocal conceallevel=0
 
+
+" TypeScript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+autocmd FileType typescript nmap <buffer> td :TSDoc<CR>
+autocmd FileType typescript nmap <buffer> tdd :TSDef<CR>
+autocmd FileType typescript nmap <buffer> tdp :TSDefPreview<CR>
+autocmd FileType typescript nmap <buffer> tr :TSRename
+autocmd FileType typescript nmap <buffer> ti :TSImport<CR>
+
 " Rust
 Plug 'rust-lang/rust.vim'
 
@@ -338,9 +348,8 @@ function! s:goyo_leave()
     set nowrap
 
     set background=dark
-    let g:dracula_colorterm = 0
-    let g:dracula_italic = 0
-    colorscheme dracula
+    let g:sierra_Twilight = 1
+    colorscheme sierra
     source ~/.colors/mods.vim
 
     set laststatus=2
@@ -367,7 +376,7 @@ if has('nvim')
     set completeopt-=preview
 endif
 
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'AlessandroYorba/Sierra'
 
 call plug#end()
 
@@ -382,9 +391,8 @@ set laststatus=2
 set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
 
 set background=dark
-let g:dracula_colorterm = 0
-let g:dracula_italic = 0
-colorscheme dracula
+let g:sierra_Twilight = 1
+colorscheme sierra
 source ~/.colors/mods.vim
 
 
