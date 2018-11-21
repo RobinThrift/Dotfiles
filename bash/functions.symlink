@@ -58,8 +58,7 @@ function update_all() {
     echo "Updating all brews"
     brew update && \
         brew upgrade && \
-        brew cleanup && \
-        brew cask cleanup;
+        brew cleanup
 
     echo "Updating gems"
     gem update && gem cleanup;
