@@ -379,7 +379,16 @@ if has('nvim')
 endif
 
 Plug 'AlessandroYorba/Sierra'
+Plug 'morhetz/gruvbox'
+Plug 'arzg/vim-oldbook8'
+Plug 'vim-scripts/phd'
+Plug 'flrnprz/candid.vim'
+Plug 'scottymoon/vim-twilight'
+Plug 'fenetikm/falcon'
+Plug 'ajmwagar/vim-deus'
+Plug 'Zabanaa/neuromancer.vim'
 Plug 'fcpg/vim-fahrenheit'
+Plug 'yuttie/hydrangea-vim'
 
 call plug#end()
 
@@ -397,6 +406,30 @@ set background=dark
 let g:sierra_Twilight = 1
 colorscheme fahrenheit
 source ~/.colors/mods.vim
+
+" ----------------------------------------------------------------------------
+" <F8> | Color scheme selector
+" ----------------------------------------------------------------------------
+
+function! s:colors(...)
+  return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
+        \                  'v:val !~ "^/usr/"'),
+        \           'fnamemodify(v:val, ":t:r")'),
+        \       '!a:0 || stridx(v:val, a:1) >= 0')
+endfunction
+
+function! s:rotate_colors()
+  if !exists('s:colors')
+    let s:colors = s:colors()
+  endif
+  let name = remove(s:colors, 0)
+  call add(s:colors, name)
+  execute 'colorscheme' name
+  redraw
+  echo name
+endfunction
+nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
+
 
 
 " ----------------------
