@@ -51,7 +51,7 @@ window:
   decorations: buttonless
 
   # When true, alacritty starts maximized.
-  start_maximized: true
+  startup_mode: Maximized
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -295,6 +295,10 @@ cursor:
 
 # Live config reload (changes require restart)
 live_config_reload: true
+
+debug:
+    # Keep the log file after quitting Alacritty.
+    persistent_logging: false
 
 # Shell
 #
