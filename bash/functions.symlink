@@ -79,3 +79,54 @@ function update_all() {
 function bash_bible() {
     echo "https://github.com/dylanaraps/pure-bash-bible/blob/master/README.md"
 }
+
+function convertsecs() {
+    printf '%02d:%02d' $(($1%3600/60)) $(($1%60))
+}
+
+function spotify_running() {
+    osascript -e "tell application \"System Events\" to (name of processes) contains \"Spotify\""
+}
+
+function tell_spotify() {
+    osascript -e "tell application \"Spotify\" to $1"
+}
+
+function spnext {
+    tell_spotify "next track"
+}
+
+function spprev {
+    tell_spotify "previous track"
+}
+
+function spplay {
+    tell_spotify "playpause"
+}
+
+function spcurr {
+    tell_spotify "current track's artist & \" - \" & current track's name & \" (\" & current track's album & \")\""
+}
+
+function spcurrshort {
+    tell_spotify "current track's artist & \" - \" & current track's name"
+}
+
+function spprog {
+    prog=$(convertsecs `tell_spotify "player position as integer"`)
+    dur=$(convertsecs `tell_spotify "current track's duration / 1000 as integer"`)
+
+    echo "$prog/$dur"
+}
+
+function sp_tmux() {
+    running=$(spotify_running)
+    if [ "$running" = "true" ]; then
+        state=$(tell_spotify "player state")
+        icon="⋫"
+        if [ "$state" = "playing" ]; then
+            icon="⊳"
+        fi
+        echo "[$icon $(spcurrshort)]"
+    fi
+}
