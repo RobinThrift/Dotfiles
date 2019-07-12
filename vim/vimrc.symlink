@@ -304,12 +304,14 @@ Plug 'keith/swift.vim'
 
 
 " Go
-Plug 'fatih/vim-go'
-let g:go_fmt_autosave = 0
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
 let g:go_list_height = 0
-autocmd FileType go nmap <buffer> td <Plug>(go-def)
+autocmd FileType go nmap <buffer> <leader>k <Plug>(go-def)
+autocmd FileType go nmap <buffer> ti :GoInfo<CR>
 autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
 autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
 autocmd FileType go nmap <buffer> tl :GoLint<CR>
@@ -374,8 +376,22 @@ if has('nvim')
     Plug 'zchee/deoplete-go', { 'do': 'make'}
 
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode-gomod'
     set completeopt-=preview
+    set completeopt+=noselect
+
+    " let g:deoplete#tag#cache_limit_size = 5000000 " needed for tags
+    " let g:deoplete#sources = {}
+    " let g:deoplete#sources._ = ['buffer', 'tag']
+
+"     let g:LanguageClient_serverCommands = {
+"                 \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"                 \ }
+
+"     Plug 'autozimu/LanguageClient-neovim', {
+"                 \ 'branch': 'next',
+"                 \ 'do': 'bash install.sh',
+"                 \ }
 endif
 
 Plug 'AlessandroYorba/Sierra'
