@@ -289,11 +289,11 @@ autocmd FileType markdown setlocal conceallevel=0
 " TypeScript
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-autocmd FileType typescript nmap <buffer> td :TSDoc<CR>
-autocmd FileType typescript nmap <buffer> tdd :TSDef<CR>
-autocmd FileType typescript nmap <buffer> tdp :TSDefPreview<CR>
-autocmd FileType typescript nmap <buffer> tr :TSRename
-autocmd FileType typescript nmap <buffer> ti :TSImport<CR>
+autocmd FileType typescript setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
+autocmd FileType typescript.tsx setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
+autocmd FileType typescript nmap <buffer> <leader>d :TSDoc<CR>
+autocmd FileType typescript nmap <buffer> <leader>k :TSDef<CR>
+autocmd FileType typescript nmap <buffer> <leader>tr :TSRename
 
 " Rust
 Plug 'rust-lang/rust.vim'
