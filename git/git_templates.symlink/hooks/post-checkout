@@ -6,8 +6,8 @@
 name="Robin Thrift"
 personal_email="services@robinthrift.com"
 
-new_store_remote="newstore"
-new_store_email="rthrift@newstore.com"
+expo21xx_remote="e21xx"
+expo21xx_email="robin@expo21xx.com"
 
 setIdentity() {
     local current_email local_email
@@ -32,8 +32,8 @@ current_remote_url="$(git config --get --local remote.origin.url)"
 # Disable case sensitivity for regex matching
 shopt -s nocasematch
 
-if [[ "$current_remote_url" =~ $new_store_remote ]]; then
-    setIdentity "${new_store_email}"
+if [[ "$current_remote_url" =~ $expo21xx_remote ]]; then
+    setIdentity "${expo21xx_email}"
     exit 0
 else 
     setIdentity "${personal_email}"
