@@ -87,24 +87,24 @@ tabspaces: 4
 font:
   # Normal (roman) font face
   normal:
-    family: Fira Code
+    family: Iosevka SS10
     # The `style` can be specified to pick a specific face.
-    style: Retina
+    style: Regular
 
   # Bold font face
   bold:
-    family: Fira Code
+    family: Iosevka SS10
     # The `style` can be specified to pick a specific face.
-    style: Retina
+    style: Medium
 
   # Italic font face
   italic:
-    family: Fira Code
+    family: Victor Mono
     # The `style` can be specified to pick a specific face.
-    # style: Retina
+    style: Italic
 
   # Point size
-  size: 15.0
+  size: 17.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -123,10 +123,10 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
 colors:
@@ -142,35 +142,64 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
+  cursor:
+    text: '0xc1c9d4'
+    cursor: '0xffffff'
 
   primary:
-    background: '0x000000'
-    foreground: '0xdfdfde'
+    background: '0x2b3240'
+    foreground: '0xffffff'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xd75f00'
-    green:   '0xaf875f'
-    yellow:  '0xffd787'
-    blue:    '0x5f87af'
-    magenta: '0x875f5f'
-    cyan:    '0xffd7af'
-    white:   '0xa8a8a8'
+    black:   '0x2b3240'
+    red:     '0xbc284f'
+    green:   '0x88b4ad'
+    yellow:  '0xffffff'
+    blue:    '0x5c8097'
+    magenta: '0x4f426a'
+    cyan:    '0x008097'
+    white:   '0x8c98a7'
 
   # Bright colors
   bright:
-    black:   '0x262626'
-    red:     '0xd7875f'
-    green:   '0xd7af87'
-    yellow:  '0xffd75f'
-    blue:    '0x87afd7'
-    magenta: '0xaf87af'
-    cyan:    '0xffffd7'
-    white:   '0xffffff'
+    black:   '0x4a5265'
+    red:     '0xbc284f'
+    green:   '0x88b4ad'
+    yellow:  '0xffffff'
+    blue:    '0x5c8097'
+    magenta: '0x4f426a'
+    cyan:    '0x008097'
+    white:   '0xc1c9d4'
+  # cursor:
+  #   text: '0x1d212a'
+  #   cursor: '0xf65b82'
+
+  # primary:
+  #   background: '0x1c1e26'
+  #   foreground: '0xebebeb'
+
+  # # Normal colors
+  # normal:
+  #   black:   '0xebebeb'
+  #   red:     '0xe95678'
+  #   green:   '0x29d398'
+  #   yellow:  '0xfab795'
+  #   blue:    '0x26bbd9'
+  #   magenta: '0xee64ae'
+  #   cyan:    '0x59e3e3'
+  #   white:   '0xebebeb'
+
+  # # Bright colors
+  # bright:
+  #   black:   '0xbbbbbb'
+  #   red:     '0xec6a88'
+  #   green:   '0x3fdaa4'
+  #   yellow:  '0xfbc3a7'
+  #   blue:    '0x3fc6de'
+  #   magenta: '0xf075b7'
+  #   cyan:    '0x6be6e6'
+  #   white:   '0xbbbbbb'
 
   # Indexed Colors
   #

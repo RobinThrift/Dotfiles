@@ -59,8 +59,6 @@ nnoremap <Leader>l :b#<CR>
 "  UI
 " ----------------------
 
-set t_Co=256
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -235,8 +233,8 @@ let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Special'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'fg+':     ['fg', 'Error'],
+  \ 'bg+':     ['bg', 'Error'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'Normal'],
   \ 'prompt':  ['fg', 'String'],
@@ -250,14 +248,11 @@ let g:fzf_buffers_jump = 1
 inoremap <expr> <c-x><c-k> fzf#complete()
 
 " fuzzy open
-nnoremap <leader>e :GFiles<CR>
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>g :GFiles<CR>
 
 " fuzzy buffer open
 nnoremap <leader>b :Buffers<CR>
-
-" fuzzy line search
-nnoremap <leader>f :BLines<CR>
-nnoremap <leader>g :Lines<CR>
 
 " More powerful find
 let g:rg_command = '
@@ -275,8 +270,54 @@ let g:gitgutter_override_sign_column_highlight=0
 Plug 'tpope/vim-fugitive'
 
 " ----------------------
+"  AUTOCOMPLETE
+" ----------------------
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
+set completeopt+=noselect
+
+Plug 'w0rp/ale'
+let g:ale_linters = {
+\   'javascript': ['tsserver', 'prettier'],
+\   'typescript': ['tslint', 'tsserver', 'prettier'],
+\   'swift': ['sourcekit-lsp', 'swiftformat', 'swiftlint'],
+\   'go': ['golint', 'go vet'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['tslint', 'prettier'],
+\   'swift': ['swiftformat'],
+\}
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+" call deoplete#custom#option('sources', {
+" \ 'typescript': ['ale'],
+" \ 'javascript': ['ale'],
+" \})
+
+" ----------------------
 "  LANGUAGES
 " ----------------------
+
+function! FindTestFile()
+    let l:dir = expand('%:h')
+    let l:name = expand('%:t:r')
+    let l:tf = l:dir . "/__tests__/" . l:name . ".spec.ts"
+    if filereadable(l:tf)
+        execute 'edit ' . l:tf
+    endif
+
+    let l:tf = l:dir . "/" . l:name . "_test.go"
+    if filereadable(l:tf)
+        execute 'edit ' . l:tf
+    endif
+endfunction
+nnoremap <silent> <leader>o :call FindTestFile()<cr>
+
+
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'latex'] }
@@ -286,14 +327,24 @@ let g:vim_markdown_folding_disabled=1
 autocmd FileType markdown setlocal conceallevel=0
 
 
+" JavaScript
+Plug 'othree/yajs.vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+
+" console.log word under cursor
+nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>");<Esc>^
+
 " TypeScript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-autocmd FileType typescript setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
-autocmd FileType typescript.tsx setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
-autocmd FileType typescript nmap <buffer> <leader>d :TSDoc<CR>
-autocmd FileType typescript nmap <buffer> <leader>k :TSDef<CR>
-autocmd FileType typescript nmap <buffer> <leader>tr :TSRename
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" autocmd FileType typescript setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
+" autocmd FileType typescript.tsx setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
+" autocmd FileType typescript nmap <buffer> <leader>d :TSDoc<CR>
+" autocmd FileType typescript nmap <buffer> <leader>k :TSDef<CR>
+" autocmd FileType typescript nmap <buffer> <leader>tr :TSRename
+" autocmd FileType typescript nmap <buffer> <leader>ff :TSGetCodeFix<CR>
+
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -307,9 +358,17 @@ Plug 'keith/swift.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
+let g:go_list_height = 0
+
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
-let g:go_list_height = 0
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+
 autocmd FileType go nmap <buffer> <leader>k <Plug>(go-def)
 autocmd FileType go nmap <buffer> ti :GoInfo<CR>
 autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
@@ -317,6 +376,9 @@ autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
 autocmd FileType go nmap <buffer> tl :GoLint<CR>
 autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
 autocmd FileType go setlocal completeopt+=menu
+
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode-gomod'
 
 " Goyo and limelight, for focusing
 Plug 'junegunn/goyo.vim'
@@ -353,7 +415,7 @@ function! s:goyo_leave()
 
     set background=dark
     let g:sierra_Twilight = 1
-    colorscheme fahrenheit
+    colorscheme horizon
     source ~/.colors/mods.vim
 
     set laststatus=2
@@ -370,30 +432,8 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" autocomplete
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode-gomod'
-    set completeopt-=preview
-    set completeopt+=noselect
-
-    " let g:deoplete#tag#cache_limit_size = 5000000 " needed for tags
-    " let g:deoplete#sources = {}
-    " let g:deoplete#sources._ = ['buffer', 'tag']
-
-"     let g:LanguageClient_serverCommands = {
-"                 \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"                 \ }
-
-"     Plug 'autozimu/LanguageClient-neovim', {
-"                 \ 'branch': 'next',
-"                 \ 'do': 'bash install.sh',
-"                 \ }
-endif
-
+Plug 'tpozzi/Sidonia'
+Plug 'hauleth/blame.vim'
 Plug 'AlessandroYorba/Sierra'
 Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-oldbook8'
@@ -405,10 +445,10 @@ Plug 'ajmwagar/vim-deus'
 Plug 'Zabanaa/neuromancer.vim'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'yuttie/hydrangea-vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'DankNeon/vim', { 'as': 'dank-neon' }
 
 call plug#end()
-
-
 
 " ----------------------
 "  COLOURSCHEME and STYLES
@@ -420,7 +460,16 @@ set statusline=%=\ %m%f\ %y\ %l:%c\ \
 
 set background=dark
 let g:sierra_Twilight = 1
-colorscheme fahrenheit
+" let &t_Co=256
+" let &t_8f = \"\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = ''"\<Esc>[48;2;%lu;%lu;%lum"
+" set t_ZH=[3m
+" set t_ZR=[23m
+" let &t_ZH="\e[3m"
+" let &t_ZR="\e[23m"
+set termguicolors
+set cursorline
+colorscheme blame
 source ~/.colors/mods.vim
 
 " ----------------------------------------------------------------------------
@@ -445,7 +494,6 @@ function! s:rotate_colors()
   echo name
 endfunction
 nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
-
 
 
 " ----------------------
