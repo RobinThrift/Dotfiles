@@ -62,15 +62,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 0
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 0
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
@@ -87,15 +78,16 @@ tabspaces: 4
 font:
   # Normal (roman) font face
   normal:
-    family: Iosevka SS10
+    family: iA Writer Mono S
+    # family: Iosevka SS10
     # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Bold font face
   bold:
-    family: Iosevka SS10
+    family: iA Writer Mono S
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Bold
 
   # Italic font face
   italic:
@@ -143,63 +135,34 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: '0xc1c9d4'
-    cursor: '0xffffff'
+    text: '0x191b2a'
+    cursor: '0xeff0f6'
 
   primary:
-    background: '0x2b3240'
-    foreground: '0xffffff'
+    background: '0x191b2a'
+    foreground: '0xeff0f6'
 
   # Normal colors
   normal:
-    black:   '0x2b3240'
-    red:     '0xbc284f'
-    green:   '0x88b4ad'
-    yellow:  '0xffffff'
-    blue:    '0x5c8097'
-    magenta: '0x4f426a'
-    cyan:    '0x008097'
-    white:   '0x8c98a7'
+    black:   '0x191b2a'
+    red:     '0xff476e'
+    green:   '0x39ffba'
+    yellow:  '0xffee7a'
+    blue:    '0x94bfff'
+    magenta: '0xf1b3f1'
+    cyan:    '0x01f7f7'
+    white:   '0xeff0f6'
 
   # Bright colors
   bright:
-    black:   '0x4a5265'
-    red:     '0xbc284f'
-    green:   '0x88b4ad'
-    yellow:  '0xffffff'
-    blue:    '0x5c8097'
-    magenta: '0x4f426a'
-    cyan:    '0x008097'
-    white:   '0xc1c9d4'
-  # cursor:
-  #   text: '0x1d212a'
-  #   cursor: '0xf65b82'
-
-  # primary:
-  #   background: '0x1c1e26'
-  #   foreground: '0xebebeb'
-
-  # # Normal colors
-  # normal:
-  #   black:   '0xebebeb'
-  #   red:     '0xe95678'
-  #   green:   '0x29d398'
-  #   yellow:  '0xfab795'
-  #   blue:    '0x26bbd9'
-  #   magenta: '0xee64ae'
-  #   cyan:    '0x59e3e3'
-  #   white:   '0xebebeb'
-
-  # # Bright colors
-  # bright:
-  #   black:   '0xbbbbbb'
-  #   red:     '0xec6a88'
-  #   green:   '0x3fdaa4'
-  #   yellow:  '0xfbc3a7'
-  #   blue:    '0x3fc6de'
-  #   magenta: '0xf075b7'
-  #   cyan:    '0x6be6e6'
-  #   white:   '0xbbbbbb'
+    black:   '0x1d1f30'
+    red:     '0xac3756'
+    green:   '0x2dad86'
+    yellow:  '0xffca7a'
+    blue:    '0x7496cc'
+    magenta: '0xa37ca9'
+    cyan:    '0x01a8ad'
+    white:   '0xa5abca'
 
   # Indexed Colors
   #

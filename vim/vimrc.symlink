@@ -279,16 +279,18 @@ let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 set completeopt+=noselect
 
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'javascript': ['tsserver', 'prettier'],
-\   'typescript': ['tslint', 'tsserver', 'prettier'],
+\   'typescript': ['tslint', 'tsserver'],
+\   'typescriptreact': ['tslint', 'tsserver'],
 \   'swift': ['sourcekit-lsp', 'swiftformat', 'swiftlint'],
 \   'go': ['golint', 'go vet'],
 \}
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['tslint', 'prettier'],
+\   'typescriptreact': ['tslint', 'prettier'],
 \   'swift': ['swiftformat'],
 \}
 let g:ale_linters_explicit = 1
@@ -385,6 +387,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 let g:goyo_width = 100
+let g:goyo_height = '90%'
 let g:limelight_paragraph_span = 0
 let g:limelight_default_coefficient = 0.7
 
@@ -415,7 +418,7 @@ function! s:goyo_leave()
 
     set background=dark
     let g:sierra_Twilight = 1
-    colorscheme horizon
+    colorscheme substrata
     source ~/.colors/mods.vim
 
     set laststatus=2
@@ -447,6 +450,8 @@ Plug 'fcpg/vim-fahrenheit'
 Plug 'yuttie/hydrangea-vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'DankNeon/vim', { 'as': 'dank-neon' }
+Plug 'arzg/vim-substrata'
+Plug 'whatyouhide/vim-gotham'
 
 call plug#end()
 
@@ -469,7 +474,7 @@ let g:sierra_Twilight = 1
 " let &t_ZR="\e[23m"
 set termguicolors
 set cursorline
-colorscheme blame
+colorscheme substrata
 source ~/.colors/mods.vim
 
 " ----------------------------------------------------------------------------

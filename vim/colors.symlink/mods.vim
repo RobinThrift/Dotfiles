@@ -11,8 +11,13 @@ function! s:hi(group, fg, bg)
 endfunction
 
 " MISC
-" call s:hi ("NonText", 08, "")
-" call s:hi ("Ignore", 08, "")
+" hi NonText ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#3c4367 gui=NONE
+" hi SignColumn ctermbg=NONE ctermfg=NONE cterm=NONE guibg=#1d1f30 guifg=NONE gui=NONE
+
+" hi Identifier ctermfg=51 ctermbg=NONE cterm=NONE guifg=#01f7f7 guibg=NONE gui=NONE
+
+" call s:hi ("NonText", 00, "")
+" call s:hi ("Ignore", 00, "")
 " call s:hi ("SpecialKey", 08, "")
 " call s:hi ("LineNr", 08, "")
 
@@ -37,19 +42,19 @@ endfunction
 " call s:hi ("xmlAttrib", 06, 00)
 
 " TypeScript
-highlight! typescriptStatementKeyword guifg=#008097 gui=italic
-highlight typescriptImport guifg=#8c98a7 gui=italic
-highlight link typescriptFuncName Function
-highlight link typescriptExport typescriptImport
-highlight link typescriptFuncKeyword typescriptImport
+" highlight! typescriptStatementKeyword guifg=#008097 gui=italic
+" highlight typescriptImport guifg=#8c98a7 gui=italic
+" highlight link typescriptFuncName Function
+" highlight link typescriptExport typescriptImport
+" highlight link typescriptFuncKeyword typescriptImport
 
 
 " Go
-highlight goConditional guifg=#8c98a7 gui=italic
-highlight goLabel guifg=#8c98a7 gui=italic
-highlight goRepeat guifg=#8c98a7 gui=italic
-highlight goStatement guifg=#8c98a7 gui=italic
-highlight goFormatSpecifier guifg=#c1c9d4
+" highlight goConditional guifg=#8c98a7 gui=italic
+" highlight goLabel guifg=#8c98a7 gui=italic
+" highlight goRepeat guifg=#8c98a7 gui=italic
+" highlight goStatement guifg=#8c98a7 gui=italic
+" highlight goFormatSpecifier guifg=#c1c9d4
 
 
 " for testing colourschemes/highlighting
