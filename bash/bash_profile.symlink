@@ -36,3 +36,5 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
