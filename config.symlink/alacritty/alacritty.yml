@@ -62,32 +62,21 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 0
 
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
-
-# Spaces per Tab (changes require restart)
-#
-# This setting defines the width of a tab in cells.
-#
-# Some applications, like Emacs, rely on knowing about the width of a tab.
-# To prevent unexpected behavior in these applications, it's also required to
-# change the `it` value in terminfo when altering this setting.
-tabspaces: 4
-
 # Font configuration (changes require restart)
 font:
   # Normal (roman) font face
   normal:
-    family: iA Writer Mono S
-    # family: Iosevka SS10
+    # family: iA Writer Mono S
+    family: Iosevka Term SS10
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Light
 
   # Bold font face
   bold:
-    family: iA Writer Mono S
+    # family: iA Writer Mono S
+    family: Iosevka Term SS10
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Regular
 
   # Italic font face
   italic:
@@ -135,34 +124,35 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: '0x191b2a'
-    cursor: '0xeff0f6'
+    text: '0x0a0f14'
+    cursor: '0x98d1ce'
 
+    # Colors (Gotham)
   primary:
-    background: '0x191b2a'
-    foreground: '0xeff0f6'
+    background: '0x0a0f14'
+    foreground: '0x98d1ce'
 
   # Normal colors
   normal:
-    black:   '0x191b2a'
-    red:     '0xff476e'
-    green:   '0x39ffba'
-    yellow:  '0xffee7a'
-    blue:    '0x94bfff'
-    magenta: '0xf1b3f1'
-    cyan:    '0x01f7f7'
-    white:   '0xeff0f6'
+    black: '0x0a0f14'
+    red: '0xc33027'
+    green: '0x26a98b'
+    yellow: '0xedb54b'
+    blue: '0x195465'
+    magenta: '0x4e5165'
+    cyan: '0x33859d'
+    white: '0x98d1ce'
 
   # Bright colors
   bright:
-    black:   '0x1d1f30'
-    red:     '0xac3756'
-    green:   '0x2dad86'
-    yellow:  '0xffca7a'
-    blue:    '0x7496cc'
-    magenta: '0xa37ca9'
-    cyan:    '0x01a8ad'
-    white:   '0xa5abca'
+    black: '0x10151b'
+    red: '0xd26939'
+    green: '0x081f2d'
+    yellow: '0x245361'
+    blue: '0x093748'
+    magenta: '0x888ba5'
+    cyan: '0x599caa'
+    white: '0xd3ebe9'
 
   # Indexed Colors
   #
