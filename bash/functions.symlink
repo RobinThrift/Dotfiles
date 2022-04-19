@@ -2,58 +2,6 @@
 # FUNCTIONS
 # --------------------------------------------------
 
-# Determine size of a file or total size of a directory
-function fs() {
-    if du -b /dev/null > /dev/null 2>&1; then
-        local arg=-sbh
-    else
-        local arg=-sh
-    fi
-    if [[ -n "$@" ]]; then
-        du $arg -- "$@"
-    else
-        du $arg .[^.]* *
-    fi
-}
-
-
-alias food='curl "http://www.stwh-portal.de/mensa/index.php?wo=2&wann=2&format=txt" -s | grep "> [ETW]." | sed "s/([vnks0-9]*)//g" | sed "s:/[0-9]*,[0-9]*./[0-9]*,[0-9]*.::g" | head -23 | tail -12'
-
-
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
-    if [ -t 0 ]; then # argument
-#        python -mjson.tool <<< "$*" | pygmentize -l javascript
-        echo 'replace me!';
-    else # pipe
-        python -mjson.tool | pygmentize -l javascript
-    fi
-}
-
-# opens vim with the first search result from ag
-function agvim() {
-    vim `ag $1 $2 -c | head -n 1 | sed 's/:.*//'`;
-}
-
-# setup default docker-machine env
-function dme() {
-    eval "$(docker-machine env default)";
-    export DOCKER_MACHINE_IP=`docker-machine ip default`
-}
-
-# open logbook
-function lb() {
-    nvim $LOGBOOK_PATH/$(date '+%Y-%m-%d').md
-}
-
-# search logbook
-function slb() {
-    cd $LOGBOOK_PATH
-    rg $1
-    cd -
-}
-
 function update_all() {
     echo "Updating all brews"
     brew update && \
@@ -74,14 +22,6 @@ function update_all() {
 
     echo "Updating vim plugins"
     nvim -c "PlugUpdate"
-}
-
-function bash_bible() {
-    echo "https://github.com/dylanaraps/pure-bash-bible/blob/master/README.md"
-}
-
-function convertsecs() {
-    printf '%02d:%02d' $(($1%3600/60)) $(($1%60))
 }
 
 function spotify_running() {
