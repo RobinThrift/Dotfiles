@@ -11,7 +11,7 @@ function! s:hi(group, fg, bg)
 endfunction
 
 " MISC
-" hi NonText ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#3c4367 gui=NONE
+hi NonText ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#121212 gui=NONE
 " hi SignColumn ctermbg=NONE ctermfg=NONE cterm=NONE guibg=#1d1f30 guifg=NONE gui=NONE
 
 " hi Identifier ctermfg=51 ctermbg=NONE cterm=NONE guifg=#01f7f7 guibg=NONE gui=NONE
@@ -61,3 +61,18 @@ endfunction
 map <Leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+highlight link LspDiagnosticsDefaultError ErrorMsg
+highlight link LspDiagnosticsDefaultWarning WarningMsg
+highlight link LspDiagnosticsDefaultInformation Directory
+highlight link LspDiagnosticsDefaultHint Directory
+
+highlight link LspDiagnosticsUnderlineError ErrorMsg
+highlight link LspDiagnosticsUnderlineWarning WarningMsg
+highlight link LspDiagnosticsUnderlineInformation Directory
+highlight link LspDiagnosticsUnderlineHint Directory
+
+highlight LspDiagnosticsUnderlineError gui=underline cterm=underline
+highlight LspDiagnosticsUnderlineWarning gui=underline cterm=underline
+highlight LspDiagnosticsUnderlineInformation gui=underline cterm=underline
+highlight LspDiagnosticsUnderlineHint gui=underline cterm=underline

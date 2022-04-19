@@ -1,6 +1,3 @@
-
-"  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
-" ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
 " ███    ███ ███▌ ███   ███   ███
 " ███    ███ ███▌ ███   ███   ███
 " ███    ███ ███▌ ███   ███   ███
@@ -10,15 +7,624 @@
 
 
 " ----------------------
-"  GENERAL
+"  PLUGINS
 " ----------------------
 call plug#begin('~/.vim/plugged')
 
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-surround'
+
+Plug 'Raimondi/delimitMate' 
+
+" Plug 'airblade/vim-gitgutter'
+
+Plug 'tpope/vim-commentary'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'gennaro-tedesco/nvim-peekup'
+
+" Collection of common configurations for the Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
+
+" helper lua functions
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+
+
+" Autocomplete stuff
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'latex'] }
+
+Plug 'othree/yajs.vim'
+
+Plug 'HerringtonDarkholme/yats.vim'
+
+" Zen mode and twilight, for focusing
+Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+" Zig
+Plug 'ziglang/zig.vim'
+" Swift
+" Plug 'keith/swift.vim'
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Jsonnet
+" Plug 'google/vim-jsonnet'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italic = 1
+let g:gruvbox_sign_column = "bg0"
+Plug 'morhetz/gruvbox'
+Plug 'ajmwagar/vim-deus'
+Plug 'arzg/vim-substrata'
+Plug 'whatyouhide/vim-gotham'
+Plug 'vim-scripts/phd'
+Plug 'arzg/vim-oldbook8'
+Plug 'romainl/Apprentice'
+Plug 'haishanh/night-owl.vim'
+Plug 'wadackel/vim-dogrun'
+let g:embark_terminal_italics = 1
+Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'pineapplegiant/spaceduck'
+Plug 'nikolvs/vim-sunbather'
+Plug 'fxn/vim-monochrome'
+Plug 'kyazdani42/blue-moon'
+Plug 'stillwwater/vim-nebula'
+Plug 'junk-e/identity.vim'
+Plug 'pablopunk/sunset.vim'
+Plug 'duckwork/nirvana'
+Plug 'pgavlin/pulumi.vim'
+Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
+Plug 'davidosomething/vim-colors-meh'
+Plug 'owickstrom/vim-colors-paramount'
+Plug 'fxn/vim-monochrome'
+Plug 'mcchrish/zenbones.nvim'
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_disable_italic_comment = 1
+Plug 'sainnhe/gruvbox-material'
+let g:tokyonight_style = "night"
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+let g:everforest_background = 'hard'
+let g:everforest_enable_italic = 1
+let g:everforest_diagnostic_text_highlight = 1
+let g:everforest_sign_column_background = 'none'
+Plug 'sainnhe/everforest'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'RobinThrift/Sakura.nvim'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'ldelossa/vimdark'
+Plug 'yuttie/sublimetext-spacegray.vim'
+Plug 'elvessousa/sobrio'
+Plug 'cocopon/iceberg.vim'
+Plug 'ray-x/aurora'
+
+call plug#end()
+
+" ----------------------
+"  TREE SITTER
+" ----------------------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  }
+}
+EOF
+
+" ----------------------
+"  COLOURSCHEME AND STYLES
+" ----------------------
+
+lua <<EOF
+require('rose-pine').setup({
+	---@usage 'main'|'moon'
+	dark_variant = 'main',
+	disable_background = false,
+	disable_float_background = false,
+	disable_italics = false,
+})
+EOF
+
+
+set fillchars+=vert:\ 
+set laststatus=2
+set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
+
+set background=dark
+set cursorline
+set termguicolors
+colorscheme helix
+
+" ----------------------
+"  MAPPINGS
+" ----------------------
+
+let mapleader = ","
+
+" source ~/.colors/mods.vim
+
+command! Spnext :silent exec "!spnext"
+
+" switch to last used buffer
+nnoremap <Leader>l :b#<CR>
+
+" Use ctrl-[hjkl] to select the active split
+nmap <silent> <c-k> :wincmd k<CR>                                                                                                                       
+nmap <silent> <c-j> :wincmd j<CR>                                                                                                                       
+nmap <silent> <c-h> :wincmd h<CR>                                                                                                                       
+nmap <silent> <c-l> :wincmd l<CR>
+
+" select pasted test usign gp
+nnoremap gp `[v`]`
+
+" autocomplete on ctrl + c
+imap <c-y> <c-x><c-o>
+set complete=.,b,u,] " pull autocomplete from all sources (files, buffers, tags)
+
+" Invert apostrophe/backtick 'jump to mark' behavior
+nnoremap ' `
+nnoremap ` '
+
+" Visual mode pressing * or # searches for the current selection
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
+" ,+s to save, reduce key strokes
+nnoremap <Leader>s :w<CR>
+
+" use K to join current line with line above, just like J does with line below
+" nnoremap K kJ
+
+" quickfix navigation
+nnoremap <leader>q :cnext<CR>
+nnoremap <leader>a :cprevious<CR>
+
+" open file under cursor in splits
+map gfv :vertical wincmd f<CR>
+map gfs wincmd f<CR>
+noremap gfc gf
+
+" do something useful with umlauts
+nmap ä }
+nmap ö {
+nmap ü %
+
+
+" ----------------------
+"  FILETYPES
+" ----------------------
+
+" Markdown
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
+let g:vim_markdown_folding_disabled=1
+autocmd FileType markdown setlocal conceallevel=0
+
+
+" JavaScript
+" console.log word under cursor
+autocmd FileType typescript nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>")<Esc>^
+autocmd FileType javascript nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>")<Esc>^
+autocmd FileType javascriptreact nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>")<Esc>^
+autocmd FileType typescriptreact nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>")<Esc>^
+
+" Go
+let g:go_fmt_command = "goimports"
+let g:go_rename_command = 'gopls'
+let g:go_fmt_autosave = 1
+let g:go_list_height = 0
+let g:go_doc_popup_window = 1
+
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+
+" autocmd FileType go nmap <buffer> <leader>k <Plug>(go-def)
+" autocmd FileType go nmap <buffer> ti :GoInfo<CR>
+" autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
+" autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
+" autocmd FileType go nmap <buffer> tl :GoLint<CR>
+" autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
+" autocmd FileType go nmap <buffer> <leader>r :GoRename<CR>
+" autocmd FileType go nmap <buffer> <leader>i :GoIfErr<CR>
+" autocmd FileType go setlocal completeopt+=menu
+
+" fmt.Println word under cursor
+autocmd FileType go nmap <Leader>cl yiwofmt.Println("<c-r>"", <c-r>")<Esc>^
+
+" ----------------------
+"  LSP
+" ----------------------
+
+" If we're using Neovim's builtin LSP support, let's disable a lot of the
+" auto-functionality in vim-go:
+let g:go_def_mapping_enabled = 0
+let g:go_term_enabled = 1
+let g:go_diagnostics_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_gopls_enabled = 0
+let g:go_diagnostics_enabled = 0
+
+" Configure LSP
+" lua require("lsp")
+lua require'lspconfig'.gopls.setup{}
+lua require'lspconfig'.tsserver.setup{}
+lua require'lspconfig'.pylsp.setup{}
+
+" lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+" lua require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
+
+" autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter typescript lua require'completion'.on_attach()
+" autocmd BufEnter typescript.tsx lua require'completion'.on_attach()
+" autocmd BufEnter javascript lua require'completion'.on_attach()
+" autocmd BufEnter javascript.jsx lua require'completion'.on_attach()
+
+" Code navigation shortcuts
+" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K         <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <Leader>k <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> gR    <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.rename()<CR>
+" nnoremap <silent> gld    <cmd>lua require('lsp_extensions.workspace.diagnostic').set_qf_list()<CR>
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.diagnostic.open_float()
+
+
+" ----------------------
+"  AUTOCOMPLETE
+" ----------------------
+"
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menu,menuone,noselect
+
+" Avoid showing extra messages when using completion
+" set shortmess+=c
+
+lua <<EOF
+local cmp = require'cmp'
+cmp.setup({
+    snippet = {
+        -- fix because no snippet engine atm.
+        --expand = function() end
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        end,
+        --expand = function(args)
+        --  local line_num, col = unpack(vim.api.nvim_win_get_cursor(0))
+        --  local line_text = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, true)[1]
+        --  local indent = string.match(line_text, '^%s*')
+        --  local replace = vim.split(args.body, '\n', true)
+        --  local surround = string.match(line_text, '%S.*') or ''
+        --  local surround_end = surround:sub(col)
+        --  local endCol = col
+
+        --  replace[1] = surround:sub(0, col - 1)..replace[1]
+        --  replace[#replace] = replace[#replace]..(#surround_end > 1 and ' ' or '')..surround_end
+        --  if indent ~= '' then
+        --    for i, line in ipairs(replace) do
+        --      replace[i] = indent..line
+        --      endCol = col + string.len(replace[i])
+        --    end
+        --  end
+
+        --  vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, true, replace)
+        --  vim.api.nvim_win_set_cursor(0, { line_num, endCol })
+        --end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+       --['<CR>'] = function(fallback)
+       --  if cmp.visible() then
+       --    cmp.confirm({ select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+       --  else
+       --    fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
+       --  end
+       --end
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+    }, {
+      { name = 'buffer' },
+    }),
+    experimental = {
+        ghost_text = true,
+    },
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['gopls'].setup {
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
+  }
+
+  require('lspconfig')['tsserver'].setup {
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
+  }
+
+  require('lspconfig')['pylsp'].setup {
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
+  }
+EOF
+
+" ----------------------
+"  LINTING/FORMATTING/FIXING/ETC
+" ----------------------
+
+" Goto previous/next diagnostic warning/error
+" nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+" nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" let g:deoplete#enable_at_startup = 1
+" set completeopt-=preview
+" set completeopt+=noselect
+
+
+lua <<EOF
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.prettierd.with({
+            prefer_local = "node_modules/.bin",
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json", "graphql" }
+        }),
+        require("null-ls").builtins.diagnostics.eslint.with({
+            prefer_local = "node_modules/.bin",
+        }),
+        require("null-ls").builtins.code_actions.eslint.with({
+            prefer_local = "node_modules/.bin",
+        }),
+        require("null-ls").builtins.diagnostics.tsc.with({
+            prefer_local = "node_modules/.bin",
+        }),
+
+        require("null-ls").builtins.formatting.goimports,
+        require("null-ls").builtins.diagnostics.staticcheck,
+
+        require("null-ls").builtins.formatting.zigfmt,
+
+        require("null-ls").builtins.diagnostics.hadolint,
+
+        require("null-ls").builtins.diagnostics.protolint,
+        require("null-ls").builtins.formatting.protolint,
+
+        require("null-ls").builtins.formatting.clang_format,
+
+        require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.diagnostics.mypy,
+        require("null-ls").builtins.diagnostics.pydocstyle,
+        require("null-ls").builtins.diagnostics.pylint,
+    },
+    on_attach = function(client)
+        if client.resolved_capabilities.document_formatting then
+            vim.cmd([[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+        end
+    end,
+})
+EOF
+
+" ----------------------
+"  DELMIMATE
+" ----------------------
+let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_cr = 1
+let delimitMate_jump_expansion = 1
+
+" ----------------------
+"  FZF
+" ----------------------
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Special'],
+  \ 'fg+':     ['fg', 'Error'],
+  \ 'bg+':     ['bg', 'Error'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'Normal'],
+  \ 'prompt':  ['fg', 'String'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Comment'],
+  \ 'header':  ['fg', 'Comment'] }
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+let g:fzf_layout = { 'right': '70%' }
+
+let g:fzf_buffers_jump = 1
+inoremap <expr> <c-x><c-k> fzf#complete()
+
+" fuzzy open
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>g :GFiles<CR>
+
+" fuzzy buffer open
+nnoremap <leader>b :Buffers<CR>
+
+" More powerful find
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,ts,md,html,cpp,c,go,conf,swift,rs,java}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({ 'window': { 'width': 0.9, 'height': 0.8 } }), <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+
+" ----------------------
+"  GITGUTTER
+" ----------------------
+" let g:gitgutter_override_sign_column_highlight=0
+
+" ----------------------
+"  ZEN MODE
+" ----------------------
+
+lua << EOF
+  require("zen-mode").setup {
+    window = {
+        backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        -- height and width can be:
+        -- * an absolute number of cells when > 1
+        -- * a percentage of the width / height of the editor when <= 1
+        -- * a function that returns the width or the height
+        width = 120, -- width of the Zen window
+        height = 1, -- height of the Zen window
+        -- by default, no options are changed for the Zen window
+        -- uncomment any of the options below, or add other vim.wo options you want to apply
+        options = {
+          signcolumn = "no", -- disable signcolumn
+          number = false, -- disable number column
+          relativenumber = false, -- disable relative numbers
+          cursorline = false, -- disable cursorline
+          cursorcolumn = false, -- disable cursor column
+          foldcolumn = "0", -- disable fold column
+          list = false, -- disable whitespace characters
+        },
+      },
+
+      plugins = {
+        -- disable some global vim options (vim.o...)
+        -- comment the lines to not apply the options
+        options = {
+          enabled = true,
+          ruler = false, -- disables the ruler text in the cmd line area
+          showcmd = false, -- disables the command in the last line of the screen
+        },
+        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+        gitsigns = { enabled = false }, -- disables git signs
+        tmux = { enabled = false }, -- disables the tmux statusline
+      },
+  }
+EOF
+
+" ----------------------
+"  CFilter
+" ----------------------
+
+" Enable the cfilter plugin that ships with Vim/NeoVim
+packadd cfilter
+
+" ----------------------
+"  Matchit
+" ----------------------
+
+" Enable matchit.vim, which ships with Vim but isn't enabled by default
+" somehow
+runtime macros/matchit.vim
+
+" ----------------------
+"  MISC
+" ----------------------
+
+set expandtab " spaces instead of tabs
+set smarttab
+set shiftwidth=4
+set tabstop=4
+
+set scrolloff=3
+
+set lbr
+set tw=400 " linebreak after 400 chars
+
+set ai "Auto indent
+set si "Smart indent
+set nowrap "Don't wrap lines
+
 " allow clipboard
 set clipboard=unnamed
-
-" custom leader
-let mapleader = ","
 
 " jk as escape sequence in insert mode
 inoremap jk <esc>
@@ -46,19 +652,6 @@ set incsearch
 " regex magic 
 set magic
 
-
-" ----------------------
-"  BUFFERS
-" ----------------------
-
-" switch to last used buffer
-nnoremap <Leader>l :b#<CR>
-
-
-" ----------------------
-"  UI
-" ----------------------
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -77,10 +670,6 @@ nnoremap <silent> <Leader>< :exe "vertical resize -5"<CR>
 set showmode
 set showcmd
 
-" SYNTAX & UI
-syntax on
-syntax enable
-
 set splitbelow " more natural splits
 set splitright
 
@@ -93,444 +682,9 @@ hi Search cterm=none ctermfg=black ctermbg=yellow
 set list
 set listchars=tab:∙\ ,eol:¬,extends:…,precedes:…
 
-" ----------------------
-"  FILES
-" ----------------------
-
 set encoding=utf8
 set ffs=unix,dos,mac
 set nobackup " no backpus
 set nowb
 set noswapfile
 set hidden
-
-
-" ----------------------
-"  TEXT EDITING
-" ----------------------
-set expandtab " spaces instead of tabs
-set smarttab
-set shiftwidth=4
-set tabstop=4
-
-set scrolloff=3
-
-set lbr
-set tw=400 " linebreak after 400 chars
-
-set ai "Auto indent
-set si "Smart indent
-set nowrap "Don't wrap lines
-
-" automaticcaly create the directory for the file, if it doesn't exist
-" thanks to https://www.reddit.com/r/vim/comments/5iu1hl/make_vim_create_subfolders_when_the_filename/dbbf8ph/
-fun! <SID>AutoMakeDirectory()
-    let s:directory = expand("<afile>:p:h")
-
-    if !isdirectory(s:directory)
-        call mkdir(s:directory, "p")
-    endif
-endfun
-
-autocmd BufWritePre,FileWritePre * :call <SID>AutoMakeDirectory()
-
-" ----------------------
-"  MAPS
-" ----------------------
-
-" Use ctrl-[hjkl] to select the active split
-nmap <silent> <c-k> :wincmd k<CR>                                                                                                                       
-nmap <silent> <c-j> :wincmd j<CR>                                                                                                                       
-nmap <silent> <c-h> :wincmd h<CR>                                                                                                                       
-nmap <silent> <c-l> :wincmd l<CR>
-
-" select pasted test usign gp
-nnoremap gp `[v`]`
-
-
-" autocomplete on ctrl + c
-imap <c-y> <c-x><c-o>
-set complete=.,b,u,] " pull autocomplete from all sources (files, buffers, tags)
-
-
-" Invert apostrophe/backtick 'jump to mark' behavior
-nnoremap ' `
-nnoremap ` '
-
-" Visual mode pressing * or # searches for the current selection
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
-
-" Enable/disable relative numbers
-nnoremap <leader>n :call ToggleNumber()<CR>
-
-" Enable/disable relative numbers
-nnoremap <leader>r :call ToggleRelativeNumber()<CR>
-
-function! ToggleRelativeNumber()
-  if &relativenumber
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-    set nonumber
-  endif
-endfunction
-
-function! ToggleNumber()
-  if &number
-    set nonumber
-  else
-    set number
-  endif
-endfunction
-
-" ,+s to save, reduce key strokes
-nnoremap <Leader>s :w<CR>
-
-" use K to join current line with line above, just like J does with line below
-nnoremap K kJ
-
-
-" quickfix navigation
-nnoremap <leader>q :cnext<CR>
-nnoremap <leader>a :cprevious<CR>
-
-" open file under cursor in splits
-map gfv :vertical wincmd f<CR>
-map gfs wincmd f<CR>
-noremap gfc gf
-
-" do something useful with umlauts
-nmap ä }
-nmap ö {
-nmap ü %
-
-
-" ----------------------
-"  TOOLS
-" ----------------------
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-surround'
-
-Plug 'Raimondi/delimitMate' 
-let delimitMate_balance_matchpairs = 1
-let delimitMate_expand_cr = 1
-let delimitMate_jump_expansion = 1
-
-Plug 'tpope/vim-commentary'
-
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Special'],
-  \ 'fg+':     ['fg', 'Error'],
-  \ 'bg+':     ['bg', 'Error'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'Normal'],
-  \ 'prompt':  ['fg', 'String'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Comment'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_layout = { 'right': '50%' }
-let g:fzf_buffers_jump = 1
-inoremap <expr> <c-x><c-k> fzf#complete()
-
-" fuzzy open
-nnoremap <leader>e :Files<CR>
-nnoremap <leader>g :GFiles<CR>
-
-" fuzzy buffer open
-nnoremap <leader>b :Buffers<CR>
-
-" More powerful find
-let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{js,json,ts,md,html,cpp,c,go,conf,swift,rs,java}"
-  \ -g "!{.git,node_modules,vendor}/*" '
-
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-
-" ----------------------
-"  GIT
-" ----------------------
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_override_sign_column_highlight=0
-Plug 'tpope/vim-fugitive'
-
-" ----------------------
-"  AUTOCOMPLETE
-" ----------------------
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-let g:deoplete#enable_at_startup = 1
-set completeopt-=preview
-set completeopt+=noselect
-
-Plug 'dense-analysis/ale'
-let g:ale_linters = {
-\   'javascript': ['tsserver', 'prettier'],
-\   'typescript': ['tslint', 'tsserver'],
-\   'typescriptreact': ['tslint', 'tsserver'],
-\   'swift': ['sourcekit-lsp', 'swiftformat', 'swiftlint'],
-\   'go': ['golint', 'go vet'],
-\}
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'typescript': ['tslint', 'prettier'],
-\   'typescriptreact': ['tslint', 'prettier'],
-\   'swift': ['swiftformat'],
-\}
-let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
-" call deoplete#custom#option('sources', {
-" \ 'typescript': ['ale'],
-" \ 'javascript': ['ale'],
-" \})
-
-" ----------------------
-"  LANGUAGES
-" ----------------------
-
-function! FindTestFile()
-    let l:dir = expand('%:h')
-    let l:name = expand('%:t:r')
-    let l:tf = l:dir . "/__tests__/" . l:name . ".spec.ts"
-    if filereadable(l:tf)
-        execute 'edit ' . l:tf
-    endif
-
-    let l:tf = l:dir . "/" . l:name . "_test.go"
-    if filereadable(l:tf)
-        execute 'edit ' . l:tf
-    endif
-endfunction
-nnoremap <silent> <leader>o :call FindTestFile()<cr>
-
-
-
-" Markdown
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'latex'] }
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.md hi link mkdLineBreak Underlined
-let g:vim_markdown_folding_disabled=1
-autocmd FileType markdown setlocal conceallevel=0
-
-
-" JavaScript
-Plug 'othree/yajs.vim'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-
-" console.log word under cursor
-nmap <Leader>cl yiwoconsole.log("<c-r>"", <c-r>");<Esc>^
-
-" TypeScript
-Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-" autocmd FileType typescript setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
-" autocmd FileType typescript.tsx setlocal signcolumn=yes "set this to yes to avoid the lines to jump around horizontally
-" autocmd FileType typescript nmap <buffer> <leader>d :TSDoc<CR>
-" autocmd FileType typescript nmap <buffer> <leader>k :TSDef<CR>
-" autocmd FileType typescript nmap <buffer> <leader>tr :TSRename
-" autocmd FileType typescript nmap <buffer> <leader>ff :TSGetCodeFix<CR>
-
-
-" Rust
-Plug 'rust-lang/rust.vim'
-
-
-" Swift
-Plug 'keith/swift.vim'
-
-
-" Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 1
-let g:go_list_height = 0
-
-let g:go_highlight_methods = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-
-autocmd FileType go nmap <buffer> <leader>k <Plug>(go-def)
-autocmd FileType go nmap <buffer> ti :GoInfo<CR>
-autocmd FileType go nmap <buffer> tds <Plug>(go-def-split)
-autocmd FileType go nmap <buffer> tdv <Plug>(go-def-vertical)
-autocmd FileType go nmap <buffer> tl :GoLint<CR>
-autocmd FileType go nmap <buffer> tm :GoMetaLinter<CR>
-autocmd FileType go setlocal completeopt+=menu
-
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode-gomod'
-
-" Goyo and limelight, for focusing
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-
-let g:goyo_width = 100
-let g:goyo_height = '90%'
-let g:limelight_paragraph_span = 0
-let g:limelight_default_coefficient = 0.7
-
-function! s:goyo_enter()
-    set wrap
-    set noshowmode
-    set noshowcmd
-    set scrolloff=999
-
-    noremap  <buffer> <silent> k gk
-    noremap  <buffer> <silent> j gj
-    noremap  <buffer> <silent> 0 g0
-    noremap  <buffer> <silent> $ g$
-
-    if &filetype ==# 'markdown' || &filetype ==# 'md' || &filetype ==# 'tex'|| &filetype ==# 'latex' || &filetype ==# 'plain'
-        set spell
-        set spelllang=en_gb
-        Limelight
-    endif
-endfunction
-
-function! s:goyo_leave()
-    set showmode
-    set showcmd
-    set scrolloff=3
-    set nospell
-    set nowrap
-
-    set background=dark
-    let g:sierra_Twilight = 1
-    colorscheme substrata
-    source ~/.colors/mods.vim
-
-    set laststatus=2
-    set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
-
-    unmap  <buffer> <silent> k
-    unmap  <buffer> <silent> j
-    unmap  <buffer> <silent> 0
-    unmap  <buffer> <silent> $
-
-    Limelight!
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-Plug 'tpozzi/Sidonia'
-Plug 'hauleth/blame.vim'
-Plug 'AlessandroYorba/Sierra'
-Plug 'morhetz/gruvbox'
-Plug 'arzg/vim-oldbook8'
-Plug 'vim-scripts/phd'
-Plug 'flrnprz/candid.vim'
-Plug 'scottymoon/vim-twilight'
-Plug 'fenetikm/falcon'
-Plug 'ajmwagar/vim-deus'
-Plug 'Zabanaa/neuromancer.vim'
-Plug 'fcpg/vim-fahrenheit'
-Plug 'yuttie/hydrangea-vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'DankNeon/vim', { 'as': 'dank-neon' }
-Plug 'arzg/vim-substrata'
-Plug 'whatyouhide/vim-gotham'
-
-call plug#end()
-
-" ----------------------
-"  COLOURSCHEME and STYLES
-" ----------------------
-
-set fillchars+=vert:\ 
-set laststatus=2
-set statusline=%=\ %m%f\ %y\ %l:%c\ \ 
-
-set background=dark
-let g:sierra_Twilight = 1
-" let &t_Co=256
-" let &t_8f = \"\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = ''"\<Esc>[48;2;%lu;%lu;%lum"
-" set t_ZH=[3m
-" set t_ZR=[23m
-" let &t_ZH="\e[3m"
-" let &t_ZR="\e[23m"
-set termguicolors
-set cursorline
-colorscheme substrata
-source ~/.colors/mods.vim
-
-" ----------------------------------------------------------------------------
-" <F8> | Color scheme selector
-" ----------------------------------------------------------------------------
-
-function! s:colors(...)
-  return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
-        \                  'v:val !~ "^/usr/"'),
-        \           'fnamemodify(v:val, ":t:r")'),
-        \       '!a:0 || stridx(v:val, a:1) >= 0')
-endfunction
-
-function! s:rotate_colors()
-  if !exists('s:colors')
-    let s:colors = s:colors()
-  endif
-  let name = remove(s:colors, 0)
-  call add(s:colors, name)
-  execute 'colorscheme' name
-  redraw
-  echo name
-endfunction
-nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
-
-
-" ----------------------
-"  HELPER FUNCTIONS
-" ----------------------
-
-" Auto reload .vimrc
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("Ag \"" . l:pattern . "\" " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-command! Spnext :silent exec "!spnext"
