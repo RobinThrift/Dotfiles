@@ -38,3 +38,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export GPG_TTY=$(tty)
+source "$HOME/.cargo/env"
+
+complete -C /opt/homebrew/bin/tk tk
