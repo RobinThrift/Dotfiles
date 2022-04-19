@@ -64,3 +64,5 @@
 	gpgsign = true
 [pull]
 	rebase = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
