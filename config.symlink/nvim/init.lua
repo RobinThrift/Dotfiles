@@ -36,11 +36,10 @@ require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    -- use 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    -- use 'junegunn/fzf.vim'
-    --
     use 'gennaro-tedesco/nvim-peekup'
     use 'neovim/nvim-lspconfig'
+
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- Autocomplete stuff
     use 'hrsh7th/cmp-vsnip'
@@ -497,6 +496,12 @@ vim.g.delimitMate_balance_matchpairs = 1
 vim.g.delimitMate_expand_cr = 1
 vim.g.delimitMate_jump_expansion = 1
 
+
+-- DIFFVIEW
+
+require('diffview').setup {
+    use_icons = false,
+}
 
 -- Other
 
