@@ -59,6 +59,8 @@ require('packer').startup(function(use)
     use 'othree/yajs.vim'
     use 'HerringtonDarkholme/yats.vim'
 
+    use 'rktjmp/lush.nvim'
+
     -- colour schemes
     use 'morhetz/gruvbox'
     use 'ajmwagar/vim-deus'
