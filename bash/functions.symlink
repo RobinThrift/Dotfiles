@@ -17,11 +17,8 @@ function update_all() {
     echo "Running mac app store upgrade"
     mas upgrade
 
-    echo "Upgrading vim-plug"
-    nvim -c "PlugUpgrade"
-
     echo "Updating vim plugins"
-    nvim -c "PlugUpdate"
+    nvim -c "PackerUpdate"
 }
 
 function spotify_running() {
