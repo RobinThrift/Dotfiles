@@ -24,6 +24,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'nvim-treesitter/playground'
 
     use 'christoomey/vim-tmux-navigator'
 
