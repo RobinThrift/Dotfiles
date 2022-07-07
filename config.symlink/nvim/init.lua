@@ -32,6 +32,8 @@ require('packer').startup(function(use)
     use 'Raimondi/delimitMate' 
     use 'tpope/vim-commentary'
 
+    use 'ggandor/lightspeed.nvim'
+
     use {
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -55,8 +57,9 @@ require('packer').startup(function(use)
 
     -- Language Support
     use 'rust-lang/rust.vim'
-    use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
-    use { 'plasticboy/vim-markdown', ft = {'markdown', 'latex'} }
+    -- use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
+    use 'ray-x/go.nvim'
+    -- use { 'plasticboy/vim-markdown', ft = {'markdown', 'latex'} }
     use 'othree/yajs.vim'
     use 'HerringtonDarkholme/yats.vim'
 
@@ -95,6 +98,9 @@ require('packer').startup(function(use)
     use 'yuttie/sublimetext-spacegray.vim'
     use 'elvessousa/sobrio'
     use 'cocopon/iceberg.vim'
+    use 'savq/melange'
+    use 'shaunsingh/moonlight.nvim'
+    use 'michaeldyrynda/carbon'
 end)
 
 
@@ -132,6 +138,9 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
+-- LSP CAPABILITIES
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- COLOURSCHEME AND STYLES
 require('rose-pine').setup({
 	---@usage 'main'|'moon'
@@ -165,7 +174,7 @@ vim.o.statusline = '%= %m%f %y %l:%c  '
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme helix]]
+vim.cmd [[colorscheme carbon]]
 
 
 -- MAPPINGS
@@ -238,6 +247,8 @@ vim.api.nvim_create_user_command("JL", function(args) require('telescope.builtin
 vim.api.nvim_create_user_command("Syms", function(args) require('telescope.builtin').lsp_document_symbols() end, {})
 vim.api.nvim_create_user_command("WSyms", function(args) require('telescope.builtin').lsp_workspace_symbols() end, {})
 vim.api.nvim_create_user_command("Actions", function(args) require('telescope.builtin').lsp_code_actions() end, {})
+vim.api.nvim_create_user_command("Diags", function(args) require('telescope.builtin').diagnostics() end, {})
+vim.api.nvim_create_user_command("Refs", function(args) require('telescope.builtin').lsp_references() end, {})
 
 -- FILETYPES
 
@@ -269,45 +280,30 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Go
-vim.g.go_fmt_command = "goimports"
-vim.g.go_rename_command = 'gopls'
-vim.g.go_fmt_autosave = 1
-vim.g.go_list_height = 0
-vim.g.go_doc_popup_window = 1
-vim.g.go_highlight_methods = 1
-vim.g.go_highlight_build_constraints = 1
-vim.g.go_highlight_variable_declarations = 1
-vim.g.go_highlight_variable_assignments = 1
-vim.g.go_highlight_fields = 1
-vim.g.go_highlight_function_calls = 1
-vim.g.go_highlight_types = 1
-vim.g.go_highlight_operators = 1
--- If we're using Neovim's builtin LSP support, let's disable a lot of the
--- auto-functionality in vim-go:
-vim.g.go_def_mapping_enabled = 0
-vim.g.go_term_enabled = 1
-vim.g.go_diagnostics_enabled = 0
-vim.g.go_code_completion_enabled = 0
-vim.g.go_doc_keywordprg_enabled = 0
-vim.g.go_gopls_enabled = 0
-vim.g.go_diagnostics_enabled = 0
+require('go').setup {
+    -- goimport = 'gopls', -- if set to 'gopls' will use golsp format
+    -- gofmt = 'goimports', -- if set to gopls will use golsp format
+    goimport = false, -- if set to 'gopls' will use golsp format
+    gofmt = false, -- if set to gopls will use golsp format
+    lsp_cfg = false, -- false: use your own lspconfig
+    lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
+    lsp_on_attach = false, -- use on_attach from go.nvim
+    lsp_codelens = false,
+    dap_debug = true,
+}
 
 
-
--- fmt.Println word under cursor
 vim.api.nvim_create_autocmd('FileType', {
     pattern = "go",
     callback = function()
+        -- fmt.Println word under cursor
         vim.keymap.set('n', '<leader>cl', 'yiwofmt.Println("<c-r>"", <c-r>")<Esc>^')
+        vim.o.expandtab = false
     end,
 })
 
 
 -- LSP
-
-require('lspconfig').gopls.setup{}
-require('lspconfig').tsserver.setup{}
-require('lspconfig').pylsp.setup{}
 
 vim.api.nvim_set_keymap('n', 'K', '', {
     silent = true,
@@ -324,6 +320,9 @@ vim.api.nvim_set_keymap('n', '<leader>k', '', {
         vim.lsp.buf.definition()
     end,
 })
+
+
+vim.api.nvim_create_user_command("Rename", function(args) vim.lsp.buf.rename() end, {})
 
 -- Show diagnostic popup on cursor hold
 vim.o.updatetime = 300
@@ -417,14 +416,35 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require('lspconfig')['gopls'].setup {
     capabilities = capabilities,
+
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
     end,
+
+    settings = {
+        gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = {
+                unreachable = true,
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+            codelenses = {
+                generate = true,
+                gc_details = true,
+                regenerate_cgo = true,
+            },
+        },
+    },
+
+    init_options = {
+        usePlaceholders = true,
+    }
 }
 
 require('lspconfig')['tsserver'].setup {
@@ -522,7 +542,7 @@ vim.o.si = true
 vim.o.wrap = false
 
 -- allow clipboard
-vim.o.clipboard = 'unnamed'
+vim.o.clipboard = 'unnamed,unnamedplus'
 
 vim.o.errorbells = false
 vim.o.visualbell = false
