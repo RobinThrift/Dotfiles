@@ -79,7 +79,6 @@ require('packer').startup(function(use)
     use 'nikolvs/vim-sunbather'
     use 'kyazdani42/blue-moon'
     use 'stillwwater/vim-nebula'
-    use 'junk-e/identity.vim'
     use 'pablopunk/sunset.vim'
     use 'duckwork/nirvana'
     use 'pgavlin/pulumi.vim'
@@ -94,13 +93,14 @@ require('packer').startup(function(use)
     use { 'catppuccin/nvim', as = 'catppuccin' }
     use 'RobinThrift/Sakura.nvim'
     use 'EdenEast/nightfox.nvim'
-    use 'ldelossa/vimdark'
     use 'yuttie/sublimetext-spacegray.vim'
     use 'elvessousa/sobrio'
     use 'cocopon/iceberg.vim'
     use 'savq/melange'
     use 'shaunsingh/moonlight.nvim'
     use 'michaeldyrynda/carbon'
+    use 'CrispyBaccoon/dawn.vim'
+    use 'mvpopuk/inspired-github.vim'
 end)
 
 
@@ -174,7 +174,7 @@ vim.o.statusline = '%= %m%f %y %l:%c  '
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme carbon]]
+vim.cmd [[colorscheme sunbather]]
 
 
 -- MAPPINGS
