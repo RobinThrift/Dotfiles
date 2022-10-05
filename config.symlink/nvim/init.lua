@@ -421,8 +421,8 @@ require('lspconfig')['gopls'].setup {
     capabilities = capabilities,
 
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end,
 
     settings = {
@@ -450,16 +450,24 @@ require('lspconfig')['gopls'].setup {
 require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end,
 }
 
 require('lspconfig')['pylsp'].setup {
     capabilities = capabilities,
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+}
+
+require('lspconfig').zls.setup{
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end,
 }
 
@@ -500,13 +508,15 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.mypy,
         require("null-ls").builtins.diagnostics.pydocstyle,
         require("null-ls").builtins.diagnostics.pylint,
+
+        require("null-ls").builtins.formatting.zigfmt,
     },
     on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
+        if client.server_capabilities.documentFormattingProvider then
             vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
             augroup END
             ]])
         end
