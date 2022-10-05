@@ -325,13 +325,13 @@ vim.api.nvim_set_keymap('n', '<leader>k', '', {
 vim.api.nvim_create_user_command("Rename", function(args) vim.lsp.buf.rename() end, {})
 
 -- Show diagnostic popup on cursor hold
-vim.o.updatetime = 300
-vim.api.nvim_create_autocmd('CursorHold', {
-    pattern = "*",
-    callback = function()
-        vim.diagnostic.open_float()
-    end,
-})
+-- vim.o.updatetime = 300
+-- vim.api.nvim_create_autocmd('CursorHold', {
+--     pattern = "*",
+--     callback = function()
+--         vim.diagnostic.open_float()
+--     end,
+-- })
 
 
 -- AUTOCOMPLETE
