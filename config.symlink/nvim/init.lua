@@ -65,6 +65,10 @@ require('packer').startup(function(use)
 
     use 'rktjmp/lush.nvim'
 
+    -- database
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui'
+
     -- colour schemes
     use 'morhetz/gruvbox'
     use 'ajmwagar/vim-deus'
