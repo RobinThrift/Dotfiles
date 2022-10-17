@@ -74,7 +74,7 @@ require('packer').startup(function(use)
     use 'kristijanhusak/vim-dadbod-ui'
 
     -- colour schemes
-    use 'morhetz/gruvbox'
+    use 'ellisonleao/gruvbox.nvim'
     use 'ajmwagar/vim-deus'
     use 'arzg/vim-substrata'
     use 'whatyouhide/vim-gotham'
@@ -159,10 +159,20 @@ require('rose-pine').setup({
 	disable_italics = false,
 })
 
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_sign_column = 'bg0'
-
+require('gruvbox').setup({
+    undercurl = true,
+    underline = true,
+    bold = true,
+    italic = true,
+    strikethrough = true,
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    contrast = "hard", -- can be "hard", "soft" or empty string
+    overrides = {},
+})
 vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_disable_italic_comment = 1
@@ -184,7 +194,6 @@ vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
 vim.cmd [[colorscheme sunbather]]
-
 
 -- MAPPINGS
 
