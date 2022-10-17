@@ -619,6 +619,7 @@ vim.opt.undodir = vim.fn.stdpath 'data' .. 'undo'
 
 -- Prefer ripgrep if it exists
 if vim.fn.executable("rg") > 0 then
-  vim.o.grepprg = "rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*"
-  vim.opt.grepformat = vim.opt.grepformat ^ { "%f:%l:%c:%m" }
+  vim.o.grepprg = "rg --vimgrep"
+  -- vim.o.grepprg = "rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*"
+  -- vim.opt.grepformat = vim.opt.grepformat ^ { "%f:%l:%c:%m" }
 end
