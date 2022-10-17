@@ -339,6 +339,14 @@ vim.api.nvim_set_keymap('n', '<leader>k', '', {
     end,
 })
 
+vim.api.nvim_set_keymap('n', '<leader>i', '', {
+    silent = true,
+    noremap = true,
+    callback = function()
+        vim.lsp.buf.implementation()
+    end,
+})
+
 
 vim.api.nvim_create_user_command("Rename", function(args) vim.lsp.buf.rename() end, {})
 
