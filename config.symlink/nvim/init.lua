@@ -105,6 +105,7 @@ require('packer').startup(function(use)
     use 'michaeldyrynda/carbon'
     use 'CrispyBaccoon/dawn.vim'
     use 'mvpopuk/inspired-github.vim'
+    use 'sam4llis/nvim-tundra'
 end)
 
 
