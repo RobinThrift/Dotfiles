@@ -314,8 +314,8 @@ require('go').setup {
 vim.api.nvim_create_autocmd('FileType', {
     pattern = "go",
     callback = function()
-        -- fmt.Println word under cursor
-        vim.keymap.set('n', '<leader>cl', 'yiwofmt.Println("<c-r>"", <c-r>")<Esc>^')
+        -- fmt.Printf word under cursor
+        vim.keymap.set('n', '<leader>cl', 'yiwofmt.Printf("<c-r>" %#v\\n", <c-r>")<Esc>^')
         vim.o.expandtab = false
     end,
 })
