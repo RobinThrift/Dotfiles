@@ -55,6 +55,10 @@ require('packer').startup(function(use)
 
     use 'jose-elias-alvarez/null-ls.nvim'
 
+    -- debuger
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+
     -- Language Support
     use 'rust-lang/rust.vim'
     -- use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
