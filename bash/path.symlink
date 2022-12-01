@@ -1,28 +1,6 @@
 # SETUP THE $PATH
 
 # --------------------------------------------------
-# Android Dev Tools 
-# --------------------------------------------------
-android_sdk_path="$HOME/Library/Android/sdk/platform-tools"
-if [[ -d "$android_sdk_path" ]]; then
-    export ANDROID_SDK_PATH="$android_sdk_path"
-fi
-
-android_home="$HOME/Library/Android/sdk"
-if [ -d "$android_home" ] || [ -h "$android_home" ]; then
-    export ANDROID_HOME="$android_home"
-fi
-
-# --------------------------------------------------
-# Maven 
-# --------------------------------------------------
-maven_path="/usr/local/apache-maven/apache-maven-3.2.1"
-if [[ -d "$maven_path" ]]; then
-    export M2_HOME="$maven_path"
-    export MAVEN="$M2_HOME/bin"
-fi
-
-# --------------------------------------------------
 # Extras 
 # --------------------------------------------------
 extras_path="$HOME/.extras"
@@ -40,4 +18,4 @@ if [[ -d "$gobin_path" ]]; then
     export GOROOT_PATH="$GOROOT/bin"
 fi
 
-export PATH="/usr/local/bin:$ANDROID_SDK_PATH:$MAMP_PHP:$CMAKE_PATH:$EXTRAS_PATH:$GOBIN_PATH:$GOROOT_PATH:$PATH"
+export PATH="/usr/local/bin::$EXTRAS_PATH:$GOBIN_PATH:$GOROOT_PATH:/opt/homebrew/opt/libpq/bin:$PATH"
