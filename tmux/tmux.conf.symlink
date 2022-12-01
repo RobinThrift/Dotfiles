@@ -83,7 +83,7 @@ setw -g window-status-current-format "#[bg=default,fg=colour09] #I #W "
 
 # show session name, window & pane number, date and time on right side of status bar
 set -g status-right-length 90
-set -g status-right "#[fg=colour04,bg=default] #(~/.extras/battery charge) (#(~/.extras/battery source)) #[bg=default] #[fg=colour04,bg=default] %d %b /#[bg=default,fg=colour07] %H:%M "
+set -g status-right "#[fg=colour04,bg=default] #(~/.extras/power) #(~/.extras/battery charge) (#(~/.extras/battery source)) #[bg=default] #[fg=colour04,bg=default] %d %b /#[bg=default,fg=colour07] %H:%M "
 set -g status-left-length 60
 set -g status-left ""
 
