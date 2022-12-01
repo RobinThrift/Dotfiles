@@ -81,7 +81,7 @@ font:
     style: Book Italic
 
   # Point size
-  size: 17.0
+  size: 16.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -95,12 +95,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
-  # Thin stroke font rendering (OS X only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
@@ -590,6 +584,29 @@ schemes:
       cyan:    '#4d7694'
       white:   '#9096ae'
 
+  ohlucy: &ohlucy
+    primary:
+      background: '#1E1D23'
+      foreground: '#DED7D0'
+    normal:
+      black:   '#938884'
+      red:     '#FF7DA3'
+      green:   '#7EC49D'
+      yellow:  '#EFD472'
+      blue:    '#8BB8D0'
+      magenta: '#BDA9D4'
+      cyan:    '#BDA9D4'
+      white:   '#DED7D0'
+    bright:
+      black:   '#938884'
+      red:     '#FF7DA3'
+      green:   '#7EC49D'
+      yellow:  '#EFD472'
+      blue:    '#8BB8D0'
+      magenta: '#BDA9D4'
+      cyan:    '#BDA9D4'
+      white:   '#DED7D0'
+
   poimandres: &poimandres
     primary:
       background: "0x1b1e28"
@@ -619,7 +636,7 @@ schemes:
       cyan: "0x89ddff"
       white: "0xffffff"
 
-colors: *poimandres
+colors: *ohlucy
 
 # Visual Bell
 #
