@@ -24,7 +24,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'nvim-treesitter/playground'
+    -- use 'nvim-treesitter/playground'
 
     use 'christoomey/vim-tmux-navigator'
 
@@ -32,17 +32,26 @@ require('packer').startup(function(use)
     use 'Raimondi/delimitMate' 
     use 'tpope/vim-commentary'
 
-    use 'ggandor/lightspeed.nvim'
-
     use {
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    use 'gennaro-tedesco/nvim-peekup'
     use 'neovim/nvim-lspconfig'
 
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+    use 'phaazon/hop.nvim'
+
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup({
+            signcolumn = false,
+        })
+        vim.cmd('highlight link gitsignscurrentlineblame Comment')
+      end
+    }
 
     -- Autocomplete stuff
     use 'hrsh7th/cmp-vsnip'
@@ -60,56 +69,37 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
 
     -- Language Support
-    use 'rust-lang/rust.vim'
-    -- use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
     use 'ray-x/go.nvim'
-    -- use { 'plasticboy/vim-markdown', ft = {'markdown', 'latex'} }
+    use 'ray-x/guihua.lua'
+
+    use 'rust-lang/rust.vim'
+
     use 'othree/yajs.vim'
     use 'HerringtonDarkholme/yats.vim'
 
-    use 'rktjmp/lush.nvim'
+    -- zig
+    use 'ziglang/zig.vim'
+
 
     -- database
-    use 'tpope/vim-dadbod'
-    use 'kristijanhusak/vim-dadbod-ui'
+    -- use 'tpope/vim-dadbod'
+    -- use 'kristijanhusak/vim-dadbod-ui'
 
+    use 'rktjmp/lush.nvim'
     -- colour schemes
     use 'ellisonleao/gruvbox.nvim'
-    use 'ajmwagar/vim-deus'
     use 'arzg/vim-substrata'
     use 'whatyouhide/vim-gotham'
-    use 'vim-scripts/phd'
-    use 'arzg/vim-oldbook8'
-    use 'romainl/Apprentice'
-    use 'haishanh/night-owl.vim'
-    use 'wadackel/vim-dogrun'
-    use 'pineapplegiant/spaceduck'
     use 'nikolvs/vim-sunbather'
-    use 'kyazdani42/blue-moon'
     use 'stillwwater/vim-nebula'
     use 'pablopunk/sunset.vim'
-    use 'duckwork/nirvana'
     use 'pgavlin/pulumi.vim'
     use { 'rose-pine/neovim', as = 'rose-pine' }
-    use 'davidosomething/vim-colors-meh'
     use 'owickstrom/vim-colors-paramount'
-    use 'fxn/vim-monochrome'
     use 'mcchrish/zenbones.nvim'
-    use 'sainnhe/gruvbox-material'
-    use 'folke/tokyonight.nvim'
-    use 'sainnhe/everforest'
-    use { 'catppuccin/nvim', as = 'catppuccin' }
-    use 'RobinThrift/Sakura.nvim'
-    use 'EdenEast/nightfox.nvim'
-    use 'yuttie/sublimetext-spacegray.vim'
-    use 'elvessousa/sobrio'
     use 'cocopon/iceberg.vim'
-    use 'savq/melange'
-    use 'shaunsingh/moonlight.nvim'
-    use 'michaeldyrynda/carbon'
-    use 'CrispyBaccoon/dawn.vim'
-    use 'mvpopuk/inspired-github.vim'
     use 'sam4llis/nvim-tundra'
+    use 'frenzyexists/aquarium-vim'
 end)
 
 
@@ -159,6 +149,22 @@ require('rose-pine').setup({
 	disable_italics = false,
 })
 
+require('nvim-tundra').setup({
+    syntax = {
+        comments = { italic = true },
+        types = { italic = true },
+    },
+    plugins = {
+        lsp = true,
+        treesitter = true,
+        cmp = true,
+        context = true,
+        dbui = true,
+        gitsigns = true,
+        telescope = true,
+    },
+})
+
 require('gruvbox').setup({
     undercurl = true,
     underline = true,
@@ -193,7 +199,7 @@ vim.o.statusline = '%= %m%f %y %l:%c  '
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme sunbather]]
+vim.cmd [[colorscheme substrata]]
 
 -- MAPPINGS
 
@@ -244,14 +250,16 @@ require('telescope').setup {
         git_files = { theme = 'ivy' },
         buffers = { theme = 'ivy' },
         colorscheme = { theme = 'ivy' },
-        mars = { theme = 'ivy' },
+        marks = { theme = 'ivy' },
         quickfix = { theme = 'ivy' },
         jumplist = { theme = 'ivy' },
+        diagnostics = { theme = 'ivy' },
         lsp_document_symbols = { theme = 'ivy' },
         lsp_workspace_symbols = { theme = 'ivy' },
+        lsp_dynamic_workspace_symbols = { theme = 'dropdown' },
+        lsp_references = { theme = 'cursor' },
         lsp_code_actions = { theme = 'cursor' },
     },
-
 }
 
 vim.keymap.set('n', '<leader>e', function() require('telescope.builtin').find_files({ sort_mru=true }) end)
@@ -263,7 +271,7 @@ vim.api.nvim_create_user_command("Marks", function(args) require('telescope.buil
 vim.api.nvim_create_user_command("QF", function(args) require('telescope.builtin').quickfix() end, {})
 vim.api.nvim_create_user_command("JL", function(args) require('telescope.builtin').jumplist() end, {})
 vim.api.nvim_create_user_command("Syms", function(args) require('telescope.builtin').lsp_document_symbols() end, {})
-vim.api.nvim_create_user_command("WSyms", function(args) require('telescope.builtin').lsp_workspace_symbols() end, {})
+vim.api.nvim_create_user_command("WSyms", function(args) require('telescope.builtin').lsp_dynamic_workspace_symbols() end, {})
 vim.api.nvim_create_user_command("Actions", function(args) require('telescope.builtin').lsp_code_actions() end, {})
 vim.api.nvim_create_user_command("Diags", function(args) require('telescope.builtin').diagnostics() end, {})
 vim.api.nvim_create_user_command("Refs", function(args) require('telescope.builtin').lsp_references() end, {})
@@ -316,6 +324,9 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function()
         -- fmt.Printf word under cursor
         vim.keymap.set('n', '<leader>cl', 'yiwofmt.Printf("<c-r>" %#v\\n", <c-r>")<Esc>^')
+        -- fmt.Printf word under cursor as pretty printed json
+        vim.keymap.set('n', '<leader>jl', 'yiwofmt.Printf("<c-r>" %s\\n",  func() any { var b bytes.Buffer; e := json.NewEncoder(&b); e.SetIndent("", "  "); if err := e.Encode(<c-r>"); err != nil { panic(err) }; return b; }())<Esc>^')
+
         vim.o.expandtab = false
     end,
 })
@@ -489,6 +500,14 @@ require('lspconfig')['pylsp'].setup {
     end,
 }
 
+require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+}
+
 require('lspconfig').zls.setup{
     capabilities = capabilities,
     on_attach = function(client)
@@ -497,6 +516,7 @@ require('lspconfig').zls.setup{
     end,
 }
 
+require('hop').setup()
 
 -- LINTING/FORMATTING/FIXING/ETC
 
@@ -521,8 +541,6 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.goimports,
         require("null-ls").builtins.diagnostics.staticcheck,
 
-        require("null-ls").builtins.formatting.zigfmt,
-
         require("null-ls").builtins.diagnostics.hadolint,
 
         require("null-ls").builtins.diagnostics.protolint,
@@ -536,6 +554,10 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.pylint,
 
         require("null-ls").builtins.formatting.zigfmt,
+
+        require("null-ls").builtins.formatting.rustfmt,
+
+        require("null-ls").builtins.code_actions.gitsigns,
     },
     on_attach = function(client)
         if client.server_capabilities.documentFormattingProvider then
@@ -558,9 +580,9 @@ vim.g.delimitMate_jump_expansion = 1
 
 -- DIFFVIEW
 
-require('diffview').setup {
-    use_icons = false,
-}
+-- require('diffview').setup {
+--     use_icons = false,
+-- }
 
 -- Other
 
