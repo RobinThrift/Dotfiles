@@ -199,16 +199,7 @@ require('gruvbox').setup({
     contrast = "hard", -- can be "hard", "soft" or empty string
     overrides = {},
 })
-vim.g.gruvbox_material_background = 'hard'
-vim.g.gruvbox_material_enable_italic = 1
-vim.g.gruvbox_material_disable_italic_comment = 1
 
-vim.g.tokyonight_style = 'night'
-
-vim.g.everforest_background = 'hard'
-vim.g.everforest_enable_italic = 1
-vim.g.everforest_diagnostic_text_highlight = 1
-vim.g.everforest_sign_column_background = 'none'
 
 vim.opt.fillchars = {
   vert = "│",
