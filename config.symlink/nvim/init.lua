@@ -42,6 +42,24 @@ require('packer').startup(function(use)
     -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     use 'phaazon/hop.nvim'
+    use {
+        'koenverburg/peepsight.nvim',
+        config = function()
+            require('peepsight').setup({
+              -- go
+              "function_declaration",
+              "method_declaration",
+              "func_literal",
+
+              -- js/typescript
+              "class_declaration",
+              "method_definition",
+              "arrow_function",
+              "function_declaration",
+              "generator_function_declaration"
+            })
+        end
+    }
 
     use {
       'lewis6991/gitsigns.nvim',
