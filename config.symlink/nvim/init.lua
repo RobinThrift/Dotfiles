@@ -220,6 +220,10 @@ vim.keymap.set('n', 'gfv', '<cmd>vertical wincmd f<CR>')
 vim.keymap.set('n', 'gfs', '<cmd>wincmd f<CR>')
 vim.keymap.set('n', 'gfc', 'gf')
 
+-- quickfix navigation
+vim.api.nvim_set_keymap('n', ']q', '<cmd>cn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '[q', '<cmd>cp<CR>', { silent = true })
+
 -- TELESCOPE
 
 require('telescope').setup {
