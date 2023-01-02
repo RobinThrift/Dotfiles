@@ -80,6 +80,8 @@ require('packer').startup(function(use)
     -- zig
     use 'ziglang/zig.vim'
 
+    -- search replace
+    use 'windwp/nvim-spectre'
 
     -- database
     -- use 'tpope/vim-dadbod'
@@ -279,6 +281,9 @@ vim.api.nvim_create_user_command("WSyms", function(args) require('telescope.buil
 vim.api.nvim_create_user_command("Actions", function(args) require('telescope.builtin').lsp_code_actions() end, {})
 vim.api.nvim_create_user_command("Diags", function(args) require('telescope.builtin').diagnostics() end, {})
 vim.api.nvim_create_user_command("Refs", function(args) require('telescope.builtin').lsp_references() end, {})
+
+vim.api.nvim_create_user_command("Spectre", function(args) require('spectre').open() end, {})
+vim.api.nvim_create_user_command("QFDiags", function(args) vim.diagnostic.setqflist() end, {})
 
 -- FILETYPES
 
