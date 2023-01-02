@@ -120,6 +120,7 @@ require('packer').startup(function(use)
     use 'cocopon/iceberg.vim'
     use 'sam4llis/nvim-tundra'
     use 'frenzyexists/aquarium-vim'
+    use 'nyoom-engineering/oxocarbon.nvim'
 end)
 
 
@@ -210,7 +211,7 @@ vim.o.statusline = '%= %m%f %y %l:%c  '
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme substrata]]
+vim.cmd [[colorscheme oxocarbon]]
 
 -- MAPPINGS
 
