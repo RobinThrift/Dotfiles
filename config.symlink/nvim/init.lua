@@ -51,7 +51,7 @@ require('packer').startup(function(use)
               "method_declaration",
               "func_literal",
 
-              -- js/typescript
+              -- typescript
               "class_declaration",
               "method_definition",
               "arrow_function",
@@ -206,12 +206,15 @@ vim.opt.fillchars = {
   vert = "│",
 }
 vim.o.laststatus = 2
-vim.o.statusline = '%= %m%f %y %l:%c  '
 
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
 vim.cmd [[colorscheme oxocarbon]]
+
+-- statusline
+vim.o.statusline = '%= %m%f %y %l:%c  '
+
 
 -- MAPPINGS
 
@@ -657,6 +660,12 @@ vim.o.swapfile = false
 vim.o.wb = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath 'data' .. 'undo'
+
+-- folds
+-- prevent all folds to be open until closed
+vim.opt.foldenable = false
+vim.opt. foldmethod = "expr"
+vim.opt. foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Prefer ripgrep if it exists
 if vim.fn.executable("rg") > 0 then
