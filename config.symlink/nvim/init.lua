@@ -121,6 +121,10 @@ require('packer').startup(function(use)
     use 'sam4llis/nvim-tundra'
     use 'frenzyexists/aquarium-vim'
     use 'nyoom-engineering/oxocarbon.nvim'
+    use {
+      "jesseleite/nvim-noirbuddy",
+      requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
+    }
 end)
 
 
@@ -201,7 +205,6 @@ require('gruvbox').setup({
     overrides = {},
 })
 
-
 vim.opt.fillchars = {
   vert = "│",
 }
@@ -210,7 +213,18 @@ vim.o.laststatus = 2
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme oxocarbon]]
+vim.cmd [[colorscheme sunbather]]
+
+-- require('noirbuddy').setup {
+--   preset = 'miami-nights',
+--   styles = {
+--     italic = true,
+--     bold = false,
+--     underline = false,
+--     undercurl = true,
+--   },
+-- }
+
 
 -- statusline
 vim.o.statusline = '%= %m%f %y %l:%c  '
