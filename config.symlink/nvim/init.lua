@@ -312,6 +312,9 @@ vim.api.nvim_create_user_command("Refs", function(args) require('telescope.built
 vim.api.nvim_create_user_command("Spectre", function(args) require('spectre').open() end, {})
 vim.api.nvim_create_user_command("QFDiags", function(args) vim.diagnostic.setqflist() end, {})
 
+vim.api.nvim_create_user_command("TmuxL", function(opts) vim.cmd('!tmux send-keys -t {left-of} "' .. opts.args .. '" Enter'); vim.wait(1000); vim.api.nvim_input("<CR>") end, { nargs = '*', complete = 'shellcmd' })
+vim.api.nvim_create_user_command("TmuxR", function(opts) vim.cmd('!tmux send-keys -t {right-of} "' .. opts.args .. '" Enter'); vim.wait(1000); vim.api.nvim_input("<CR>") end, { nargs = '*', complete = 'shellcmd' })
+
 -- FILETYPES
 
 -- JavaScript
