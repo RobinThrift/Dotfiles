@@ -125,6 +125,7 @@ require('packer').startup(function(use)
       "jesseleite/nvim-noirbuddy",
       requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
     }
+    use "EdenEast/nightfox.nvim"
 end)
 
 
@@ -213,7 +214,7 @@ vim.o.laststatus = 2
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme sunbather]]
+vim.cmd [[colorscheme terafox]]
 
 -- require('noirbuddy').setup {
 --   preset = 'miami-nights',
