@@ -298,6 +298,7 @@ require('telescope').setup {
 vim.keymap.set('n', '<leader>e', function() require('telescope.builtin').find_files({ sort_mru=true }) end)
 vim.keymap.set('n', '<leader>g', function() require('telescope.builtin').git_files({ sort_mru=true }) end)
 vim.keymap.set('n', '<leader>b', function() require('telescope.builtin').buffers({ sort_mru=true }) end)
+vim.keymap.set('n', '<leader>s', function() require('telescope.builtin').lsp_document_symbols() end)
 
 vim.api.nvim_create_user_command("Colors", function(args) require('telescope.builtin').colorscheme() end, {})
 vim.api.nvim_create_user_command("Marks", function(args) require('telescope.builtin').marks({ sort_mru=true }) end, {})
