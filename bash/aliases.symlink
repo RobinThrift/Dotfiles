@@ -16,9 +16,9 @@ alias ...="cd .. ; cd .."
 alias cdf='cd $(find . -type d -maxdepth 10 | fzf-tmux)'
 
 alias ls="ls -G" # list
-alias la="ls -Ga" # list all, includes dot files
-alias ll="ls -Gl" # long list, excludes dot files
-alias lla="ls -Gla" # long list all, includes dot files
+alias la="ls -Gah" # list all, includes dot files
+alias ll="ls -Glh" # long list, excludes dot files
+alias lla="ls -Glah" # long list all, includes dot files
 
 # --------------------------------------------------
 # Git
