@@ -28,9 +28,7 @@ require('packer').startup(function(use)
 
     use 'christoomey/vim-tmux-navigator'
 
-    use 'tpope/vim-surround'
-    use 'Raimondi/delimitMate' 
-    use 'tpope/vim-commentary'
+    use 'echasnovski/mini.nvim'
 
     use {
         'nvim-telescope/telescope.nvim',
@@ -38,28 +36,6 @@ require('packer').startup(function(use)
     }
 
     use 'neovim/nvim-lspconfig'
-
-    -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-
-    use 'phaazon/hop.nvim'
-    use {
-        'koenverburg/peepsight.nvim',
-        config = function()
-            require('peepsight').setup({
-              -- go
-              "function_declaration",
-              "method_declaration",
-              "func_literal",
-
-              -- typescript
-              "class_declaration",
-              "method_definition",
-              "arrow_function",
-              "function_declaration",
-              "generator_function_declaration"
-            })
-        end
-    }
 
     use {
       'lewis6991/gitsigns.nvim',
@@ -84,7 +60,12 @@ require('packer').startup(function(use)
 
     -- debuger
     use 'mfussenegger/nvim-dap'
-    use 'rcarriga/nvim-dap-ui'
+    use {
+        'rcarriga/nvim-dap-ui',
+        requires = { 'mfussenegger/nvim-dap' },
+        config = function()
+        end
+    }
 
     -- Language Support
     use 'ray-x/go.nvim'
@@ -98,18 +79,11 @@ require('packer').startup(function(use)
     -- zig
     use 'ziglang/zig.vim'
 
-    -- search replace
-    use 'windwp/nvim-spectre'
-
-    -- database
-    -- use 'tpope/vim-dadbod'
-    -- use 'kristijanhusak/vim-dadbod-ui'
 
     use 'rktjmp/lush.nvim'
     -- colour schemes
     use 'ellisonleao/gruvbox.nvim'
     use 'arzg/vim-substrata'
-    use 'whatyouhide/vim-gotham'
     use 'nikolvs/vim-sunbather'
     use 'stillwwater/vim-nebula'
     use 'pablopunk/sunset.vim'
@@ -125,11 +99,21 @@ require('packer').startup(function(use)
       "jesseleite/nvim-noirbuddy",
       requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
     }
+    use { "roobert/nightshift.vim", requires = "rktjmp/lush.nvim" }
     use "EdenEast/nightfox.nvim"
 end)
 
-
 -- TREE SITTER
+
+require("nvim-treesitter.parsers").get_parser_configs().just = {
+  install_info = {
+    url = "https://github.com/IndianBoy42/tree-sitter-just", -- local path or git repo
+    files = { "src/parser.c", "src/scanner.cc" },
+    branch = "main",
+    use_makefile = true -- this may be necessary on MacOS (try if you see compiler errors)
+  },
+  maintainers = { "@IndianBoy42" },
+}
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = { "c", "lua", "rust", "go", "javascript", "tsx", "vim", "python", "json" },
@@ -167,7 +151,7 @@ require('nvim-treesitter.configs').setup {
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- COLOURSCHEME AND STYLES
-require('rose-pine').setup({
+require("rose-pine").setup({
 	---@usage 'main'|'moon'
 	dark_variant = 'main',
 	disable_background = false,
@@ -175,7 +159,7 @@ require('rose-pine').setup({
 	disable_italics = false,
 })
 
-require('nvim-tundra').setup({
+require("nvim-tundra").setup({
     syntax = {
         comments = { italic = true },
         types = { italic = true },
@@ -195,7 +179,7 @@ require('gruvbox').setup({
     undercurl = true,
     underline = true,
     bold = true,
-    italic = true,
+    -- italic = true,
     strikethrough = true,
     invert_selection = false,
     invert_signs = false,
@@ -214,7 +198,9 @@ vim.o.laststatus = 2
 vim.o.background= 'dark'
 vim.o.cursorline = true
 vim.o.termguicolors = true
-vim.cmd [[colorscheme terafox]]
+vim.cmd [[colorscheme rosebones]]
+
+
 
 -- require('noirbuddy').setup {
 --   preset = 'miami-nights',
@@ -238,6 +224,10 @@ vim.g.mapleader = ','
 -- switch to last used buffer
 vim.keymap.set('n', '<leader>l', '<cmd>b#<CR>')
 
+-- navigate to prev and next buffer
+vim.keymap.set('n', '<leader>n', '<cmd>bprevious<CR>')
+vim.keymap.set('n', '<leader>m', '<cmd>bnext<CR>')
+
 -- Use ctrl-[hjkl] to select the active split
 vim.api.nvim_set_keymap('n', 'c-k', '<cmd>wincmd k<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', 'c-j', '<cmd>wincmd j<CR>', { silent = true })
@@ -249,10 +239,6 @@ vim.api.nvim_set_keymap('n', 'c-l', '<cmd>wincmd l<CR>', { silent = true })
 vim.keymap.set('n', 'gfv', '<cmd>vertical wincmd f<CR>')
 vim.keymap.set('n', 'gfs', '<cmd>wincmd f<CR>')
 vim.keymap.set('n', 'gfc', 'gf')
-
--- quickfix navigation
-vim.api.nvim_set_keymap('n', ']q', '<cmd>cn<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '[q', '<cmd>cp<CR>', { silent = true })
 
 -- TELESCOPE
 
@@ -290,8 +276,8 @@ require('telescope').setup {
         diagnostics = { theme = 'ivy' },
         lsp_document_symbols = { theme = 'ivy' },
         lsp_workspace_symbols = { theme = 'ivy' },
-        lsp_dynamic_workspace_symbols = { theme = 'dropdown' },
-        lsp_references = { theme = 'cursor' },
+        lsp_dynamic_workspace_symbols = { theme = 'ivy' },
+        lsp_references = { theme = 'ivy' },
         lsp_code_actions = { theme = 'cursor' },
     },
 }
@@ -301,6 +287,7 @@ vim.keymap.set('n', '<leader>g', function() require('telescope.builtin').git_fil
 vim.keymap.set('n', '<leader>b', function() require('telescope.builtin').buffers({ sort_mru=true }) end)
 vim.keymap.set('n', '<leader>s', function() require('telescope.builtin').lsp_document_symbols() end)
 
+vim.api.nvim_create_user_command("Grep", function(args) require('telescope.builtin').live_grep() end, {})
 vim.api.nvim_create_user_command("Colors", function(args) require('telescope.builtin').colorscheme() end, {})
 vim.api.nvim_create_user_command("Marks", function(args) require('telescope.builtin').marks({ sort_mru=true }) end, {})
 vim.api.nvim_create_user_command("QF", function(args) require('telescope.builtin').quickfix() end, {})
@@ -316,6 +303,24 @@ vim.api.nvim_create_user_command("QFDiags", function(args) vim.diagnostic.setqfl
 
 vim.api.nvim_create_user_command("TmuxL", function(opts) vim.cmd('!tmux send-keys -t {left-of} "' .. opts.args .. '" Enter'); vim.wait(1000); vim.api.nvim_input("<CR>") end, { nargs = '*', complete = 'shellcmd' })
 vim.api.nvim_create_user_command("TmuxR", function(opts) vim.cmd('!tmux send-keys -t {right-of} "' .. opts.args .. '" Enter'); vim.wait(1000); vim.api.nvim_input("<CR>") end, { nargs = '*', complete = 'shellcmd' })
+
+-- mini
+
+require('mini.comment').setup()
+require('mini.bracketed').setup()
+require('mini.ai').setup()
+require('mini.surround').setup({
+    mappings = {
+        replace = "cs",
+    },
+})
+require('mini.pairs').setup()
+require('mini.jump2d').setup({
+    mappings = {
+        start_jumping = '<leader>q',
+    },
+})
+require('mini.starter').setup()
 
 -- FILETYPES
 
@@ -348,6 +353,8 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Go
 require('go').setup {
+    tag_transform = "camelCase",
+    icons = {breakpoint = '•', currentpos = '>'},
     -- goimport = 'gopls', -- if set to 'gopls' will use golsp format
     -- gofmt = 'goimports', -- if set to gopls will use golsp format
     goimport = false, -- if set to 'gopls' will use golsp format
@@ -357,6 +364,8 @@ require('go').setup {
     lsp_on_attach = false, -- use on_attach from go.nvim
     lsp_codelens = false,
     dap_debug = true,
+    dap_debug_vt = false,
+    build_tags="wireinject"
 }
 
 
@@ -391,7 +400,7 @@ vim.api.nvim_create_autocmd('FileType', {
         -- fmt.Printf word under cursor
         vim.keymap.set('n', '<leader>cl', 'yiwofmt.Printf("<c-r>" %#v\\n", <c-r>")<Esc>^')
         -- fmt.Printf word under cursor as pretty printed json
-        vim.keymap.set('n', '<leader>jl', 'yiwofmt.Printf("<c-r>" %s\\n",  func() any { var b bytes.Buffer; e := json.NewEncoder(&b); e.SetIndent("", "  "); if err := e.Encode(<c-r>"); err != nil { panic(err) }; return b; }())<Esc>^')
+        vim.keymap.set('n', '<leader>jl', 'yiwofmt.Printf("<c-r>": %s\\n",  func(v any, b *bytes.Buffer) any { e := json.NewEncoder(b); e.SetIndent("", "  "); e.Encode(v); return b.String(); }(<c-r>", bytes.NewBuffer(nil)))<Esc>^')
 
         vim.o.expandtab = false
 
@@ -437,13 +446,18 @@ vim.api.nvim_set_keymap('n', '<leader>i', '', {
 vim.api.nvim_create_user_command("Rename", function(args) vim.lsp.buf.rename() end, {})
 
 -- Show diagnostic popup on cursor hold
--- vim.o.updatetime = 300
--- vim.api.nvim_create_autocmd('CursorHold', {
---     pattern = "*",
---     callback = function()
---         vim.diagnostic.open_float()
---     end,
--- })
+vim.o.updatetime = 300
+vim.api.nvim_create_autocmd('CursorHold', {
+    pattern = "*",
+    callback = function()
+        for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do 
+            if vim.api.nvim_win_get_config(winid).zindex then 
+                return 
+            end 
+        end
+        vim.diagnostic.open_float({focusable = false})
+    end,
+})
 
 
 -- AUTOCOMPLETE
@@ -591,8 +605,6 @@ require('lspconfig').zls.setup{
     end,
 }
 
-require('hop').setup()
-
 -- LINTING/FORMATTING/FIXING/ETC
 
 vim.o.signcolumn = "yes"
@@ -604,7 +616,7 @@ require("null-ls").setup({
             filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json", "graphql" }
         }),
         require("null-ls").builtins.diagnostics.eslint.with({
-            prefer_local = true,
+            prefer_local = "node_modules/.bin",
         }),
         require("null-ls").builtins.code_actions.eslint.with({
             prefer_local = "node_modules/.bin",
@@ -615,6 +627,7 @@ require("null-ls").setup({
 
         require("null-ls").builtins.formatting.goimports,
         require("null-ls").builtins.diagnostics.staticcheck,
+	require("null-ls").builtins.diagnostics.golangci_lint,
 
         require("null-ls").builtins.diagnostics.hadolint,
 
@@ -646,6 +659,34 @@ require("null-ls").setup({
     end,
 })
 
+-- DAP / Debugger
+
+dap = require('dap')
+dapui = require('dapui')
+
+vim.fn.sign_define('DapBreakpoint', {text='•', texthl='red', linehl='', numhl=''})
+dapui.setup({
+    console = 'integratedTerminal'
+})
+
+dap.defaults.go.external_terminal = {
+    command = '/usr/local/bin/alacritty';
+    args = {'-e'};
+}
+
+-- dap.configurations.go.console = 'integratedTerminal'
+
+-- dap.listeners.after.event_initialized['dapui_config'] = function()
+--   dapui.open()
+-- end
+
+-- dap.listeners.before.event_terminated['dapui_config'] = function()
+--   dapui.close()
+-- end
+
+-- dap.listeners.before.event_exited['dapui_config'] = function()
+--   dapui.close()
+-- end
 
 -- DELMIMATE
 vim.g.delimitMate_balance_matchpairs = 1
