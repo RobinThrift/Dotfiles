@@ -66,15 +66,23 @@ font:
   #   family: IBM Plex Mono
   #   style: Italic
 
+  # normal:
+  #   family: Operator Mono
+  #   style: Book
+  # bold:
+  #   family: Operator Mono
+  #   style: Book Bold
+  # italic:
+  #   family: Operator Mono
+  #   style: Book Italic
+
   normal:
-    family: Operator Mono
-    style: Book
+    family: League Mono Narrow Light
   bold:
-    family: Operator Mono
-    sltyle: Book Bold
+    family: League Mono Narrow Medium
   italic:
-    family: Operator Mono
-    style: Book Italic
+    family: League Mono Narrow Light
+
 
   # Point size
   size: 16.0
