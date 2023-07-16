@@ -5,4 +5,7 @@
 .vagrant
 
 # configs
-config.symlink
+config.symlink/*
+
+!config.symlink/nvim
+!config.symlink/alacritty
