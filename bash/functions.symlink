@@ -67,3 +67,40 @@ function sp_tmux() {
         echo "[$icon $(spcurrshort)]"
     fi
 }
+
+function newer() {
+    local pwdsum=$(pwd | shasum | cut -f1 -d ' ')
+    local touchpoint="$TMPDIR.newer-touch-point.$pwdsum"
+
+    local isolderthan24h=$(find "$touchpoint" -mtime +23h30m)
+
+    if [ "$isolderthan24h" ]; then
+        rm -rf "$touchpoint"
+    fi
+
+    if [ ! -f "$touchpoint" ]; then
+        echo $@
+        touch $touchpoint
+        return
+    fi
+
+    for f in $@; do
+        if [ "$f" -nt "$touchpoint" ]; then
+            echo $@
+        fi
+    done
+}
+
+function newer_reset() {
+    local pwdsum=$(pwd | shasum | cut -f1 -d ' ')
+    local touchpoint="$TMPDIR.newer-touch-point.$pwdsum"
+    rm -rf "$touchpoint"
+}
+
+function set_alactritty_color() {
+    local config_file="$HOME/.config/alacritty/alacritty.yml"
+    local found=$(grep "$1" "$config_file")
+    if [ "$found" ]; then
+        sed -i '' -e "s/^colors:.*/colors: *$1/"  "$config_file"
+    fi;
+}
