@@ -18,7 +18,7 @@ function update_all() {
     mas upgrade
 
     echo "Updating vim plugins"
-    nvim -c "PackerUpdate"
+    nvim --headless "+Lazy! sync" +qa
 }
 
 function spotify_running() {
