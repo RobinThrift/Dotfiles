@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-dmenu_run -q -i -h 25 -w 400 -fn Monaco:size=10 -y 0 -x 150 -nb "#001b22" -nf "#d9e6f2" -p ">>" -sb "#001b22" -sf "#7ab8b8"

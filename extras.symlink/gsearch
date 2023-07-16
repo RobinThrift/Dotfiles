@@ -1,4 +1,0 @@
-#!/bin/bash
-DMENU="dmenu -i -h 25 -w 400 -fn Monaco:size=10 -y 0 -x 150"
-GS=`echo "" | $DMENU`
-firefox -new-tab http://google.com/search?q="$GS"
