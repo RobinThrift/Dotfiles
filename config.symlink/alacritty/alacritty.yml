@@ -10,61 +10,51 @@ window:
   opacity: 1.0
 
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 80
+    lines: 40
 
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 5
     y: 2
 
-  # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
-
-  # Window decorations
-  #
-  # Available values:
-  # - `full`: Window with title bar and title bar buttons
-  # - `none`: Window without title bar, rounded corners, or drop shadow
-  # - `transparent`: Window with title bar with transparent background and title
-  #   bar buttons
-  # - `buttonless`: Window with title bar with transparent background and no
-  #   title bar buttons
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #     - buttonless: Title bar, transparent background and title bar buttons
-  #     - transparent: Title bar, transparent background, but no title bar buttons
   decorations: buttonless
-
-  # When true, alacritty starts maximized.
   startup_mode: Maximized
 
 scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
   history: 0
-
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
   multiplier: 0
 
-# Font configuration (changes require restart)
 font:
   # normal:
   #   family: IBM Plex Mono
-  #   style: Regular
+  #   style: Light
   # bold:
   #   family: IBM Plex Mono
-  #   style: Medium
+  #   style: Regular
   # italic:
   #   family: IBM Plex Mono
+  #   style: Light Italic
+
+  # normal:
+  #   family: Space Mono
+  #   style: Regular
+  # bold:
+  #   family: Space Mono
+  #   style: Bold
+  # italic:
+  #   family: Space Mono
   #   style: Italic
+
+  normal:
+    family: IntelOne Mono
+    style: Light
+  bold:
+    family: IntelOne Mono
+    style: Regular
+  italic:
+    family: IBM Plex Mono
+    style: Light Italic
 
   # normal:
   #   family: Operator Mono
@@ -76,34 +66,27 @@ font:
   #   family: Operator Mono
   #   style: Book Italic
 
-  normal:
-    family: League Mono Narrow Light
-  bold:
-    family: League Mono Narrow Medium
-  italic:
-    family: League Mono Narrow Light
+  # normal:
+  #   family: League Mono Narrow Light
+  # bold:
+  #   family: League Mono Narrow Medium
+  # italic:
+  #   family: League Mono Narrow Light
 
 
   # Point size
-  size: 16.0
+  size: 15.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
     y: 0
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
     y: 0
 
-# If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night Bright)
 schemes:
   horizon: &horizon
     cursor:
@@ -640,96 +623,146 @@ schemes:
       cyan: "0x89ddff"
       white: "0xffffff"
 
-colors: *rosepine
+  nightfox: &nightfox
+    primary:
+      background: '0x192330'
+      foreground: '0xcdcecf'
+    normal:
+      black:   '0x393b44'
+      red:     '0xc94f6d'
+      green:   '0x81b29a'
+      yellow:  '0xdbc074'
+      blue:    '0x719cd6'
+      magenta: '0x9d79d6'
+      cyan:    '0x63cdcf'
+      white:   '0xdfdfe0'
+    bright:
+      black:   '0x575860'
+      red:     '0xd16983'
+      green:   '0x8ebaa4'
+      yellow:  '0xe0c989'
+      blue:    '0x86abdc'
+      magenta: '0xbaa1e2'
+      cyan:    '0x7ad5d6'
+      white:   '0xe4e4e6'
+    indexed_colors:
+      - { index: 16, color: '0xf4a261' }
+      - { index: 17, color: '0xd67ad2' }
 
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Values for `animation`:
-#   - Ease
-#   - EaseOut
-#   - EaseOutSine
-#   - EaseOutQuad
-#   - EaseOutCubic
-#   - EaseOutQuart
-#   - EaseOutQuint
-#   - EaseOutExpo
-#   - EaseOutCirc
-#   - Linear
-#
-# Specifying a `duration` of `0` will disable the visual bell.
+  terafox: &terafox
+    primary:
+      background: '0x152528'
+      foreground: '0xe6eaea'
+    normal:
+      black:   '0x2f3239'
+      red:     '0xe85c51'
+      green:   '0x7aa4a1'
+      yellow:  '0xfda47f'
+      blue:    '0x5a93aa'
+      magenta: '0xad5c7c'
+      cyan:    '0xa1cdd8'
+      white:   '0xebebeb'
+    bright:
+      black:   '0x4e5157'
+      red:     '0xeb746b'
+      green:   '0x8eb2af'
+      yellow:  '0xfdb292'
+      blue:    '0x73a3b7'
+      magenta: '0xb97490'
+      cyan:    '0xafd4de'
+      white:   '0xeeeeee'
+    indexed_colors:
+      - { index: 16, color: '0xff8349' }
+      - { index: 17, color: '0xcb7985' }
+
+  kanagawa: &kanagawa
+    primary: 
+        background: '0x1f1f28'
+        foreground: '0xdcd7ba'
+    normal:
+      black:   '0x090618'
+      red:     '0xc34043'
+      green:   '0x76946a'
+      yellow:  '0xc0a36e'
+      blue:    '0x7e9cd8'
+      magenta: '0x957fb8'
+      cyan:    '0x6a9589'
+      white:   '0xc8c093'
+    bright:
+      black:   '0x727169'
+      red:     '0xe82424'
+      green:   '0x98bb6c'
+      yellow:  '0xe6c384'
+      blue:    '0x7fb4ca'
+      magenta: '0x938aa9'
+      cyan:    '0x7aa89f'
+      white:   '0xdcd7ba'
+    selection:
+      background: '0x2d4f67'
+      foreground: '0xc8c093'
+    indexed_colors:
+      - { index: 16, color: '0xffa066' }
+      - { index: 17, color: '0xff5d62' }
+
+  kanagawa-dragon: &kanagawa-dragon
+    primary:
+      background: '#181616'
+      foreground: '#c5c9c5'
+
+    normal:
+      black:   '#0d0c0c'
+      red:     '#c4746e'
+      green:   '#8a9a7b'
+      yellow:  '#c4b28a'
+      blue:    '#8ba4b0'
+      magenta: '#a292a3'
+      cyan:    '#8ea4a2'
+      white:   '#C8C093'
+
+    bright:
+      black:   '#a6a69c'
+      red:     '#E46876'
+      green:   '#87a987'
+      yellow:  '#E6C384'
+      blue:    '#7FB4CA'
+      magenta: '#938AA9'
+      cyan:    '#7AA89F'
+      white:   '#c5c9c5'
+
+    selection:
+      background: '#2D4F67'
+      foreground: '#C8C093'
+
+  indexed_colors:
+    - { index: 16, color: '#b6927b' }
+    - { index: 17, color: '#b98d7b' }
+
+colors: *kanagawa
+
 bell:
   animation: EaseOutExpo
   duration: 0
 
-# Mouse bindings
-#
-# Available fields:
-# - mouse
-# - action
-# - mods (optional)
-#
-# Values for `mouse`:
-# - Middle
-# - Left
-# - Right
-# - Numeric identifier such as `5`
-#
-# All available `mods` and `action` values are documented in the key binding
-# section.
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 mouse:
-  # Click settings
-  #
-  # The `double_click` and `triple_click` settings control the time
-  # alacritty should wait for accepting multiple clicks as one double
-  # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
 
-  # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
   hints:
-    # URL launcher
-    #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
     launcher: open
-
-    # URL modifiers
-    #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    #modifiers: Control|Shift
 
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-
-  # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
 
 cursor:
-  # Cursor style
-  #
-  # Values for 'style':
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
   style: Block
-
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
   unfocused_hollow: true
 
-# Live config reload (changes require restart)
 live_config_reload: true
 
 debug:
