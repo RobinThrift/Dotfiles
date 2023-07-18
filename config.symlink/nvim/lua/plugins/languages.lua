@@ -2,11 +2,11 @@ return {
     {
         "rust-lang/rust.vim",
         lazy = true,
-        ft = "rust"
+        ft = "rust",
     },
     {
         "ziglang/zig.vim",
         lazy = true,
-        ft = "zig"
+        ft = "zig",
     },
 }

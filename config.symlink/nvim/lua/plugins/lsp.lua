@@ -149,60 +149,60 @@ return {
         end
     },
 
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        init = function()
-            vim.opt.signcolumn = "yes"
-        end,
-        config = function()
-            local nls = require("null-ls")
-            nls.setup({
-                sources = {
-                    nls.builtins.formatting.prettierd.with({
-                        prefer_local = "node_modules/.bin",
-                        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json",
-                            "graphql" }
-                    }),
-
-                    nls.builtins.diagnostics.eslint.with({ prefer_local = "node_modules/.bin" }),
-                    nls.builtins.code_actions.eslint.with({ prefer_local = "node_modules/.bin" }),
-                    nls.builtins.diagnostics.tsc.with({ prefer_local = "node_modules/.bin" }),
-                    nls.builtins.formatting.goimports,
-                    nls.builtins.diagnostics.staticcheck,
-                    nls.builtins.diagnostics.golangci_lint,
-
-                    nls.builtins.diagnostics.hadolint,
-
-                    nls.builtins.diagnostics.protolint,
-                    nls.builtins.formatting.protolint,
-
-                    nls.builtins.formatting.clang_format,
-
-                    nls.builtins.formatting.black,
-                    nls.builtins.diagnostics.mypy,
-                    nls.builtins.diagnostics.pydocstyle,
-                    nls.builtins.diagnostics.pylint,
-
-                    nls.builtins.formatting.zigfmt,
-
-                    nls.builtins.formatting.rustfmt,
-
-                    nls.builtins.code_actions.gitsigns,
-                },
-
-                on_attach = function(client)
-                    if client.server_capabilities.documentFormattingProvider then
-                        vim.cmd([[
-                            augroup LspFormatting
-                            autocmd! * <buffer>
-                            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-                            augroup END
-                        ]])
-                    end
-                end,
-            })
-        end
-    },
+    -- {
+    --     "jose-elias-alvarez/null-ls.nvim",
+    --     init = function()
+    --         vim.opt.signcolumn = "yes"
+    --     end,
+    --     config = function()
+    --         local nls = require("null-ls")
+    --         nls.setup({
+    --             sources = {
+    --                 nls.builtins.formatting.prettierd.with({
+    --                     prefer_local = "node_modules/.bin",
+    --                     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json",
+    --                         "graphql" }
+    --                 }),
+    --
+    --                 nls.builtins.diagnostics.eslint.with({ prefer_local = "node_modules/.bin" }),
+    --                 nls.builtins.code_actions.eslint.with({ prefer_local = "node_modules/.bin" }),
+    --                 nls.builtins.diagnostics.tsc.with({ prefer_local = "node_modules/.bin" }),
+    --                 nls.builtins.formatting.goimports,
+    --                 nls.builtins.diagnostics.staticcheck,
+    --                 nls.builtins.diagnostics.golangci_lint,
+    --
+    --                 nls.builtins.diagnostics.hadolint,
+    --
+    --                 nls.builtins.diagnostics.protolint,
+    --                 nls.builtins.formatting.protolint,
+    --
+    --                 nls.builtins.formatting.clang_format,
+    --
+    --                 nls.builtins.formatting.black,
+    --                 nls.builtins.diagnostics.mypy,
+    --                 nls.builtins.diagnostics.pydocstyle,
+    --                 nls.builtins.diagnostics.pylint,
+    --
+    --                 nls.builtins.formatting.zigfmt,
+    --
+    --                 nls.builtins.formatting.rustfmt,
+    --
+    --                 nls.builtins.code_actions.gitsigns,
+    --             },
+    --
+    --             on_attach = function(client)
+    --                 if client.server_capabilities.documentFormattingProvider then
+    --                     vim.cmd([[
+    --                         augroup LspFormatting
+    --                         autocmd! * <buffer>
+    --                         autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+    --                         augroup END
+    --                     ]])
+    --                 end
+    --             end,
+    --         })
+    --     end
+    -- },
 
     {
         "j-hui/fidget.nvim",

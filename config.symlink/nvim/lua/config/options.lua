@@ -61,8 +61,6 @@ vim.o.undodir = vim.fn.stdpath "data" .. "undo"
 
 -- folds
 vim.opt.foldenable = false -- prevent all folds to be open until closed
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Prefer ripgrep if it exists
 if vim.fn.executable("rg") > 0 then
