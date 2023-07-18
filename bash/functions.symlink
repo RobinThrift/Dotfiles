@@ -98,9 +98,21 @@ function newer_reset() {
 }
 
 function set_alactritty_color() {
-    local config_file="$HOME/.config/alacritty/alacritty.yml"
-    local found=$(grep "$1" "$config_file")
-    if [ "$found" ]; then
-        sed -i '' -e "s/^colors:.*/colors: *$1/"  "$config_file"
-    fi;
+    local config_file="$HOME/.config/alacritty/alacritty.toml"
+    local colour_file="$HOME/.config/alacritty/colour.toml"
+    if [ -f "$HOME/.config/alacritty/colours/$1.toml" ]; then
+        echo "import = [\"~/.config/alacritty/colours/$1.toml\"]" > "$colour_file"
+    fi
+    touch "$config_file"
 }
+
+function _complete_set_alactritty_color() {
+    local file
+    for file in "$HOME/.config/alacritty/colours/$2"*; do
+        [[ -f $file ]] || continue
+        local filename=$(basename "$file")
+        COMPREPLY+=(${filename/".toml"/""})
+    done
+}
+
+complete -F _complete_set_alactritty_color set_alactritty_color

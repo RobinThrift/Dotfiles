@@ -1,0 +1,14 @@
+[font]
+size = 15.0
+
+[font.normal]
+family = "Operator Mono"
+style = "Book"
+
+[font.bold]
+family = "Operator Mono"
+style = "Book Bold"
+
+[font.italic]
+family = "Operator Mono"
+style = "Book Italic"

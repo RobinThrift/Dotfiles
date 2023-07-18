@@ -1,0 +1,14 @@
+[font]
+size = 15.0
+
+[font.normal]
+family = "Space Mono"
+style = "Regular"
+
+[font.bold]
+family = "Space Mono"
+style = "Bold"
+
+[font.italic]
+family = "Space Mono"
+style = "Italic"

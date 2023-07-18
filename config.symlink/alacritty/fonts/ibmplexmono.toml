@@ -1,0 +1,14 @@
+[font]
+size = 15.0
+
+[font.normal]
+family = "IBM Plex Mono"
+style = "Light"
+
+[font.bold]
+family = "IBM Plex Mono"
+style = "Regular"
+
+[font.italic]
+family = "IBM Plex Mono"
+style = "Light Italic"

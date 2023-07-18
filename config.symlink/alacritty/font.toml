@@ -1,0 +1,9 @@
+import = ["~/.config/alacritty/fonts/intelmono.toml"]
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.offset]
+x = 0
+y = 0
