@@ -1,6 +1,6 @@
-local languages = { "vtsls", "pylsp", "rust_analyzer", "zls", "yamlls" }
+local languages = { "pylsp", "rust_analyzer", "zls", "yamlls" }
 
-vim.keymap.set('n', 'K', '', {
+vim.keymap.set("n", "K", "", {
     silent = true,
     noremap = true,
     callback = function()
@@ -8,7 +8,7 @@ vim.keymap.set('n', 'K', '', {
     end,
 })
 
-vim.keymap.set('n', '<leader>k', '', {
+vim.keymap.set("n", "<leader>k", "", {
     silent = true,
     noremap = true,
     callback = function()
@@ -16,7 +16,7 @@ vim.keymap.set('n', '<leader>k', '', {
     end,
 })
 
-vim.keymap.set('n', '<leader>i', '', {
+vim.keymap.set("n", "<leader>i", "", {
     silent = true,
     noremap = true,
     callback = function()
@@ -24,11 +24,13 @@ vim.keymap.set('n', '<leader>i', '', {
     end,
 })
 
-vim.api.nvim_create_user_command("Actions", function() vim.lsp.buf.code_action() end, {})
+vim.api.nvim_create_user_command("Actions", function()
+    vim.lsp.buf.code_action()
+end, {})
 
 -- Show diagnostic popup on cursor hold
 vim.opt.updatetime = 300
-vim.api.nvim_create_autocmd('CursorHold', {
+vim.api.nvim_create_autocmd("CursorHold", {
     pattern = "*",
     callback = function()
         for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
@@ -40,7 +42,9 @@ vim.api.nvim_create_autocmd('CursorHold', {
     end,
 })
 
-vim.api.nvim_create_user_command("Rename", function() vim.lsp.buf.rename() end, {})
+vim.api.nvim_create_user_command("Rename", function()
+    vim.lsp.buf.rename()
+end, {})
 
 return {
     -- neodev needs to be called BEFORE lspconfig
@@ -69,6 +73,7 @@ return {
         version = false,
         config = function()
             local lspconfig = require("lspconfig")
+            local util = require("lspconfig.util")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             local function on_attach(client)
@@ -100,7 +105,7 @@ return {
 
                 init_options = {
                     usePlaceholders = true,
-                }
+                },
             })
 
             lspconfig.lua_ls.setup({
@@ -109,10 +114,10 @@ return {
                 settings = {
                     Lua = {
                         runtime = {
-                            version = 'LuaJIT',
+                            version = "LuaJIT",
                         },
                         diagnostics = {
-                            globals = { 'vim' },
+                            globals = { "vim" },
                         },
                         workspace = {
                             library = vim.api.nvim_get_runtime_file("", true),
@@ -120,7 +125,7 @@ return {
                         telemetry = {
                             enable = false,
                         },
-                    }
+                    },
                 },
             })
 
@@ -128,25 +133,38 @@ return {
                 settings = {
                     yaml = {
                         schemas = {
-                            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+                            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
                         },
                     },
 
                     redhat = {
                         telemetry = {
-                            enabled = false
-                        }
-                    }
-                }
+                            enabled = false,
+                        },
+                    },
+                },
+            })
+
+            lspconfig.denols.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                root_dir = util.root_pattern("deno.json"),
+            })
+
+            lspconfig.vtsls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                root_dir = util.root_pattern("package.json", "tsconfig.json"),
+                single_file_support = false, -- must disable so doesn't activate with denols
             })
 
             for _, language in pairs(languages) do
                 lspconfig[language].setup({
                     capabilities = capabilities,
-                    on_attach = on_attach
+                    on_attach = on_attach,
                 })
             end
-        end
+        end,
     },
 
     -- {
@@ -209,6 +227,6 @@ return {
         branch = "legacy",
         config = function()
             require("fidget").setup()
-        end
-    }
+        end,
+    },
 }
