@@ -28,6 +28,13 @@ alias gcm="git commit -m"
 alias gcan="git commit --amend --no-edit"
 
 # --------------------------------------------------
+# kuberentes
+# --------------------------------------------------
+alias k="kubectl"
+complete -F __start_kubectl k
+
+
+# --------------------------------------------------
 # Text Editing
 # --------------------------------------------------
 alias oiv='nvim $(ag -g "" | fzf-tmux)'
