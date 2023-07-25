@@ -3,12 +3,12 @@ size = 15.0
 
 [font.normal]
 family = "Operator Mono"
-style = "Book"
+style = "Light"
 
 [font.bold]
 family = "Operator Mono"
-style = "Book Bold"
+style = "Light Bold"
 
 [font.italic]
 family = "Operator Mono"
-style = "Book Italic"
+style = "Light Italic"
