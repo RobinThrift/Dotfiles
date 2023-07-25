@@ -14,11 +14,11 @@ text = "0x191724"
 cursor = "0x825B65"
 text = "0x232136"
 
-[colors.end]
+[colors.hints.end]
 background = "#393552"
 foreground = "#59546d"
 
-[colors.start]
+[colors.hints.start]
 background = "#393552"
 foreground = "#817c9c"
 
