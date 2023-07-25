@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
     callback = function()
-        vim.o.expandtab = true
+        vim.opt_local.expandtab = true
         vim.keymap.set("n", "<leader>cl", 'yiwoconsole.log("<c-r>"", <c-r>")<Esc>^', { silent = true })
     end,
 })
@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown" },
     callback = function()
-        vim.o.expandtab = true
+        vim.opt_local.expandtab = true
         vim.opt_local.spell = true
     end,
 })
@@ -68,6 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "just", "justfile" },
     callback = function()
-        vim.o.expandtab = true
+        vim.opt_local.expandtab = true
+        vim.opt_local.commentstring = "#%s"
     end,
 })
