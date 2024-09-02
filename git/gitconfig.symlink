@@ -1,7 +1,15 @@
 # more here: https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
 
 [core]
+    pager = delta
     excludeFiles = ~/.gitignore
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+
 [init]
         templatedir = ~/.git_templates
 	    defaultBranch = main
@@ -40,6 +48,7 @@
 	# Detect copies as well as renames
 	renames = copies
 	tool = vimdiff
+    colorMoved = default
 
 [help]
 	# Automatically correct and execute mistyped commands
