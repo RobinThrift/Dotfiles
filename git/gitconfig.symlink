@@ -18,6 +18,7 @@
         # View the current working tree status using the short format
         s = status -s
         co = checkout
+        recent = ! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10
 
 
 [color]
