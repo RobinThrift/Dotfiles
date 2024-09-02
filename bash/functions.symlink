@@ -8,9 +8,6 @@ function update_all() {
         brew upgrade && \
         brew cleanup
 
-    echo "Updating gems"
-    gem update && gem cleanup;
-
     echo "Running software update"
     softwareupdate -l;
 
