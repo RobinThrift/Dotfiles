@@ -50,10 +50,12 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
         
+
 [user]
 	name = Robin Thrift
 	email = services@robinthrift.com
-	signingkey = services@robinthrift.com
+	signingkey = /Users/robin/.ssh/id_rsa.pub
+
 [push]
     default = simple
 
@@ -67,4 +69,8 @@
 [pull]
 	rebase = true
 [gpg]
-	program = /opt/homebrew/bin/gpg
+    ; program = /opt/homebrew/bin/gpg
+    format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = /Users/robin/.ssh/allowed_signers
