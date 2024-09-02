@@ -78,3 +78,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export GPG_TTY=$(tty)
 source "$HOME/.cargo/env"
 
+source "$HOME/.config/wezterm/wezterm.sh"
