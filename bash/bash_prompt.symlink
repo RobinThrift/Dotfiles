@@ -2,6 +2,13 @@
 # BASH PROMPT
 # --------------------------------------------------
 
+txtblk="[30m"  # Black
+txtred="[31m"  # Red
+txtblu="[34m"  # Blue
+txtrst="(B[0m"    # Text Reset
+txtlwht="[97m"  # Light White
+txtlblu="[94m"  # Light Blue
+
 # GIT aware prompt
 # from https://github.com/jimeh/git-aware-prompt 
 find_git_branch() {

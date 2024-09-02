@@ -3,7 +3,7 @@
 # --------------------------------------------------
 
 
-for file in ~/.{exports,path,colours,functions,extra,bash_prompt,aliases,bash_commands}; do
+for file in ~/.{exports,path,functions,extra,bash_prompt,aliases,bash_commands}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
