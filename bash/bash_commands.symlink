@@ -11,3 +11,16 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Ctrl + p - edit a file in vim from fzf
 bind -x '"\C-p": nvim $(fzf);'
+
+
+_fzf_complete_go_test_run() {
+    _fzf_complete -m --prompt="tests> " -- "$@"  < <(
+        go test -list=. ./... | rg ^Test
+    )
+}
+
+_fzf_complete_go_test_run_post() {
+    awk '{print "-run ^" $NF "$ ./..."}'
+}
+
+complete -F _fzf_complete_go_test_run -o default -o bashdefault go
