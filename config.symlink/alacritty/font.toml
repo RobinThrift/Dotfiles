@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/fonts/intelmono.toml"]
+import = ["~/.config/alacritty/fonts/iosevka.toml"]
 
 [font.glyph_offset]
 x = 0

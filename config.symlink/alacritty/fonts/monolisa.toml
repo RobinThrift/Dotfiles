@@ -1,14 +1,14 @@
 [font]
-size = 15.0
+size = 14.0
 
 [font.normal]
-family = "Space Mono"
+family = "MonoLisa"
 style = "Regular"
 
 [font.bold]
-family = "Space Mono"
+family = "MonoLisa"
 style = "Regular"
 
 [font.italic]
-family = "Space Mono"
+family = "MonoLisa"
 style = "Italic"

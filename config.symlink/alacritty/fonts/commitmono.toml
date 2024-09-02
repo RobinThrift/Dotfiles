@@ -1,0 +1,14 @@
+[font]
+size = 15.0
+
+[font.normal]
+family = "CommitMonoV136"
+style = "400 Regular"
+
+[font.bold]
+family = "CommitMonoV136"
+style = "400 Bold"
+
+[font.italic]
+family = "CommitMonoV136"
+style = "400 Italic"
