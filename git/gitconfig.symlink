@@ -7,13 +7,12 @@
 	    defaultBranch = main
 
 [alias]
-    
         # View the current working tree status using the short format
         s = status -s
         co = checkout
 
-[color]
 
+[color]
         # Use colors in Git commands that are capable of colored output when
         # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
         ui = auto
@@ -21,35 +20,30 @@
 
  
 [color "branch"]
-
 	    current = yellow reverse
 	    local = yellow
 	    remote = green
 
 [color "diff"]
-
         meta = yellow bold
         frag = magenta bold # line info
         old = red # deletions
         new = green # additions
 
 [color "status"]
-
         added = yellow
         changed = green
         untracked = cyan
 
-[diff]
 
+[diff]
 	# Detect copies as well as renames
 	renames = copies
 	tool = vimdiff
 
 [help]
-
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
-        
 
 [user]
 	name = Robin Thrift
@@ -64,10 +58,13 @@
 
 [merge]
 	tool = vimdiff
+
 [commit]
 	gpgsign = true
+
 [pull]
 	rebase = true
+
 [gpg]
     ; program = /opt/homebrew/bin/gpg
     format = ssh
