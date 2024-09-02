@@ -6,9 +6,6 @@ foreground = "#646b8c"
 background = "#35394a"
 text = "#9096ae"
 
-[colors.cursor]
-unfocused_hollow = true
-
 [colors.normal]
 black = "#262938"
 blue = "#4f6589"
