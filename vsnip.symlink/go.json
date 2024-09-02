@@ -1,0 +1,17 @@
+{
+    "Table Test": {
+        "prefix": ["tt :="],
+        "body": [
+            "\ttt := []struct{",
+            "\t\tname string",
+            "\t\t$1",
+            "\t}{}\n",
+            "\tfor _, tt := range tt {",
+            "\t\tt.Run(tt.name, func(t *testing.T) {",
+            "\t\t\t$2",
+            "\t\t})",
+            "\t}"
+        ],
+        "description": "Generate table driven test."
+    }
+}
