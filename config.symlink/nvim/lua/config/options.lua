@@ -11,7 +11,7 @@ vim.opt.mouse = ""
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.fillchars = {
-  vert = "│",
+    vert = "│",
 }
 
 -- indentation
@@ -33,7 +33,7 @@ vim.opt.visualbell = false
 vim.opt.hidden = true
 vim.opt.list = true
 vim.opt.listchars = {
-    tab = "∙ ",
+    tab = "･ ",
     eol = "¬",
     extends = "…",
     precedes = "…",
@@ -45,7 +45,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.magic = true -- regex magic 
+vim.opt.magic = true -- regex magic
 
 -- file handling
 vim.opt.encoding = "utf8"
@@ -56,14 +56,12 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.wb = false
 vim.opt.undofile = true
-vim.o.undodir = vim.fn.stdpath "data" .. "undo"
-
+vim.o.undodir = vim.fn.stdpath("data") .. "undo"
 
 -- folds
 vim.opt.foldenable = false -- prevent all folds to be open until closed
 
 -- Prefer ripgrep if it exists
 if vim.fn.executable("rg") > 0 then
-  vim.o.grepprg = "rg --vimgrep"
+    vim.o.grepprg = "rg --vimgrep"
 end
-

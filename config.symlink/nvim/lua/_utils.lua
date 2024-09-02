@@ -1,5 +1,20 @@
 local M = {}
 
+M.find_git_root = function()
+    local items = vim.fs.find({ ".git" }, {
+        upward = true,
+        stop = vim.loop.os_homedir(),
+        path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+        limit = 1,
+    })
+
+    if #items == 0 then
+        return nil
+    end
+
+    return items[1]
+end
+
 M.path_exists = function(filename)
     local stat = vim.loop.fs_stat(filename)
     return stat ~= nil
@@ -44,6 +59,19 @@ M.root_pattern = function(...)
             end
         end
     end
+end
+
+M.find_in_node_modules = function(dir, name)
+    local exe = dir .. "/node_modules/.bin/" .. name
+    if M.path_exists(exe) then
+        return exe
+    end
+
+    exe = dir .. "/../../node_modules/.bin/" .. name
+    if M.path_exists(exe) then
+        return exe
+    end
+    return nil
 end
 
 return M

@@ -175,8 +175,8 @@ return {
                 typescript = { "eslint", "denolint" },
                 typescriptreact = { "eslint", "denolint" },
                 json = { "eslint", "jsonlint" },
-                python = { "pylint", "mypy", "pydocstyle" },
-                yaml = { "actionlint" },
+                python = { "ruff", "mypy" },
+                -- yaml = { "actionlint" },
                 Dockerfile = { "hadolint" },
                 proto = { "protolint" },
             }

@@ -1,4 +1,4 @@
-local languages = { "pylsp", "rust_analyzer", "zls", "yamlls" }
+local languages = { "pylsp", "zls", "astro", "terraformls", "tflint", "tilt_ls" }
 
 vim.keymap.set("n", "K", "", {
     silent = true,
@@ -75,6 +75,21 @@ return {
             local lspconfig = require("lspconfig")
             local util = require("lspconfig.util")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local utils = require("_utils")
+
+            lspconfig.util.on_setup = lspconfig.util.add_hook_before(lspconfig.util.on_setup, function(config)
+                if config.name == "biome" then
+                    local exe = utils.find_in_node_modules(
+                        utils.root_pattern("biome.json")(vim.api.nvim_buf_get_name(0)),
+                        "biome"
+                    )
+
+                    if exe ~= nil then
+                        config.autostart = true
+                        config.cmd = { exe, "lsp-proxy" }
+                    end
+                end
+            end)
 
             local function on_attach(client)
                 client.server_capabilities.documentFormattingProvider = false
@@ -130,11 +145,22 @@ return {
             })
 
             lspconfig.yamlls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
                 settings = {
                     yaml = {
+                        keyOrdering = false,
+
                         schemas = {
                             ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                            ["/Users/robin/spacefleet/core/sdk/_shared/schemas/v1/schemas/resources/mission.json"] = {
+                                "missions/*",
+                                "missions/*/*",
+                            },
                         },
+                        schemaDownload = { enable = true },
+                        validate = true,
+                        completion = true,
                     },
 
                     redhat = {
@@ -151,11 +177,30 @@ return {
                 root_dir = util.root_pattern("deno.json"),
             })
 
+            lspconfig.biome.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                autostart = false,
+            })
+
             lspconfig.vtsls.setup({
                 capabilities = capabilities,
                 on_attach = on_attach,
                 root_dir = util.root_pattern("package.json", "tsconfig.json"),
                 single_file_support = false, -- must disable so doesn't activate with denols
+            })
+
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    rust_analyzer = {
+                        cargo = {
+                            extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = "dev" },
+                            extraArgs = { "--profile", "rust-analyzer" },
+                        },
+                    },
+                },
             })
 
             for _, language in pairs(languages) do
@@ -166,61 +211,6 @@ return {
             end
         end,
     },
-
-    -- {
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     init = function()
-    --         vim.opt.signcolumn = "yes"
-    --     end,
-    --     config = function()
-    --         local nls = require("null-ls")
-    --         nls.setup({
-    --             sources = {
-    --                 nls.builtins.formatting.prettierd.with({
-    --                     prefer_local = "node_modules/.bin",
-    --                     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json",
-    --                         "graphql" }
-    --                 }),
-    --
-    --                 nls.builtins.diagnostics.eslint.with({ prefer_local = "node_modules/.bin" }),
-    --                 nls.builtins.code_actions.eslint.with({ prefer_local = "node_modules/.bin" }),
-    --                 nls.builtins.diagnostics.tsc.with({ prefer_local = "node_modules/.bin" }),
-    --                 nls.builtins.formatting.goimports,
-    --                 nls.builtins.diagnostics.staticcheck,
-    --                 nls.builtins.diagnostics.golangci_lint,
-    --
-    --                 nls.builtins.diagnostics.hadolint,
-    --
-    --                 nls.builtins.diagnostics.protolint,
-    --                 nls.builtins.formatting.protolint,
-    --
-    --                 nls.builtins.formatting.clang_format,
-    --
-    --                 nls.builtins.formatting.black,
-    --                 nls.builtins.diagnostics.mypy,
-    --                 nls.builtins.diagnostics.pydocstyle,
-    --                 nls.builtins.diagnostics.pylint,
-    --
-    --                 nls.builtins.formatting.zigfmt,
-    --
-    --                 nls.builtins.formatting.rustfmt,
-    --
-    --                 nls.builtins.code_actions.gitsigns,
-    --             },
-    --
-    --             on_attach = function(client)
-    --                 if client.server_capabilities.documentFormattingProvider then
-    --                     vim.cmd([[
-    --                         augroup LspFormatting
-    --                         autocmd! * <buffer>
-    --                         autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-    --                         augroup END
-    --                     ]])
-    --                 end
-    --             end,
-    --         })
-    --     end
-    -- },
 
     {
         "j-hui/fidget.nvim",

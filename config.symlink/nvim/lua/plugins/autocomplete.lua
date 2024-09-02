@@ -34,17 +34,15 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
 
-                sources = cmp.config.sources(
-                    {
-                        { name = "nvim_lsp" },
-                    },
-                    {
-                        { name = "nvim_lsp_signature_help" },
-                    },
-                    {
-                        { name = "buffer" },
-                    }
-                ),
+                sources = cmp.config.sources({
+                    { name = "vsnip" },
+                }, {
+                    { name = "nvim_lsp" },
+                }, {
+                    { name = "nvim_lsp_signature_help" },
+                }, {
+                    { name = "buffer" },
+                }),
 
                 experimental = {
                     ghost_text = { hl_group = "NonText" },
@@ -52,15 +50,12 @@ return {
             })
 
             cmp.setup.cmdline("/", {
-                sources = {{ name = "buffer" }}
+                sources = { { name = "buffer" } },
             })
 
             cmp.setup.cmdline(":", {
-                sources = cmp.config.sources(
-                    { { name = "path" } },
-                    { { name = "cmdline" } }
-                )
+                sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
             })
-        end
-    }
+        end,
+    },
 }

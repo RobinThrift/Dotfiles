@@ -1,13 +1,10 @@
-vim.opt.background= 'dark'
+vim.opt.background = "dark"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
 return {
-    { "EdenEast/nightfox.nvim", priority=1000, },
 
-    { "arzg/vim-substrata", priority=1000, },
-
-    { "cocopon/iceberg.vim", priority=1000, },
+    { "arzg/vim-substrata", priority = 1000 },
 
     {
         "ellisonleao/gruvbox.nvim",
@@ -24,33 +21,27 @@ return {
             inverse = true, -- invert background for search, diffs, statuslines and errors
             contrast = "hard", -- can be "hard", "soft" or empty string
             overrides = {},
-        }
+        },
     },
 
-    { "kvrohit/mellow.nvim", priority=1000, },
+    { "kvrohit/mellow.nvim", priority = 1000 },
 
-    { "mcchrish/zenbones.nvim", priority=1000, },
+    { "mcchrish/zenbones.nvim", priority = 1000 },
 
-    { "nikolvs/vim-sunbather", priority=1000, },
+    { "nikolvs/vim-sunbather", priority = 1000 },
 
-    { "owickstrom/vim-colors-paramount", priority=1000, },
+    { "owickstrom/vim-colors-paramount", priority = 1000 },
 
-    { "pablopunk/sunset.vim", priority=1000, },
+    { "pablopunk/sunset.vim", priority = 1000 },
 
-    { "pgavlin/pulumi.vim", priority=1000, },
-
-    {
-        "roobert/nightshift.vim",
-        dependencies = { "rktjmp/lush.nvim" },
-        priority=1000,
-    },
+    { "pgavlin/pulumi.vim", priority = 1000 },
 
     {
         "rose-pine/neovim",
         name = "rose-pine",
-        priority=1000,
+        priority = 1000,
         opts = {
-            dark_variant = 'main',
+            dark_variant = "main",
             disable_background = false,
             disable_float_background = false,
             disable_italics = false,
@@ -59,7 +50,7 @@ return {
 
     {
         "sam4llis/nvim-tundra",
-        priority=1000,
+        priority = 1000,
         opts = {
             syntax = {
                 comments = { italic = true },
@@ -77,28 +68,30 @@ return {
         },
     },
 
-    { "stillwwater/vim-nebula", priority=1000, },
-
-    { "nyoom-engineering/oxocarbon.nvim", priority=1000, },
+    { "stillwwater/vim-nebula", priority = 1000 },
 
     {
         "ramojus/mellifluous.nvim",
         opts = {
             dim_inactive = true,
         },
-        priority=1000,
+        priority = 1000,
     },
 
-    { "rebelot/kanagawa.nvim", priority=1000, },
+    { "rebelot/kanagawa.nvim", priority = 1000 },
 
-    { "rktjmp/lush.nvim", lazy=true },
+    { "samharju/serene.nvim", priority = 1000 },
+
+    { "aliqyan-21/darkvoid.nvim", priority = 1000 },
+
+    { "rktjmp/lush.nvim", lazy = true },
 
     {
-        dir="~/.config/nvim/lua/_colour",
-        lazy=false,
-        priority=900,
-        init = function ()
+        dir = "~/.config/nvim/lua/_colour",
+        lazy = false,
+        priority = 900,
+        init = function()
             require("_colour").setup()
-        end
+        end,
     },
 }

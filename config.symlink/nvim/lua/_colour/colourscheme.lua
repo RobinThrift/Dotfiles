@@ -1,4 +1,4 @@
 return function ()
-    vim.cmd [[colorscheme kanagawa]]
+    vim.cmd [[colorscheme sunbather]]
 end
 

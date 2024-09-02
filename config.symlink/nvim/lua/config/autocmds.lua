@@ -58,6 +58,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json", "yaml" },
+    callback = function()
+        vim.opt_local.expandtab = true
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown" },
     callback = function()
         vim.opt_local.expandtab = true
@@ -66,9 +73,42 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "astro" },
+    callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.commentstring = "//%s"
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     pattern = { "just", "justfile" },
     callback = function()
         vim.opt_local.expandtab = true
         vim.opt_local.commentstring = "#%s"
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { ".*templates/.*yaml" },
+    callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.commentstring = "#%s"
+    end,
+})
+
+vim.filetype.add({
+    pattern = {
+        [".*templates/.*yaml"] = "gotexttmpl",
+        ["Tiltfile"] = "tiltfile",
+        ["*.Tiltfile"] = "tiltfile",
+    },
+})
+
+vim.api.nvim_create_autocmd({ "LspAttach" }, {
+    pattern = { "tiltfile" },
+    callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.commentstring = "#%s"
+        vim.cmd("set syntax=python")
     end,
 })

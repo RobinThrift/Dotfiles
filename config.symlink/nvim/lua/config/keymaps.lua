@@ -19,4 +19,12 @@ vim.keymap.set("n", "gfs", "<cmd>wincmd f<CR>", { silent = true, noremap = false
 vim.keymap.set("n", "gfc", "gf", { silent = true, noremap = false })
 
 -- clear hihglight with double escapce
-vim.keymap.set('n', '<esc>', '<cmd>noh<cr><esc>', { noremap = true, silent = true })
+vim.keymap.set("n", "<esc>", "<cmd>noh<cr><esc>", { noremap = true, silent = true })
+
+-- camelCase convert selection from camelCase to snake_case
+vim.keymap.set(
+    "v",
+    "<leader>u",
+    "<cmd>s/\\%V[a-z]\\@<=[A-Z]/_\\l\\0/g<cr><cmd>noh<cr><esc>",
+    { silent = true, noremap = false, desc = "Convert selection from camelCase to snake_case" }
+)
